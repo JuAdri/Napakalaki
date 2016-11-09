@@ -238,4 +238,6 @@ public class PruebaNapakalaki {
         for(Monster m: lose_tr_sp(TreasureKind.ONEHAND))      // Probamos con perder una mano
             System.out.println(m);
     }
+    
+    // Comentario Adri
 }
