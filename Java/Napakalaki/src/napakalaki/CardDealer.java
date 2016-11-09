@@ -32,7 +32,19 @@ public class CardDealer {
     }
     
     private void initTreasureCardDeck(){
-        //unusedTreasures = ;
+        unusedTreasures.add(new Treasure("Lanzallamas", 4, TreasureKind.BOTHHANDS));
+        unusedTreasures.add(new Treasure("Necro-comicón", 1, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("Necronomicón", 5, TreasureKind.BOTHHANDS));
+        unusedTreasures.add(new Treasure("Linterna a 2 manos", 3, TreasureKind.BOTHHANDS));
+        unusedTreasures.add(new Treasure("Necro-gnomicón", 2, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("Necrotelecom", 2, TreasureKind.HELMET));
+        unusedTreasures.add(new Treasure("Mazo de los antiguos", 3, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("Necro-playboycón", 3, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("Porra preternatural", 2, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("Shogulador", 1, TreasureKind.BOTHHANDS));
+        unusedTreasures.add(new Treasure("Varita de atizamiento", 3, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("Tentáculo de pega", 2, TreasureKind.HELMET));
+        unusedTreasures.add(new Treasure("Zapato deja-amigos", 1, TreasureKind.SHOES));
     }
     
     private void initMonsterCardDeck(){
@@ -193,7 +205,7 @@ public class CardDealer {
         Collections.shuffle(unusedMonster);
     }
     
-    public Treasure nextTreasure(){
+    public unusedTreasures.addextTreasure(){
         
     }
     
