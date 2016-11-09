@@ -24,6 +24,6 @@ public class Dice {
     }
     
     private int nextNumber(){
-        return 1;
+        return (int) (Math.random() * 6) + 1;
     }
 }

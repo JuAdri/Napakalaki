@@ -42,8 +42,6 @@ public class Monster {
         return castigo;
     }
     
-    
-    
     public String toString(){
         return "\n\nNombre del monstruo= " +name + "\nNivel de combate= "+Integer.toString(combatLevel)+"\nPremio: " +premio.toString()+"\nCASTIGO: " + castigo.toString();
     }
