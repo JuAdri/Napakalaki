@@ -48,7 +48,9 @@ public class BadConsequence {
                 specificVisibleTreasures.isEmpty();
     }
     
-    public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, ArrayList<Treasure> h){}
+    public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, ArrayList<Treasure> h){
+    
+    }
 
      public int getLevels() {
         return levels;
