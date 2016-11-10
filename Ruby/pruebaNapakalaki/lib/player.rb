@@ -27,11 +27,11 @@ class Player
   def getCombatLevel
     level_combat= @level
     for i in(0..@hiddenTreasures.length)
-      level_combat+=hiddenTreasures[i]
+      level_combat+=hiddenTreasures[i].bonus
     end
     
     for i in(0..@visibleTreasures.length)
-      level_combat+=visibleTreasures[i]
+      level_combat+=visibleTreasures[i].bonus
     end
     
     return level_combat
