@@ -13,6 +13,7 @@ import java.util.Collections;
  * @author adriii
  */
 public class CardDealer {
+    private static final CardDealer instance= new CardDealer();
     
     private ArrayList<Treasure> unusedTreasures;
     private ArrayList<Treasure> usedTreasures;
@@ -22,14 +23,6 @@ public class CardDealer {
     private CardDealer() {
     }
     
-    public static CardDealer getInstance() {
-        return CardDealerHolder.INSTANCE;
-    }
-    
-    private static class CardDealerHolder {
-
-        private static final CardDealer INSTANCE = new CardDealer();
-    }
     
     private void initTreasureCardDeck(){
         unusedTreasures.add(new Treasure("Lanzallamas", 4, TreasureKind.BOTHHANDS));
@@ -194,7 +187,6 @@ public class CardDealer {
         BadConsequence bc19= new BadConsequence("Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.", 3, tr_vis19, tr_hid19);
         Monster m19= new Monster("Bicefalo", 21, bc19, pz19);
         unusedMonster.add(m19);
-        //unusedMonster = ;
     }
     
     private void shuffleTreasures(){
@@ -205,9 +197,12 @@ public class CardDealer {
         Collections.shuffle(unusedMonster);
     }
     
-    public unusedTreasures.addextTreasure(){
-        
+    
+    public static CardDealer getInstance() {
+        return instance;
     }
+    
+    public Treasure nextTreasure(){}
     
     public Monster nextMonster(){
     

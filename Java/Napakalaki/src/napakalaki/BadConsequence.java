@@ -50,14 +50,10 @@ public class BadConsequence {
     
     public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, ArrayList<Treasure> h){}
 
-    public String getText() {
-        return text;
-    }
-
-    public int getLevels() {
+     public int getLevels() {
         return levels;
     }
-
+    
     public int getNVisibleTreasures() {
         return nVisibleTreasures;
     }
@@ -66,9 +62,6 @@ public class BadConsequence {
         return nHiddenTreasures;
     }
 
-    public boolean isDeath() {
-        return death;
-    }
 
     public ArrayList<TreasureKind> getSpecificHiddenTreasures() {
         return specificHiddenTreasures;
