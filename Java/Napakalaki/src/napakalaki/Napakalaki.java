@@ -18,11 +18,6 @@ public class Napakalaki {
     private CardDealer dealer;
     private Monster currentMonster;
     
-    private Napakalaki(){
-        currentPlayer= new Player();
-        players= new ArrayList<>();
-        dealer= new CardDealer();
-    }
     private void  initPlayers(String[] names){}
     
     private Player nextPlayer(){}
