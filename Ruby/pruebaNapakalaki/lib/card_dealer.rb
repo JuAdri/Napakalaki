@@ -136,8 +136,6 @@ class CardDealer
     prize = Prize.new(2, 1)
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.', 3, [TreasureKind::ONEHAND], [TreasureKind::BOTHHANDS])
     @unusedMonsters << Monster.new('Bicefalo', 21, prize, bad_consequence)
-    
-    
   end
   
   def self.shuffleTreasures

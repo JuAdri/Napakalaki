@@ -14,11 +14,11 @@ class Napakalaki
     @currentMonster= Monster.new
   end
   
-  def self.getInstance()
+  def self.getInstance
     return instance
   end
   
-  def developCombat()
+  def developCombat
   end
   
   def discarfVisibleTreasures(tr_vis)
@@ -37,7 +37,7 @@ class Napakalaki
     
   end
 
-  def nextTurn()
+  def nextTurn
   end
   
   def endOfGame(result)
@@ -49,15 +49,15 @@ class Napakalaki
     
   end
   
-  def nextPlayer()
+  def nextPlayer
     
   end
   
-  def nextTurnAllowed()
+  def nextTurnAllowed
     
   end
   
-  def setEnemies()
+  def setEnemies
     
   end
   

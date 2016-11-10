@@ -31,12 +31,12 @@ class BadConsequence
   
   def isEmpty
     return @nVisibleTreasures==0 && 
-                @nHiddenTreasures==0 && 
-                @specificHiddenTreasures.isEmpty() && 
-                @specificVisibleTreasures.isEmpty()
+           @nHiddenTreasures==0 && 
+           @specificHiddenTreasures.isEmpty && 
+           @specificVisibleTreasures.isEmpty
   end
   
-  attr_reader :text, :levels, :nVisibleTreasures, :nHiddenTreasures, :death, :specificHiddenTreasures, :specificVisibleTreasures
+  attr_reader :levels, :nVisibleTreasures, :nHiddenTreasures, :specificHiddenTreasures, :specificVisibleTreasures
 
   def to_s
     "Text = #{@text} \n  Levels = #{@levels} \n  VisibleObjects = #{@nVisibleTreasures} \n  HiddenObjects = #{@nHiddenTreasures} \n  Death = #{@death} \n  SpecificHiddenObjects = #{@specificHiddenTreasures} \n  SpecificVisibleObjects = #{@specificVisibleTreasures}"

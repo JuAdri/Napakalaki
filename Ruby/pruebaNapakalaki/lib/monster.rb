@@ -12,18 +12,18 @@ class Monster
     @bc = bc
   end
   
-  attr_reader :name, :combatLevel, :prize, :bc
+  attr_reader :name, :combatLevel, :bc
   
   def to_s
     "\nName = #{@name} \nCombatLevel = #{@combatLevel} \nPrize: \n  #{@prize.to_s} \nBadConsequence: \n  #{@bc.to_s}"
   end
   
   def getLevelsGained
-    return @bc.levels
+    return @prize.level
   end
   
   def getTreasuresGained
-    return @bc.nVisibleTreasures
+    return @prize.treasures
   end
   
 end

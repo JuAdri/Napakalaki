@@ -20,11 +20,11 @@ class Player
   end
   
   private
-  def bringToLife()
+  def bringToLife
     @dead= false
   end
   
-  def getCombatLevel()
+  def getCombatLevel
     level_combat= @level
     for i in(0..@hiddenTreasures.length)
       level_combat+=hiddenTreasures[i]
@@ -69,11 +69,11 @@ class Player
     @dead=true
   end
   
-    def giveMeATreasure()
+  def giveMeATreasure
     
   end
   
-    def canYouGiveMeATreasure
+  def canYouGiveMeATreasure
     return @visibleTreasures.length
   end
   
@@ -85,7 +85,6 @@ class Player
   def isDead
     return @dead
   end
-  
   
   def combat(monstruo)
     
