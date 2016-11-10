@@ -13,13 +13,13 @@ public class Monster {
     private String name;
     private int combatLevel;
     private Prize premio;
-    private BadConsequence castigo;
+    private BadConsequence bc;
     
     public Monster(String name, int level, BadConsequence bc, Prize prize){
        this.name= name;
        this.combatLevel= level;
        this.premio= prize;
-       this.castigo= bc;             
+       this.bc= bc;             
     }
 
     public String getName() {
@@ -30,7 +30,7 @@ public class Monster {
         return combatLevel;
     }
 
-    public int getLevelGained(){
+    public int getLevelsGained(){
         return premio.getLevel();
     }
     
@@ -38,11 +38,11 @@ public class Monster {
         return premio.getTreasures();
     }
 
-    public BadConsequence getCastigo() {
-        return castigo;
+    public BadConsequence getBadConsequence() {
+        return bc;
     }
     
     public String toString(){
-        return "\n\nNombre del monstruo= " +name + "\nNivel de combate= "+Integer.toString(combatLevel)+"\nPremio: " +premio.toString()+"\nCASTIGO: " + castigo.toString();
+        return "\n\nNombre del monstruo= " +name + "\nNivel de combate= "+Integer.toString(combatLevel)+"\nPremio: " +premio.toString()+"\nCASTIGO: " + bc.toString();
     }
 }
