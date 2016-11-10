@@ -18,4 +18,12 @@ class Monster
     "\nName = #{@name} \nCombatLevel = #{@combatLevel} \nPrize: \n  #{@prize.to_s} \nBadConsequence: \n  #{@bc.to_s}"
   end
   
+  def getLevelsGained
+    return @bc.levels
+  end
+  
+  def getTreasuresGained
+    return @bc.nVisibleTreasures
+  end
+  
 end
