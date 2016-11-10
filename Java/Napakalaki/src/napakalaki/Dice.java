@@ -10,20 +10,16 @@ package napakalaki;
  * @author adriii
  */
 public class Dice {
+    private static final Dice instance= new Dice();
     
     private Dice() {
     }
     
     public static Dice getInstance() {
-        return DiceHolder.INSTANCE;
+        return instance;
     }
     
-    private static class DiceHolder {
-
-        private static final Dice INSTANCE = new Dice();
-    }
-    
-    private int nextNumber(){
+    public int nextNumber(){
         return (int) (Math.random() * 6) + 1;
     }
 }
