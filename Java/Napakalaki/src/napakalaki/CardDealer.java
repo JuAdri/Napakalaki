@@ -25,6 +25,24 @@ public class CardDealer {
     
     
     private void initTreasureCardDeck(){
+        unusedTreasures.add(new Treasure("¡Si mi amo!", 4, TreasureKind.HELMET));
+        unusedTreasures.add(new Treasure("Botas de investigacion", 3, TreasureKind.SHOES));
+        unusedTreasures.add(new Treasure("Capucha de Cthulhu", 3, TreasureKind.HELMET));
+        unusedTreasures.add(new Treasure("A prueba de babas", 2, TreasureKind.ARMOR));
+        unusedTreasures.add(new Treasure("Botas de lluvia acida", 1, TreasureKind.BOTHHANDS));
+        unusedTreasures.add(new Treasure("Casco minero", 2, TreasureKind.HELMET));
+        unusedTreasures.add(new Treasure("Ametralladora ACME", 4, TreasureKind.BOTHHANDS));
+        unusedTreasures.add(new Treasure("Camiseta de la ETSIIT", 1, TreasureKind.ARMOR));
+        unusedTreasures.add(new Treasure("Clavo de rail ferroviario", 3, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("Cuchillo de sushi arcano", 2, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("Fez alopodo", 3, TreasureKind.HELMET));
+        unusedTreasures.add(new Treasure("Hacha prehistorica", 2, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("El aparato del PR. Tesla", 4, TreasureKind.ARMOR));
+        unusedTreasures.add(new Treasure("Gaita", 4, TreasureKind.BOTHHANDS));
+        unusedTreasures.add(new Treasure("Insecticida", 2, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("Escopeta de 3 cañones", 4, TreasureKind.BOTHHANDS));
+        unusedTreasures.add(new Treasure("Garabato mistico", 2, TreasureKind.ONEHAND));
+        unusedTreasures.add(new Treasure("La rebeca metalica", 2, TreasureKind.ARMOR));
         unusedTreasures.add(new Treasure("Lanzallamas", 4, TreasureKind.BOTHHANDS));
         unusedTreasures.add(new Treasure("Necro-comicón", 1, TreasureKind.ONEHAND));
         unusedTreasures.add(new Treasure("Necronomicón", 5, TreasureKind.BOTHHANDS));
