@@ -4,13 +4,8 @@
 
 class Dice
   include Singleton
-  def initialize
-    
-  end
   
-  @@dc = self.instance
-  
-  attr_reader :dc
+  attr_reader :instance
   
   def nextNumber()
     

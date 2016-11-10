@@ -29,6 +29,13 @@ class BadConsequence
     new(aText, '', '', '', Array.new, Array.new, true)
   end
   
+  def isEmpty
+    return @nVisibleTreasures==0 && 
+                @nHiddenTreasures==0 && 
+                @specificHiddenTreasures.isEmpty() && 
+                @specificVisibleTreasures.isEmpty()
+  end
+  
   attr_reader :text, :levels, :nVisibleTreasures, :nHiddenTreasures, :death, :specificHiddenTreasures, :specificVisibleTreasures
 
   def to_s
