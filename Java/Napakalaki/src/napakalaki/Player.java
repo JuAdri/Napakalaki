@@ -61,7 +61,7 @@ public class Player {
         
     }
     
-    private void applyBadConsequence(Monster m){}
+    private void applyBadConsequence(BadConsequence bc){}
     
     private Boolean canMakeTreasureVisible(Treasure t){
     
