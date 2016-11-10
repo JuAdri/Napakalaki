@@ -220,7 +220,9 @@ public class CardDealer {
         return instance;
     }
     
-    public Treasure nextTreasure(){}
+    public Treasure nextTreasure(){
+    
+    }
     
     public Monster nextMonster(){
     
