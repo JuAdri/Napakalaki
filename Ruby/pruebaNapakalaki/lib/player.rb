@@ -6,7 +6,7 @@ class Player
   @@MAXLEVEL=10
   
   attr_reader :canISteal, :level, :name
-  attr_writer :enemy
+  attr_writer :enemy, :pendingBadConsequence
   
   def initialize(name_p)
     @name=name_p
@@ -16,7 +16,7 @@ class Player
     @enemy= Player.new
     @hiddenTreasures= Array.new
     @visibleTreasures= Array.new
-    pendingBadConsequence= BadConsequence.new
+    @pendingBadConsequence= BadConsequence.new
   end
   
   private
@@ -41,10 +41,6 @@ class Player
   
   def decrementLevels(i)
     @level-=i
-  end
-  
-  def setPendingBadConsequence(b)
-    @pendingBadConsequence=b
   end
   
   def applyPrize(m)
@@ -73,6 +69,18 @@ class Player
     @dead=true
   end
   
+    def giveMeATreasure()
+    
+  end
+  
+    def canYouGiveMeATreasure
+    return @visibleTreasures.length
+  end
+  
+  def haveStolen
+    @canISteal = false
+  end
+  
   public
   def isDead
     return @dead
@@ -96,9 +104,7 @@ class Player
   end
   
   def validState
-    if(@hiddenTreasures.size < 5 && @pendingBadConsequence == false)
-      return true
-    return false
+    return @hiddenTreasures.size < 5 && @pendingBadConsequence.isEmpty
   end
   
   def initTreasures
@@ -109,25 +115,8 @@ class Player
     
   end
   
-  def setEnemy(jugador)
-    @enemy = jugador
-  end
-  
-  def self.giveMeATreasure
-    
-  end
-  
-  
-  def self.canYouGiveMeATreasure
-    if(@visibleTreasures.size)
-      return true
-    end
-    
-    return false
-  end
-  
-  def self.haveStolen
-    @canISteal = false
+  def canISteal
+    return @canISteal
   end
   
   def discardAllTreasures
