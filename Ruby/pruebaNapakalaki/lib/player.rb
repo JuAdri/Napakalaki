@@ -3,6 +3,82 @@
 # and open the template in the editor.
 
 class Player
+  @@MAXLEVEL=10
+  
+  attr_reader :canISteal, :level, :name
+  attr_writer :enemy
+  
+  def initialize(name_p)
+    @name=name_p
+    @level= 0
+    @dead=true
+    @canISteal= true
+    @enemy= Player.new
+    @hiddenTreasures= Array.new
+    @visibleTreasures= Array.new
+    pendingBadConsequence= BadConsequence.new
+  end
+  
+  private
+  def bringToLife()
+    @dead= false
+  end
+  
+  def getCombatLevel()
+    level_combat= @level
+    for i in(0..@hiddenTreasures.length)
+      level_combat+=hiddenTreasures[i]
+    end
+    
+    for i in(0..@visibleTreasures.length)
+      level_combat+=visibleTreasures[i]
+    end
+  end
+  
+  def incrementLevels(i)
+    @level+=i
+  end
+  
+  def decrementLevels(i)
+    @level-=i
+  end
+  
+  def setPendingBadConsequence(b)
+    @pendingBadConsequence=b
+  end
+  
+  def applyPrize(m)
+    
+  end
+  
+  def applyBadConsequence(bc)
+    
+  end
+  
+  def canMakeTreasureVisible(t)
+    
+  end
+  
+  def howManyVisibleTreasures(t)
+    n_trs=0
+    @visibleTreasures.each do |v_tr|
+      if(v_tr==t)
+        n_trs+=1
+      end
+    end
+    return n_trs
+  end
+  
+  def dielfNoTreasures
+    @dead=true
+  end
+  
+  public
+  def isDead
+    return @dead
+  end
+  
+  
   def combat(monstruo)
     
   end
@@ -29,8 +105,6 @@ class Player
     
   end
   
-  attr_reader :level
-  
   def stealTreasure
     
   end
@@ -43,7 +117,6 @@ class Player
     
   end
   
-  attr_reader :canISteal
   
   def self.canYouGiveMeATreasure
     if(@visibleTreasures.size)
