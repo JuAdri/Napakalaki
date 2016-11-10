@@ -33,6 +33,8 @@ class Player
     for i in(0..@visibleTreasures.length)
       level_combat+=visibleTreasures[i]
     end
+    
+    return level_combat
   end
   
   def incrementLevels(i)
