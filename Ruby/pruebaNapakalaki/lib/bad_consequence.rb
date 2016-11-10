@@ -42,4 +42,16 @@ class BadConsequence
     "Text = #{@text} \n  Levels = #{@levels} \n  VisibleObjects = #{@nVisibleTreasures} \n  HiddenObjects = #{@nHiddenTreasures} \n  Death = #{@death} \n  SpecificHiddenObjects = #{@specificHiddenTreasures} \n  SpecificVisibleObjects = #{@specificVisibleTreasures}"
   end
   
+  def substractVisibleTreasure(t)
+    
+  end
+  
+  def substractHiddenTreasure(t)
+    
+  end
+  
+  def adjustToFitTreasureLists(array1_tesoros, array2_tesoros)
+    
+  end
+  
 end
