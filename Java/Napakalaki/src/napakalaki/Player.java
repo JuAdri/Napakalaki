@@ -41,6 +41,8 @@ public class Player {
         
         for(i=0; i<hiddenTreasures.size(); i++)
             level_combat+=hiddenTreasures.get(i).getBonus();
+        
+        return level_combat;
     }
     
     private void incrementLevels(int i){
@@ -58,6 +60,8 @@ public class Player {
     private void applyPrize(Monster m){
         
     }
+    
+    private void applyBadConsequence(Monster m){}
     
     private Boolean canMakeTreasureVisible(Treasure t){
     
@@ -104,9 +108,7 @@ public class Player {
     }
     
     public boolean validState(){
-        if(hiddenTreasures.size() < 5 && !pendingBadConsequence)
-            return true;
-        return false;
+        return (hiddenTreasures.size() < 5) && pendingBadConsequence.isEmpty();
     }
     
     public void initTreasures(){
@@ -134,9 +136,7 @@ public class Player {
     }
     
     private boolean canYouGiveMeATreasure(){
-        if(visibleTreasures.size())
-            return true;
-        return false;
+        return visibleTreasures.size();
     }
     
     private void haveStolen(){

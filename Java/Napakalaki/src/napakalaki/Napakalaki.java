@@ -24,8 +24,11 @@ public class Napakalaki {
         dealer= new CardDealer();
     }
     private void  initPlayers(String[] names){}
+    
     private Player nextPlayer(){}
+    
     private boolean nextTurnAllowed(){}
+    
     private void setEnemies(){}
     
     public static Napakalaki getInstance(){
