@@ -31,7 +31,7 @@ class Player
     end
     
     for i in(0..@visibleTreasures.length)
-      level_combat+=visibleTreasures[i].bonus
+      level_combat+=visibleTreasures[i]
     end
     
     return level_combat
