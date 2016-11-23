@@ -25,6 +25,9 @@ public class Player {
     public Player(String name){
         this.name= name;
         level=0;
+        enemy= null;
+        visibleTreasures= new ArrayList();
+        hiddenTreasures= new ArrayList();            
     }
     
     public String getName(){
@@ -66,7 +69,7 @@ public class Player {
     private void applyBadConsequence(BadConsequence bc){}
     
     private Boolean canMakeTreasureVisible(Treasure t){
-    
+        
     }
     
     private int howManyVisibleTreasures(TreasureKind t){
@@ -138,7 +141,7 @@ public class Player {
     }
     
     private boolean canYouGiveMeATreasure(){
-        return visibleTreasures.size();
+        return visibleTreasures.size()>0;
     }
     
     private void haveStolen(){

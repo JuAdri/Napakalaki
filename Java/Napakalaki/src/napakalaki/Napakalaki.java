@@ -19,9 +19,41 @@ public class Napakalaki {
     private CardDealer dealer;
     private Monster currentMonster;
     
-    private void  initPlayers(String[] names){}
+    public Napakalaki(){
+        currentPlayer= new Player("");
+        players= new ArrayList();
+        currentMonster= new Monster("", 0, null, null);
+        dealer= CardDealer.getInstance();
+    }
     
-    private Player nextPlayer(){}
+    private void  initPlayers(ArrayList<String> names){
+        if(names.size()>0){
+            Player aux;
+            for(int i=0; i<names.size(); i++){
+                aux= new Player(names.get(i));
+                players.add(aux);
+            }
+        }
+    }
+    
+    private Player nextPlayer(){
+        int index_next=0;
+        Player n_pl=null;
+        if(currentPlayer==null){
+            index_next= (int) (Math.random() * (players.size()-1));
+            n_pl= players.get(index_next);
+        }
+        else{
+            index_next=players.indexOf(currentPlayer);
+            if(index_next==players.size())
+                index_next=0;
+            else
+                index_next++;
+        }
+        n_pl= players.get(index_next);
+        currentPlayer= n_pl;
+        return n_pl;
+    }
     
     private boolean nextTurnAllowed(){
         if(getCurrentPlayer() == null)
@@ -52,8 +84,15 @@ public class Napakalaki {
     public void discardHiddenTreasures(ArrayList<Treasure> tr_hid){}
     public void makeTreasuresVisible(ArrayList<Treasure> tr){}
     public void initGame(String[] players){}
-    public Player getCurrentPlayer(){}
-    public Monster getCurrentMonster(){}
+    
+    public Player getCurrentPlayer(){
+        return currentPlayer;
+    }
+    
+    public Monster getCurrentMonster(){
+        return currentMonster;
+    }
+    
     public boolean nextTurn(){}
     public boolean endOfGame(CombatResult result){
         if(result == result.WINGAME)
