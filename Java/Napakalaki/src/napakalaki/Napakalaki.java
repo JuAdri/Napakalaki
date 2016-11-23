@@ -5,6 +5,7 @@
  */
 package napakalaki;
 import java.util.ArrayList;
+import java.util.Collections;
  
 /**
  *
@@ -22,9 +23,25 @@ public class Napakalaki {
     
     private Player nextPlayer(){}
     
-    private boolean nextTurnAllowed(){}
+    private boolean nextTurnAllowed(){
+        if(getCurrentPlayer() == null)
+            return true;
+        return getCurrentPlayer().validState();
+    }
     
-    private void setEnemies(){}
+    private void setEnemies(){
+        boolean no_asignado = true;
+        for(int i = 1; i <= players.size(); i++){
+            while(no_asignado){
+                int aleatorio = (int) (Math.random() * players.size() + 1);
+                if(aleatorio != i){
+                    players.get(i).setEnemy(players.get(aleatorio));
+                    no_asignado = false;
+                }
+            }
+            no_asignado = true;
+        }         
+    }
     
     public static Napakalaki getInstance(){
         return instance;
@@ -38,5 +55,9 @@ public class Napakalaki {
     public Player getCurrentPlayer(){}
     public Monster getCurrentMonster(){}
     public boolean nextTurn(){}
-    public boolean endOfGame(CombatResult result){}
+    public boolean endOfGame(CombatResult result){
+        if(result == result.WINGAME)
+            return true;
+        return false;
+    }
 }

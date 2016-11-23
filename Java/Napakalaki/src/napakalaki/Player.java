@@ -5,6 +5,8 @@
  */
 package napakalaki;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author juane
@@ -128,7 +130,7 @@ public class Player {
     }
     
     private Treasure giveMeATreasure(){
-    
+        return hiddenTreasures.get((int) (Math.random() * hiddenTreasures.size()));
     }
     
     public boolean canISteal(){

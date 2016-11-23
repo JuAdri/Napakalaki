@@ -20,8 +20,7 @@ public class CardDealer {
     private ArrayList<Monster> unusedMonster;
     private ArrayList<Monster> usedMonster;
     
-    private CardDealer() {
-    }
+    private CardDealer() {}
     
     
     private void initTreasureCardDeck(){
@@ -225,7 +224,20 @@ public class CardDealer {
     }
     
     public Monster nextMonster(){
-    
+        if(!unusedMonster.isEmpty()){
+            Monster devolver = unusedMonster.get(0);
+            unusedMonster.remove(0);
+            
+            return devolver;
+        }
+        
+        unusedMonster = usedMonster;
+        usedMonster.removeAll(usedMonster);
+        Collections.shuffle(unusedMonster);
+        Monster devolver = unusedMonster.get(0);
+        unusedMonster.remove(0);
+        
+        return devolver;
     }
     
     public void giveTreasuresBack(Treasure t){

@@ -27,18 +27,27 @@ public class BadConsequence {
         this.levels= levels;
         this.nHiddenTreasures= nHidden;
         this.nVisibleTreasures= nVIsible;
+        this.specificHiddenTreasures = new ArrayList();
+        this.specificVisibleTreasures = new ArrayList();
     }
     
     public BadConsequence(String text, boolean death){
         this.text= text;
         this.death= death;
+        this.levels = 1;
+        this.nHiddenTreasures = 0;
+        this.nVisibleTreasures = 0;
+        this.specificHiddenTreasures = new ArrayList();
+        this.specificVisibleTreasures = new ArrayList();
     }
     
     public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible, ArrayList<TreasureKind> tHidden){
         this.text= text;
         this.levels= levels;
-        specificHiddenTreasures= tHidden;
-        specificVisibleTreasures= tVisible;
+        this.specificHiddenTreasures= tHidden;
+        this.specificVisibleTreasures= tVisible;
+        this.nHiddenTreasures = 0;
+        this.nVisibleTreasures = 0;
     }
     
     public Boolean isEmpty(){
@@ -75,7 +84,9 @@ public class BadConsequence {
     
     public void substractVisibleTreasure(Treasure t){}
     
-    public void substractHiddenTreasure(Treasure t){}
+    public void substractHiddenTreasure(Treasure t){            // Cambiar
+        return specificHiddenTreasures.remove(t.getType());
+    }
     
     public String toString(){
         return "\nMal rollo= " +text + 
