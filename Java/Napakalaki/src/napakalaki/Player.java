@@ -87,7 +87,8 @@ public class Player {
     }
     
     private void dielfNoTreasures(){
-        dead= true;
+        if(visibleTreasures.isEmpty() && hiddenTreasures.isEmpty())
+            dead = true;
     }
     
     public boolean isDead(){
@@ -103,7 +104,10 @@ public class Player {
     }
     
     public CombatResult combat(Monster m){
-    
+        int myLevel = getCombatLevel();
+        int monsterLevel = m.getCombatLevel();
+        if(!canISteal())
+            
     }
     
     public void makeTreasureVisible(Treasure t){
@@ -118,7 +122,10 @@ public class Player {
     }
     
     public void discardHiddenTreasures(Treasure t){
-    
+        hiddenTreasures.remove(t);
+        if(pendingBadConsequence != null && (!pendingBadConsequence.isEmpty()))
+            pendingBadConsequence.substractHiddenTreasure(t);
+        dielfNoTreasures();
     }
     
     public boolean validState(){

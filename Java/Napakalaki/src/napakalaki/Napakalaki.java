@@ -78,7 +78,7 @@ public class Napakalaki {
     public static Napakalaki getInstance(){
         return instance;
     }
-    
+
     public CombatResult developCombat(){}
     
     public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){
@@ -87,10 +87,11 @@ public class Napakalaki {
             dealer.giveTreasuresBack(tr);
         }
     }
-    
+
     public void discardHiddenTreasures(ArrayList<Treasure> tr_hid){
         for(Treasure descartar :tr_hid){
-            
+            currentPlayer.discardHiddenTreasures(descartar);
+            dealer.giveTreasuresBack(descartar);
         }
     }
     
