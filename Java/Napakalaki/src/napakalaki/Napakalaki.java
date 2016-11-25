@@ -79,12 +79,16 @@ public class Napakalaki {
         return instance;
     }
     
-    public CombatResult developCombat(){}
+    public CombatResult developCombat(){
+    
+    }
+    
     public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){}
     
     public void discardHiddenTreasures(ArrayList<Treasure> tr_hid){
         for(Treasure descartar :tr_hid){
-            
+            currentPlayer.discardHiddenTreasures(descartar);
+            dealer.giveTreasuresBack(descartar);
         }
     }
     
