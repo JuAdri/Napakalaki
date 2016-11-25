@@ -83,6 +83,7 @@ public class Napakalaki {
         Monster m = currentMonster;
         currentPlayer.combat(m);
 
+        
     public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){
         for(Treasure tr :tr_vis){
             currentPlayer.discardVisibleTreasures(tr);
