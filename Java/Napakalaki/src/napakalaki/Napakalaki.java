@@ -81,7 +81,13 @@ public class Napakalaki {
     
     public CombatResult developCombat(){}
     public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){}
-    public void discardHiddenTreasures(ArrayList<Treasure> tr_hid){}
+    
+    public void discardHiddenTreasures(ArrayList<Treasure> tr_hid){
+        for(Treasure descartar :tr_hid){
+            
+        }
+    }
+    
     public void makeTreasuresVisible(ArrayList<Treasure> tr){}
     public void initGame(String[] players){}
     
@@ -93,7 +99,10 @@ public class Napakalaki {
         return currentMonster;
     }
     
-    public boolean nextTurn(){}
+    public boolean nextTurn(){
+    
+    }
+    
     public boolean endOfGame(CombatResult result){
         if(result == result.WINGAME)
             return true;
