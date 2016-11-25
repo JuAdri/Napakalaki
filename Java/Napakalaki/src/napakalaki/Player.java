@@ -104,7 +104,10 @@ public class Player {
     }
     
     public CombatResult combat(Monster m){
-    
+        int myLevel = getCombatLevel();
+        int monsterLevel = m.getCombatLevel();
+        if(!canISteal())
+            
     }
     
     public void makeTreasureVisible(Treasure t){
