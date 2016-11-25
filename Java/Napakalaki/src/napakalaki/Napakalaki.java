@@ -80,7 +80,13 @@ public class Napakalaki {
     }
     
     public CombatResult developCombat(){}
-    public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){}
+    
+    public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){
+        for(Treasure tr :tr_vis){
+            currentPlayer.discardVisibleTreasures(tr);
+            dealer.giveTreasuresBack(tr);
+        }
+    }
     
     public void discardHiddenTreasures(ArrayList<Treasure> tr_hid){
         for(Treasure descartar :tr_hid){
@@ -89,7 +95,13 @@ public class Napakalaki {
     }
     
     public void makeTreasuresVisible(ArrayList<Treasure> tr){}
-    public void initGame(String[] players){}
+    
+    public void initGame(ArrayList<String> players){
+        initPlayers(players);
+        setEnemies();
+        dealer.initCards();
+        nextTurn();
+    }
     
     public Player getCurrentPlayer(){
         return currentPlayer;
@@ -100,7 +112,19 @@ public class Napakalaki {
     }
     
     public boolean nextTurn(){
-    
+        Boolean stateOK= nextTurnAllowed();
+        stateOK= currentPlayer.validState();
+        
+        if(stateOK){
+            currentMonster= dealer.nextMonster();
+            currentPlayer= nextPlayer();
+            Boolean dead= currentPlayer.isDead();
+            if(dead){
+                currentPlayer.initTreasures();
+            }
+        }
+        
+        return stateOK;
     }
     
     public boolean endOfGame(CombatResult result){
