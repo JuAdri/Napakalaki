@@ -80,7 +80,8 @@ public class Napakalaki {
     }
     
     public CombatResult developCombat(){
-    
+        Monster m = currentMonster;
+        currentPlayer.combat(m);
     }
     
     public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){}
