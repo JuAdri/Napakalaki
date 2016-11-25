@@ -104,10 +104,27 @@ public class Player {
     }
     
     public CombatResult combat(Monster m){
+        Dice dice;
         int myLevel = getCombatLevel();
         int monsterLevel = m.getCombatLevel();
-        if(!canISteal())
+        if(!canISteal()){
+            dice = Dice.getInstance();
+            int number = dice.nextNumber();
             
+            if(number < 3){
+                int enemyLevel = enemy.getCombatLevel();
+                monsterLevel += enemyLevel;
+            }
+            
+            if(myLevel > monsterLevel){
+                applyPrize(m);
+                return CombatResult.WIN;
+            }
+            else{
+                applyBadConsequence(m.getBadConsequence());
+                return CombatResult.LOSE;
+            }
+        }
     }
     
     public void makeTreasureVisible(Treasure t){

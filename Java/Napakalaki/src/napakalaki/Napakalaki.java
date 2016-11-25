@@ -81,7 +81,10 @@ public class Napakalaki {
 
     public CombatResult developCombat(){
         Monster m = currentMonster;
-        currentPlayer.combat(m);
+        CombatResult combat = currentPlayer.combat(m);
+        dealer.giveMonsterBack(m);
+        return combat;
+    }
 
     public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){
         for(Treasure tr :tr_vis){
