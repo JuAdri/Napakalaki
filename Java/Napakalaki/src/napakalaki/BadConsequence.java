@@ -83,7 +83,7 @@ public class BadConsequence {
     }
     
     public void substractVisibleTreasure(Treasure t){
-        
+        specificVisibleTreasures.remove(t.getType());
     }
     
     public void substractHiddenTreasure(Treasure t){

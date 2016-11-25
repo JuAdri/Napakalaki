@@ -115,7 +115,10 @@ public class Player {
     }
     
     public void discardVisibleTreasures(Treasure t){
-
+        visibleTreasures.remove(t);
+        if(pendingBadConsequence!=null && !pendingBadConsequence.isEmpty())
+            pendingBadConsequence.substractVisibleTreasure(t);
+        dielfNoTreasures();
     }
     
     public void discardHiddenTreasures(Treasure t){
