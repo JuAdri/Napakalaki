@@ -69,6 +69,12 @@ public class Player {
     private void applyBadConsequence(BadConsequence bc){}
     
     private Boolean canMakeTreasureVisible(Treasure t){
+        Boolean puede_make=true;
+        for(Treasure tes :visibleTreasures ){
+            if(tes.getType()==t.getType())
+                return false;
+        }
+        return puede_make;
         
     }
     
