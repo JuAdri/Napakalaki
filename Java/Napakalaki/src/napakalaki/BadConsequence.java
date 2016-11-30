@@ -58,7 +58,13 @@ public class BadConsequence {
     }
     
     public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, ArrayList<Treasure> h){
-    
+        if(v.size() > 0)
+            if(nVisibleTreasures > 0){
+                BadConsequence nuevo(text, levels, v.size(),)
+                nVisibleTreasures = v.size();
+            }
+            else if(specificVisibleTreasures.size() > 0)
+                
     }
 
      public int getLevels() {
