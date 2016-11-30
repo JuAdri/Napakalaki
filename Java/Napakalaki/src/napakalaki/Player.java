@@ -86,8 +86,12 @@ public class Player {
             if(tes.getType()==t.getType())
                 return false;
         }
-        return puede_make;
+        if(puede_make){
+            visibleTreasures.add(t);
+            hiddenTreasures.remove(t);
+        }
         
+        return puede_make;
     }
     
     private int howManyVisibleTreasures(TreasureKind t){
@@ -162,7 +166,21 @@ public class Player {
     }
     
     public void initTreasures(){
-    
+        CardDealer dealer = CardDealer.getInstance();
+        Dice dice = Dice.getInstance();
+        bringToLife();
+        Treasure t = dealer.nextTreasure();
+        hiddenTreasures.add(t);
+        int number = dice.nextNumber();
+        
+        if(number > 1){
+            t = dealer.nextTreasure();
+            hiddenTreasures.add(t);
+        }
+        else if(number == 6){
+            t = dealer.nextTreasure();
+            hiddenTreasures.add(t);
+        }
     }
     
     public int getLevels(){
@@ -170,7 +188,15 @@ public class Player {
     }
     
     public Treasure stealTreasure(){
-    
+        Treasure t = null;
+        if(canISteal())
+            if(enemy.canYouGiveMeATreasure()){
+                t = giveMeATreasure();
+                hiddenTreasures.add(t);
+                haveStolen();
+            }
+                    
+        return t;
     }
     
     public void setEnemy(Player enemy){
@@ -194,6 +220,11 @@ public class Player {
     }
     
     public void discardAllTreasures(){
-    
+        for(int i = 0; i < visibleTreasures.size(); i++){
+            discardVisibleTreasures(visibleTreasures.get(i));
+        }
+        for(int i = 0; i < hiddenTreasures.size(); i++){
+            discardHiddenTreasures(hiddenTreasures.get(i));
+        }
     }
 }
