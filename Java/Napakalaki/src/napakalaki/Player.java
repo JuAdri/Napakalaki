@@ -5,6 +5,8 @@
  */
 package napakalaki;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author juane
@@ -23,6 +25,9 @@ public class Player {
     public Player(String name){
         this.name= name;
         level=0;
+        enemy= null;
+        visibleTreasures= new ArrayList();
+        hiddenTreasures= new ArrayList();            
     }
     
     public String getName(){
@@ -58,13 +63,35 @@ public class Player {
     }
     
     private void applyPrize(Monster m){
+        int nLevels= m.getLevelsGained();
+        int n_treasures= m.getTreasuresGained();
         
+        incrementLevels(nLevels);
+        
+        if(n_treasures>0){
+            CardDealer dealer=CardDealer.getInstance();
+            Treasure tr_aux;
+            for(int i=0; i<n_treasures; i++){
+                tr_aux= dealer.nextTreasure();
+                hiddenTreasures.add(tr_aux);
+            }
+        }
     }
     
     private void applyBadConsequence(BadConsequence bc){}
     
     private Boolean canMakeTreasureVisible(Treasure t){
-    
+        Boolean puede_make=true;
+        for(Treasure tes :visibleTreasures ){
+            if(tes.getType()==t.getType())
+                return false;
+        }
+        if(puede_make){
+            visibleTreasures.add(t);
+            hiddenTreasures.remove(t);
+        }
+        
+        return puede_make;
     }
     
     private int howManyVisibleTreasures(TreasureKind t){
@@ -76,7 +103,8 @@ public class Player {
     }
     
     private void dielfNoTreasures(){
-        dead= true;
+        if(visibleTreasures.isEmpty() && hiddenTreasures.isEmpty())
+            dead = true;
     }
     
     public boolean isDead(){
@@ -92,7 +120,27 @@ public class Player {
     }
     
     public CombatResult combat(Monster m){
-    
+        Dice dice;
+        int myLevel = getCombatLevel();
+        int monsterLevel = m.getCombatLevel();
+        if(!canISteal()){
+            dice = Dice.getInstance();
+            int number = dice.nextNumber();
+            
+            if(number < 3){
+                int enemyLevel = enemy.getCombatLevel();
+                monsterLevel += enemyLevel;
+            }
+            
+            if(myLevel > monsterLevel){
+                applyPrize(m);
+                return CombatResult.WIN;
+            }
+            else{
+                applyBadConsequence(m.getBadConsequence());
+                return CombatResult.LOSE;
+            }
+        }
     }
     
     public void makeTreasureVisible(Treasure t){
@@ -100,11 +148,17 @@ public class Player {
     }
     
     public void discardVisibleTreasures(Treasure t){
-
+        visibleTreasures.remove(t);
+        if(pendingBadConsequence!=null && !pendingBadConsequence.isEmpty())
+            pendingBadConsequence.substractVisibleTreasure(t);
+        dielfNoTreasures();
     }
     
     public void discardHiddenTreasures(Treasure t){
-    
+        hiddenTreasures.remove(t);
+        if(pendingBadConsequence != null && (!pendingBadConsequence.isEmpty()))
+            pendingBadConsequence.substractHiddenTreasure(t);
+        dielfNoTreasures();
     }
     
     public boolean validState(){
@@ -112,7 +166,21 @@ public class Player {
     }
     
     public void initTreasures(){
-    
+        CardDealer dealer = CardDealer.getInstance();
+        Dice dice = Dice.getInstance();
+        bringToLife();
+        Treasure t = dealer.nextTreasure();
+        hiddenTreasures.add(t);
+        int number = dice.nextNumber();
+        
+        if(number > 1){
+            t = dealer.nextTreasure();
+            hiddenTreasures.add(t);
+        }
+        else if(number == 6){
+            t = dealer.nextTreasure();
+            hiddenTreasures.add(t);
+        }
     }
     
     public int getLevels(){
@@ -120,7 +188,15 @@ public class Player {
     }
     
     public Treasure stealTreasure(){
-    
+        Treasure t = null;
+        if(canISteal())
+            if(enemy.canYouGiveMeATreasure()){
+                t = giveMeATreasure();
+                hiddenTreasures.add(t);
+                haveStolen();
+            }
+                    
+        return t;
     }
     
     public void setEnemy(Player enemy){
@@ -128,7 +204,7 @@ public class Player {
     }
     
     private Treasure giveMeATreasure(){
-    
+        return hiddenTreasures.get((int) (Math.random() * hiddenTreasures.size()));
     }
     
     public boolean canISteal(){
@@ -136,7 +212,7 @@ public class Player {
     }
     
     private boolean canYouGiveMeATreasure(){
-        return visibleTreasures.size();
+        return visibleTreasures.size()>0;
     }
     
     private void haveStolen(){
@@ -144,6 +220,11 @@ public class Player {
     }
     
     public void discardAllTreasures(){
-    
+        for(int i = 0; i < visibleTreasures.size(); i++){
+            discardVisibleTreasures(visibleTreasures.get(i));
+        }
+        for(int i = 0; i < hiddenTreasures.size(); i++){
+            discardHiddenTreasures(hiddenTreasures.get(i));
+        }
     }
 }

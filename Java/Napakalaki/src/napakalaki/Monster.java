@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package napakalaki;
-
+import java.util.ArrayList;
 /**
  *
  * @author juane619
@@ -14,6 +14,9 @@ public class Monster {
     private int combatLevel;
     private Prize premio;
     private BadConsequence bc;
+    //EXAMEN
+    private ArrayList<Food> foods;
+    //FIN EXAMEN
     
     public Monster(String name, int level, BadConsequence bc, Prize prize){
        this.name= name;
@@ -26,9 +29,7 @@ public class Monster {
         return name;
     }
 
-    public int getCombatLevel() {
-        return combatLevel;
-    }
+    
 
     public int getLevelsGained(){
         return premio.getLevel();
@@ -41,6 +42,27 @@ public class Monster {
     public BadConsequence getBadConsequence() {
         return bc;
     }
+    
+    //EXAMEN
+    public ArrayList<Food> getFoods(){
+        return foods;
+    }
+    
+    public void addFood(Food f){
+        foods.add(f);
+    }
+    
+    public int getCombatLevel(){
+        int media_calorias=0, i=0;
+        
+        for(i=0; i<foods.size(); i++){
+            media_calorias+=foods.get(i).getCalories();
+        }
+        media_calorias=media_calorias/foods.size();
+        
+        return media_calorias;
+    }
+    //FIN EXAMEN
     
     public String toString(){
         return "\n\nNombre del monstruo= " +name + "\nNivel de combate= "+Integer.toString(combatLevel)+"\nPremio: " +premio.toString()+"\nCASTIGO: " + bc.toString();

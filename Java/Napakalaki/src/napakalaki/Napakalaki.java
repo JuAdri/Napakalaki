@@ -5,6 +5,7 @@
  */
 package napakalaki;
 import java.util.ArrayList;
+import java.util.Collections;
  
 /**
  *
@@ -18,25 +19,130 @@ public class Napakalaki {
     private CardDealer dealer;
     private Monster currentMonster;
     
-    private void  initPlayers(String[] names){}
+    public Napakalaki(){
+        currentPlayer= new Player("");
+        players= new ArrayList();
+        currentMonster= new Monster("", 0, null, null);
+        dealer= CardDealer.getInstance();
+    }
     
-    private Player nextPlayer(){}
+    private void  initPlayers(ArrayList<String> names){
+        if(names.size()>0){
+            Player aux;
+            for(int i=0; i<names.size(); i++){
+                aux= new Player(names.get(i));
+                players.add(aux);
+            }
+        }
+    }
     
-    private boolean nextTurnAllowed(){}
+    private Player nextPlayer(){
+        int index_next=0;
+        Player n_pl=null;
+        if(currentPlayer==null){
+            index_next= (int) (Math.random() * (players.size()-1));
+            n_pl= players.get(index_next);
+        }
+        else{
+            index_next=players.indexOf(currentPlayer);
+            if(index_next==players.size())
+                index_next=0;
+            else
+                index_next++;
+        }
+        n_pl= players.get(index_next);
+        currentPlayer= n_pl;
+        return n_pl;
+    }
     
-    private void setEnemies(){}
+    private boolean nextTurnAllowed(){
+        if(getCurrentPlayer() == null)
+            return true;
+        return getCurrentPlayer().validState();
+    }
+    
+    private void setEnemies(){
+        boolean no_asignado = true;
+        for(int i = 1; i <= players.size(); i++){
+            while(no_asignado){
+                int aleatorio = (int) (Math.random() * players.size() + 1);
+                if(aleatorio != i){
+                    players.get(i).setEnemy(players.get(aleatorio));
+                    no_asignado = false;
+                }
+            }
+            no_asignado = true;
+        }         
+    }
     
     public static Napakalaki getInstance(){
         return instance;
     }
+
+    public CombatResult developCombat(){
+        Monster m = currentMonster;
+        CombatResult combat = currentPlayer.combat(m);
+        dealer.giveMonsterBack(m);
+        return combat;
+    }
+
+        
+    public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){
+        for(Treasure tr :tr_vis){
+            currentPlayer.discardVisibleTreasures(tr);
+            dealer.giveTreasuresBack(tr);
+        }
+    }
+
+    public void discardHiddenTreasures(ArrayList<Treasure> tr_hid){
+        for(Treasure descartar :tr_hid){
+            currentPlayer.discardHiddenTreasures(descartar);
+            dealer.giveTreasuresBack(descartar);
+        }
+    }
     
-    public CombatResult developCombat(){}
-    public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){}
-    public void discardHiddenTreasures(ArrayList<Treasure> tr_hid){}
-    public void makeTreasuresVisible(ArrayList<Treasure> tr){}
-    public void initGame(String[] players){}
-    public Player getCurrentPlayer(){}
-    public Monster getCurrentMonster(){}
-    public boolean nextTurn(){}
-    public boolean endOfGame(CombatResult result){}
+    public void makeTreasuresVisible(ArrayList<Treasure> tr){
+        Treasure t;
+        for(int i = 0; i < tr.size(); i++){
+            t = tr.get(i);
+            currentPlayer.makeTreasureVisible(t);
+        }
+    }
+    
+    public void initGame(ArrayList<String> players){
+        initPlayers(players);
+        setEnemies();
+        dealer.initCards();
+        nextTurn();
+    }
+    
+    public Player getCurrentPlayer(){
+        return currentPlayer;
+    }
+    
+    public Monster getCurrentMonster(){
+        return currentMonster;
+    }
+    
+    public boolean nextTurn(){
+        Boolean stateOK= nextTurnAllowed();
+        stateOK= currentPlayer.validState();
+        
+        if(stateOK){
+            currentMonster= dealer.nextMonster();
+            currentPlayer= nextPlayer();
+            Boolean dead= currentPlayer.isDead();
+            if(dead){
+                currentPlayer.initTreasures();
+            }
+        }
+        
+        return stateOK;
+    }
+    
+    public boolean endOfGame(CombatResult result){
+        if(result == result.WINGAME)
+            return true;
+        return false;
+    }
 }

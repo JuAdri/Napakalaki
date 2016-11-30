@@ -27,18 +27,27 @@ public class BadConsequence {
         this.levels= levels;
         this.nHiddenTreasures= nHidden;
         this.nVisibleTreasures= nVIsible;
+        this.specificHiddenTreasures = new ArrayList();
+        this.specificVisibleTreasures = new ArrayList();
     }
     
     public BadConsequence(String text, boolean death){
         this.text= text;
         this.death= death;
+        this.levels = 1;
+        this.nHiddenTreasures = 0;
+        this.nVisibleTreasures = 0;
+        this.specificHiddenTreasures = new ArrayList();
+        this.specificVisibleTreasures = new ArrayList();
     }
     
     public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible, ArrayList<TreasureKind> tHidden){
         this.text= text;
         this.levels= levels;
-        specificHiddenTreasures= tHidden;
-        specificVisibleTreasures= tVisible;
+        this.specificHiddenTreasures= tHidden;
+        this.specificVisibleTreasures= tVisible;
+        this.nHiddenTreasures = 0;
+        this.nVisibleTreasures = 0;
     }
     
     public Boolean isEmpty(){
@@ -49,7 +58,13 @@ public class BadConsequence {
     }
     
     public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, ArrayList<Treasure> h){
-    
+        if(v.size() > 0)
+            if(nVisibleTreasures > 0){
+                BadConsequence nuevo(text, levels, v.size(),)
+                nVisibleTreasures = v.size();
+            }
+            else if(specificVisibleTreasures.size() > 0)
+                
     }
 
      public int getLevels() {
@@ -73,9 +88,13 @@ public class BadConsequence {
         return specificVisibleTreasures;
     }
     
-    public void substractVisibleTreasure(Treasure t){}
+    public void substractVisibleTreasure(Treasure t){
+        specificVisibleTreasures.remove(t.getType());
+    }
     
-    public void substractHiddenTreasure(Treasure t){}
+    public void substractHiddenTreasure(Treasure t){
+        specificHiddenTreasures.remove(t.getType());
+    }
     
     public String toString(){
         return "\nMal rollo= " +text + 
