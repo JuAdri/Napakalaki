@@ -23,18 +23,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/home/juane619/Escritorio/Home/2AGI/PDO/proyectos/Ruby/pruebaNapakalaki/lib/combat_result.rb</file>
-            <file>file:/home/juane619/Escritorio/Home/2AGI/PDO/proyectos/Ruby/pruebaNapakalaki/lib/PruebaNapakalaki.rb</file>
-            <file>file:/home/juane619/Escritorio/Home/2AGI/PDO/proyectos/Ruby/pruebaNapakalaki/lib/player.rb</file>
-            <file>file:/home/juane619/Escritorio/Home/2AGI/PDO/proyectos/Ruby/pruebaNapakalaki/lib/monster.rb</file>
-            <file>file:/home/juane619/Escritorio/Home/2AGI/PDO/proyectos/Ruby/pruebaNapakalaki/lib/dice.rb</file>
-            <file>file:/home/juane619/Escritorio/Home/2AGI/PDO/proyectos/Ruby/pruebaNapakalaki/lib/card_dealer.rb</file>
+            <file>file:/home/adriii/Escritorio/Napakalaki/Ruby/pruebaNapakalaki/lib/napakalaki.rb</file>
+            <file>file:/home/adriii/Escritorio/Napakalaki/Ruby/pruebaNapakalaki/lib/combat_result.rb</file>
+            <file>file:/home/adriii/Escritorio/Napakalaki/Ruby/pruebaNapakalaki/lib/PruebaNapakalaki.rb</file>
         </group>
->>>>>>> 7c6208e55b029eff58d4398b68292e1fa389a3ad
     </open-files>
 </project-private>
 >>>>>>> 9b26c95378daccf978db3db289f2f29a12b38bf1
