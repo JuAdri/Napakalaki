@@ -78,7 +78,15 @@ public class Player {
         }
     }
     
-    private void applyBadConsequence(BadConsequence bc){}
+    private void applyBadConsequence(Monster m){
+        BadConsequence badC= m.getBadConsequence();
+        int nLevels= badC.getLevels();
+        
+        decrementLevels(nLevels);
+        
+        BadConsequence pendingBad= badC.adjustToFitTreasureLists(visibleTreasures, hiddenTreasures);
+        setPendingBadConsequence(pendingBad);
+    }
     
     private Boolean canMakeTreasureVisible(Treasure t){
         Boolean puede_make=true;
@@ -112,14 +120,15 @@ public class Player {
     }
     
     public ArrayList<Treasure> getHiddenTreasures(){
-        
+        return hiddenTreasures;
     }
     
     public ArrayList<Treasure> getVisibleTreasures(){
-        
+        return visibleTreasures;
     }
     
     public CombatResult combat(Monster m){
+        CombatResult cr;
         Dice dice;
         int myLevel = getCombatLevel();
         int monsterLevel = m.getCombatLevel();
@@ -131,20 +140,27 @@ public class Player {
                 int enemyLevel = enemy.getCombatLevel();
                 monsterLevel += enemyLevel;
             }
-            
+        }
             if(myLevel > monsterLevel){
                 applyPrize(m);
-                return CombatResult.WIN;
+                if(level >= MAXLEVEL) 
+                    cr=CombatResult.WINGAME;
+                else
+                    cr= CombatResult.WIN;
             }
             else{
-                applyBadConsequence(m.getBadConsequence());
-                return CombatResult.LOSE;
+                applyBadConsequence(m);
+                cr= CombatResult.LOSE;
             }
-        }
+        return cr;
     }
     
     public void makeTreasureVisible(Treasure t){
-    
+        Boolean canI=canMakeTreasureVisible(t);
+        if(canI){
+            visibleTreasures.add(t);
+            hiddenTreasures.remove(t);
+        }
     }
     
     public void discardVisibleTreasures(Treasure t){

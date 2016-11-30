@@ -59,21 +59,39 @@ public class BadConsequence {
     
     public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, ArrayList<Treasure> h){
         int pn_vis=v.size(), pn_hid= h.size();
-        ArrayList<TreasureKind> sp_v=new ArrayList(), sp_h=new ArrayList();
-        BadConsequence bad_ret=new BadConsequence(this.text, this.levels, sp_v, sp_h);
+        
+        BadConsequence bad_ret=new BadConsequence(text, levels, specificVisibleTreasures, specificHiddenTreasures );
         
         if(!isEmpty()){
             if(nHiddenTreasures==0 && nVisibleTreasures==0){
+                Boolean insertado=false;
+                
+                ArrayList<TreasureKind> sp_v=new ArrayList(), sp_h=new ArrayList();
+                
                 for(TreasureKind spvi :specificVisibleTreasures){
-                    for(Treasure spvp :v)
-                        if(spvi==spvp.getType())
-                            sp_v.add(spvi);
+                    insertado= false;
+                    for(Treasure spvp :v){
+                        if(!insertado)
+                            if(spvi==spvp.getType()){
+                                if(!sp_v.contains(spvi)){
+                                    sp_v.add(spvi);
+                                    insertado=true;
+                                }
+                            }
+                    }
                 }
                 
                 for(TreasureKind sphi :specificHiddenTreasures){
-                    for(Treasure sphp :h)
-                        if(sphi==sphp.getType())
-                            sp_h.add(sphi);
+                    insertado= false;
+                    for(Treasure sphp :h){
+                        if(!insertado)
+                            if(sphi==sphp.getType()){
+                                if(!sp_h.contains(sphi)){
+                                    sp_h.add(sphi);
+                                    insertado= true;
+                                }
+                            }
+                    }
                 }
                 bad_ret.specificVisibleTreasures= sp_v;
                 bad_ret.specificHiddenTreasures= sp_h;
