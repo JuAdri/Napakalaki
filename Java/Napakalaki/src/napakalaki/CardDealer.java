@@ -220,8 +220,9 @@ public class CardDealer {
     }
     
     public Treasure nextTreasure(){
+        Treasure devolver;
         if(!unusedTreasures.isEmpty()){
-            Treasure devolver = unusedTreasures.get(0);
+            devolver = unusedTreasures.get(0);
             unusedTreasures.remove(0);
             
             return devolver;
@@ -230,15 +231,17 @@ public class CardDealer {
         unusedTreasures = usedTreasures;
         usedTreasures.removeAll(usedTreasures);
         Collections.shuffle(unusedTreasures);
-        Treasure devolver = unusedTreasures.get(0);
+        devolver = unusedTreasures.get(0);
         unusedTreasures.remove(0);
         
         return devolver;
     }
     
     public Monster nextMonster(){
+         Monster devolver;
+         
         if(!unusedMonster.isEmpty()){
-            Monster devolver = unusedMonster.get(0);
+            devolver = unusedMonster.get(0);
             unusedMonster.remove(0);
             
             return devolver;
@@ -247,7 +250,7 @@ public class CardDealer {
         unusedMonster = usedMonster;
         usedMonster.removeAll(usedMonster);
         Collections.shuffle(unusedMonster);
-        Monster devolver = unusedMonster.get(0);
+        devolver = unusedMonster.get(0);
         unusedMonster.remove(0);
         
         return devolver;

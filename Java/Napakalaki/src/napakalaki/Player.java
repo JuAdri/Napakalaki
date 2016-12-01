@@ -44,9 +44,6 @@ public class Player {
         for(i=0; i<visibleTreasures.size(); i++)
             level_combat+=visibleTreasures.get(i).getBonus();
         
-        for(i=0; i<hiddenTreasures.size(); i++)
-            level_combat+=hiddenTreasures.get(i).getBonus();
-        
         return level_combat;
     }
     
@@ -242,5 +239,9 @@ public class Player {
         for(int i = 0; i < hiddenTreasures.size(); i++){
             discardHiddenTreasures(hiddenTreasures.get(i));
         }
+    }
+    
+    public String toString(){
+        return name;
     }
 }
