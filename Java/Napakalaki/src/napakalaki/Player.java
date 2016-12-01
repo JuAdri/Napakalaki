@@ -228,7 +228,8 @@ public class Player {
     }
     
     private Treasure giveMeATreasure(){
-        return hiddenTreasures.get((int) (Math.random() * hiddenTreasures.size()-1));
+        
+        return hiddenTreasures.get((int) (Math.random() * hiddenTreasures.size()));
     }
     
     public boolean canISteal(){
