@@ -22,11 +22,11 @@ class Player
   
   def getCombatLevel
     level_combat= @level
-    for i in(0..@hiddenTreasures.length)
+    for i in(0..@hiddenTreasures.length-1)
       level_combat+=hiddenTreasures[i].bonus
     end
     
-    for i in(0..@visibleTreasures.length)
+    for i in(0..@visibleTreasures.length-1)
       level_combat+=visibleTreasures[i]
     end
     
@@ -119,7 +119,7 @@ class Player
   
   def howManyVisibleTreasures(t)
     n_trs = 0
-    for i in(0..@visibleTreasures.length)
+    for i in(0..@visibleTreasures.length-1)
       if visibleTreasures[i].getType == t
         n_trs += 1
       end
