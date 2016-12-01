@@ -1,49 +1,56 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
-require_relative "prize.rb"
-require_relative "monster.rb"
+#!/bin/env ruby
+# encoding: utf-8
+
+require 'singleton'
+require_relative 'Prize.rb'
+require_relative 'Monster.rb'
+require_relative 'Treasure.rb'
 
 class CardDealer
-  include singleton
+  include Singleton
   
-  attr_reader :instance
-  
-  def self.initTreasureCardDeck
-    @unsuedTreasures << Treasure.new("¡Si mi amo!", 4, TreasureKind::HELMET)
-    @unusedTreasures << Treasure.new("Botas de investigacion", 3, TreasureKind::SHOES)
-    @unusedTreasures << Treasure.new("Capucha de Cthulhu", 3, TreasureKind::HELMET)
-    @unusedTreasures << Treasure.new("A prueba de babas", 2, TreasureKind::ARMOR)
-    @unusedTreasures << Treasure.new("Botas de lluvia acida", 1, TreasureKind::BOTHHANDS)
-    @unusedTreasures << Treasure.new("Casco minero", 2, TreasureKind::HELMET)
-    @unusedTreasures << Treasure.new("Ametralladora ACME", 4, TreasureKind::BOTHHANDS)
-    @unusedTreasures << Treasure.new("Camiseta de la ETSIIT", 1, TreasureKind::ARMOR)
-    @unusedTreasures << Treasure.new("Clavo de rail ferroviario", 3, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("Cuchillo de sushi arcano", 2, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("Fez alopodo", 3, TreasureKind::HELMET)
-    @unusedTreasures << Treasure.new("Hacha prehistorica", 2, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("El aparato del PR. Tesla", 4, TreasureKind::ARMOR)
-    @unusedTreasures << Treasure.new("Gaita", 4, TreasureKind::BOTHHANDS)
-    @unusedTreasures << Treasure.new("Insecticida", 2, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("Escopeta de 3 cañones", 4, TreasureKind::BOTHHANDS)
-    @unusedTreasures << Treasure.new("Garabato mistico", 2, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("La rebeca metalica", 2, TreasureKind::ARMOR)
-    @unusedTreasures << Treasure.new("Lanzallamas", 4, TreasureKind::BOTHHANDS)
-    @unusedTreasures << Treasure.new("Necro-comicón", 1, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("Necronomicón", 5, TreasureKind::BOTHHANDS)
-    @unusedTreasures << Treasure.new("Linterna a 2 manos", 3, TreasureKind::BOTHHANDS)
-    @unusedTreasures << Treasure.new("Necro-gnomicón", 2, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("Necrotelecom", 2, TreasureKind::HELMET)
-    @unusedTreasures << Treasure.new("Mazo de los antiguos", 3, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("Necro-playboycón", 3, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("Porra preternatural", 2, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("Shogulador", 1, TreasureKind::BOTHHANDS)
-    @unusedTreasures << Treasure.new("Varita de atizamiento", 3, TreasureKind::ONEHAND)
-    @unusedTreasures << Treasure.new("Tentáculo de pega", 2, TreasureKind::HELMET)
-    @unusedTreasures << Treasure.new("Zapato deja-amigos", 1, TreasureKind::SHOES)
+  def initialize
+    @unusedTreasures = Array.new
+    @usedTreasures = Array.new
+    @unusedMonster = Array.new
+    @usedMonster = Array.new
+  end
+      
+  def initTreasureCardDeck
+    @unsuedTreasures << Treasure.new('¡Si mi amo!', 4, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new('Botas de investigacion', 3, TreasureKind::SHOES)
+    @unusedTreasures << Treasure.new('Capucha de Cthulhu', 3, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new('A prueba de babas', 2, TreasureKind::ARMOR)
+    @unusedTreasures << Treasure.new('Botas de lluvia acida', 1, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new('Casco minero', 2, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new('Ametralladora ACME', 4, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new('Camiseta de la ETSIIT', 1, TreasureKind::ARMOR)
+    @unusedTreasures << Treasure.new('Clavo de rail ferroviario', 3, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('Cuchillo de sushi arcano', 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('Fez alopodo', 3, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new('Hacha prehistorica', 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('El aparato del PR. Tesla', 4, TreasureKind::ARMOR)
+    @unusedTreasures << Treasure.new('Gaita', 4, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new('Insecticida', 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('Escopeta de 3 cañones', 4, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new('Garabato mistico', 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('La rebeca metalica', 2, TreasureKind::ARMOR)
+    @unusedTreasures << Treasure.new('Lanzallamas', 4, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new('Necro-comicón', 1, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('Necronomicón', 5, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new('Linterna a 2 manos', 3, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new('Necro-gnomicón', 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('Necrotelecom', 2, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new('Mazo de los antiguos', 3, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('Necro-playboycón', 3, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('Porra preternatural', 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('Shogulador', 1, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new('Varita de atizamiento', 3, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new('Tentáculo de pega', 2, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new('Zapato deja-amigos', 1, TreasureKind::SHOES)
   end
   
-  def self.initMonsterCardDeck
+  def initMonsterCardDeck
     # Monstruo 1 -> Byakhees de bonanza
     prize = Prize.new(2, 1)
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Pierdes tu armadura visible y otra oculta', 0, [TreasureKind::ARMOR], [TreasureKind::ARMOR])
@@ -140,20 +147,46 @@ class CardDealer
     @unusedMonsters << Monster.new('Bicefalo', 21, prize, bad_consequence)
   end
   
-  def self.shuffleTreasures
+  def shuffleTreasures
     @unusedTreasures.shuffle
   end
   
-  def self.shuffleMonsters
+  def shuffleMonsters
     @unusedMonsters.shuffle
   end
   
   def nextTreasure
-    
+    if !@unusedTreasures.isEmpty
+        devolver = @unusedTreasures[0]
+        @unusedTreasures.delete(0)
+
+        return devolver
+    end
+
+    @unusedTreasures = @usedTreasures
+    @usedTreasures.clear
+    shuffleTreasures
+    devolver = @unusedTreasures[0]
+    @unusedTreasures.delete(0)
+
+    return devolver
   end
   
   def nextMonster
-    
+    if !@unusedMonster.isEmpty
+      devolver = @unusedMonster[0]
+      @unusedMonster.delete(0)
+
+      return devolver
+    end
+
+    @unusedMonster = @usedMonster
+    @usedMonster.clear
+    shuffleMonster
+    devolver = @unusedMonster[0]
+    @unusedMonster.delete(0)
+
+    return devolver
   end
   
   def giveTreasureBack(tesoro)
@@ -165,7 +198,10 @@ class CardDealer
   end
   
   def initCards
-    
+    initTreasureCardDeck
+    initMonsterCardDeck
   end
   
+  private :initTreasureCardDeck, :initMonsterCardDeck, :shuffleTreasures, :shuffleMonsters
+
 end

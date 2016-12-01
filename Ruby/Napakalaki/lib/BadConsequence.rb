@@ -43,11 +43,11 @@ class BadConsequence
   end
   
   def substractVisibleTreasure(t)
-    
+    specificVisibleTreasures.remove(t.getType)
   end
   
   def substractHiddenTreasure(t)
-    
+    specificHiddenTreasures.remove(t.getType)
   end
   
   def adjustToFitTreasureLists(array1_tesoros, array2_tesoros)
