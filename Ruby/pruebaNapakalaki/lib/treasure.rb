@@ -9,5 +9,9 @@ class Treasure
     @type = t
   end
   
+  def getType
+    return @type
+  end
+  
   attr_reader :name, :bonus, :type
 end

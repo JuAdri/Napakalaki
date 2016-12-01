@@ -163,7 +163,7 @@ public class Player {
         return cr;
     }
     
-        public void makeTreasureVisible(Treasure t){
+    public void makeTreasureVisible(Treasure t){
         Boolean canI=canMakeTreasureVisible(t);
         if(canI){
             visibleTreasures.add(t);
