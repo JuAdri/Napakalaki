@@ -14,12 +14,12 @@ class CardDealer
   def initialize
     @unusedTreasures = Array.new
     @usedTreasures = Array.new
-    @unusedMonster = Array.new
-    @usedMonster = Array.new
+    @unusedMonsters = Array.new
+    @usedMonsters = Array.new
   end
       
   def initTreasureCardDeck
-    @unsuedTreasures.push Treasure.new('¡Si mi amo!', 4, TreasureKind::HELMET)
+    @unusedTreasures.push Treasure.new('¡Si mi amo!', 4, TreasureKind::HELMET)
     @unusedTreasures.push Treasure.new('Botas de investigacion', 3, TreasureKind::SHOES)
     @unusedTreasures.push Treasure.new('Capucha de Cthulhu', 3, TreasureKind::HELMET)
     @unusedTreasures.push Treasure.new('A prueba de babas', 2, TreasureKind::ARMOR)
@@ -175,18 +175,18 @@ class CardDealer
   end
   
   def nextMonster
-    if !@unusedMonster.isEmpty
-      devolver = @unusedMonster[0]
-      @unusedMonster.delete(0)
+    if !@unusedMonsters.empty?
+      devolver = @unusedMonsters[0]
+      @unusedMonsters.delete(0)
 
       return devolver
     end
 
-    @unusedMonster = @usedMonster
-    @usedMonster.clear
+    @unusedMonsters = @usedMonsters
+    @usedMonsters.clear
     shuffleMonster
-    devolver = @unusedMonster[0]
-    @unusedMonster.delete(0)
+    devolver = @unusedMonsters[0]
+    @unusedMonsters.delete(0)
 
     return devolver
   end
