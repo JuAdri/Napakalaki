@@ -27,7 +27,7 @@ public class Player {
         level=0;
         enemy= null;
         visibleTreasures= new ArrayList();
-        hiddenTreasures= new ArrayList();            
+        hiddenTreasures= new ArrayList();         
     }
     
     public String getName(){
@@ -87,14 +87,25 @@ public class Player {
     
     private Boolean canMakeTreasureVisible(Treasure t){
         Boolean puede_make=true;
+        int n_tr_oh=0;  //Contamos el nº de tesoros de una mano
         for(Treasure tes :visibleTreasures ){
-            if(tes.getType()==t.getType())
+            
+            if(tes.getType()==t.getType() && t.getType() != TreasureKind.ONEHAND)
                 return false;
+            
+            if(tes.getType()==TreasureKind.ONEHAND){
+                n_tr_oh++;
+                
+                if(t.getType()==TreasureKind.BOTHHANDS)
+                    return false;
+            }
+            
+            if(tes.getType()==TreasureKind.BOTHHANDS && t.getType()==TreasureKind.ONEHAND)
+                return false;
+                
         }
-        if(puede_make){
-            visibleTreasures.add(t);
-            hiddenTreasures.remove(t);
-        }
+        if(t.getType()==TreasureKind.ONEHAND && n_tr_oh>=2)
+                return false;
         
         return puede_make;
     }
@@ -152,7 +163,7 @@ public class Player {
         return cr;
     }
     
-    public void makeTreasureVisible(Treasure t){
+        public void makeTreasureVisible(Treasure t){
         Boolean canI=canMakeTreasureVisible(t);
         if(canI){
             visibleTreasures.add(t);
@@ -160,14 +171,14 @@ public class Player {
         }
     }
     
-    public void discardVisibleTreasures(Treasure t){
+    public void discardVisibleTreasure(Treasure t){
         visibleTreasures.remove(t);
         if(pendingBadConsequence!=null && !pendingBadConsequence.isEmpty())
             pendingBadConsequence.substractVisibleTreasure(t);
         dielfNoTreasures();
     }
     
-    public void discardHiddenTreasures(Treasure t){
+    public void discardHiddenTreasure(Treasure t){
         hiddenTreasures.remove(t);
         if(pendingBadConsequence != null && (!pendingBadConsequence.isEmpty()))
             pendingBadConsequence.substractHiddenTreasure(t);
@@ -175,7 +186,7 @@ public class Player {
     }
     
     public boolean validState(){
-        return (hiddenTreasures.size() < 5) && pendingBadConsequence.isEmpty();
+        return (hiddenTreasures.size() < 5) && (pendingBadConsequence == null || pendingBadConsequence.isEmpty());
     }
     
     public void initTreasures(){
@@ -233,12 +244,14 @@ public class Player {
     }
     
     public void discardAllTreasures(){
-        for(int i = 0; i < visibleTreasures.size(); i++){
-            discardVisibleTreasures(visibleTreasures.get(i));
-        }
-        for(int i = 0; i < hiddenTreasures.size(); i++){
-            discardHiddenTreasures(hiddenTreasures.get(i));
-        }
+        ArrayList<Treasure> tr_vis_aux= new ArrayList(visibleTreasures);
+        ArrayList<Treasure> tr_hid_aux= new ArrayList(hiddenTreasures);
+        
+        for(Treasure tr_v :tr_vis_aux)
+            discardVisibleTreasure(tr_v);
+        
+        for(Treasure tr_h :tr_hid_aux)
+            discardHiddenTreasure(tr_h);
     }
     
     public String toString(){

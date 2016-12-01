@@ -55,6 +55,8 @@ public class CardDealer {
         unusedTreasures.add(new Treasure("Varita de atizamiento", 3, TreasureKind.ONEHAND));
         unusedTreasures.add(new Treasure("Tentáculo de pega", 2, TreasureKind.HELMET));
         unusedTreasures.add(new Treasure("Zapato deja-amigos", 1, TreasureKind.SHOES));
+        
+        shuffleTreasures();
     }
     
     private void initMonsterCardDeck(){
@@ -98,7 +100,7 @@ public class CardDealer {
         
         //EL GORRON EN EL UMBRAL
         Prize pz5=new Prize(3, 1);
-        BadConsequence bc5= new BadConsequence("Pierdes todos tus tesoros visibles.", 0, Integer.MAX_VALUE, 0);
+        BadConsequence bc5= new BadConsequence("Pierdes todos tus tesoros visibles.", 0, BadConsequence.MAXTREASURES, 0);
         Monster m5= new Monster("El gorron en el umbral", 13, bc5, pz5);
         unusedMonster.add(m5);
         
@@ -204,6 +206,8 @@ public class CardDealer {
         BadConsequence bc19= new BadConsequence("Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.", 3, tr_vis19, tr_hid19);
         Monster m19= new Monster("Bicefalo", 21, bc19, pz19);
         unusedMonster.add(m19);
+        
+        //shuffleMonster();
     }
     
     private void shuffleTreasures(){
@@ -241,8 +245,8 @@ public class CardDealer {
          Monster devolver;
          
         if(!unusedMonster.isEmpty()){
-            devolver = unusedMonster.get(0);
-            unusedMonster.remove(0);
+            devolver = unusedMonster.get(4);
+            unusedMonster.remove(4);
             
             return devolver;
         }

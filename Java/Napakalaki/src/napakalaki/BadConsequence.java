@@ -130,11 +130,18 @@ public class BadConsequence {
     }
     
     public void substractVisibleTreasure(Treasure t){
-        specificVisibleTreasures.remove(t.getType());
+        if(!specificVisibleTreasures.isEmpty())
+            specificVisibleTreasures.remove(t.getType());
+        else if(nVisibleTreasures!=0)
+            nVisibleTreasures--;
+        
     }
     
     public void substractHiddenTreasure(Treasure t){
-        specificHiddenTreasures.remove(t.getType());
+        if(!specificHiddenTreasures.isEmpty())
+            specificHiddenTreasures.remove(t.getType());
+        else if(nHiddenTreasures!=0)
+            nHiddenTreasures--;
     }
     
     public String toString(){

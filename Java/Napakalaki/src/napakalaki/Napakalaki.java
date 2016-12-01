@@ -44,7 +44,7 @@ public class Napakalaki {
         }
         else{
             index_next=players.indexOf(currentPlayer);
-            if(index_next==players.size())
+            if(index_next==players.size()-1)
                 index_next=0;
             else
                 index_next++;
@@ -88,14 +88,14 @@ public class Napakalaki {
         
     public void discardVisibleTreasures(ArrayList<Treasure> tr_vis){
         for(Treasure tr :tr_vis){
-            currentPlayer.discardVisibleTreasures(tr);
+            currentPlayer.discardVisibleTreasure(tr);
             dealer.giveTreasuresBack(tr);
         }
     }
 
     public void discardHiddenTreasures(ArrayList<Treasure> tr_hid){
         for(Treasure descartar :tr_hid){
-            currentPlayer.discardHiddenTreasures(descartar);
+            currentPlayer.discardHiddenTreasure(descartar);
             dealer.giveTreasuresBack(descartar);
         }
     }
