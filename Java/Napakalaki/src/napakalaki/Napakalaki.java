@@ -20,7 +20,6 @@ public class Napakalaki {
     private Monster currentMonster;
     
     public Napakalaki(){
-        currentPlayer= new Player("");
         players= new ArrayList();
         currentMonster= new Monster("", 0, null, null);
         dealer= CardDealer.getInstance();
@@ -56,16 +55,16 @@ public class Napakalaki {
     }
     
     private boolean nextTurnAllowed(){
-        if(getCurrentPlayer() == null)
+        if(currentPlayer==null)
             return true;
-        return getCurrentPlayer().validState();
+        return currentPlayer.validState();
     }
     
     private void setEnemies(){
         boolean no_asignado = true;
-        for(int i = 1; i <= players.size(); i++){
+        for(int i = 0; i < players.size(); i++){
             while(no_asignado){
-                int aleatorio = (int) (Math.random() * players.size() + 1);
+                int aleatorio = (int) (Math.random() * players.size());
                 if(aleatorio != i){
                     players.get(i).setEnemy(players.get(aleatorio));
                     no_asignado = false;
@@ -126,7 +125,6 @@ public class Napakalaki {
     
     public boolean nextTurn(){
         Boolean stateOK= nextTurnAllowed();
-        stateOK= currentPlayer.validState();
         
         if(stateOK){
             currentMonster= dealer.nextMonster();

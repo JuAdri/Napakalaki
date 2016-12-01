@@ -32,7 +32,7 @@ public class PruebaNapakalaki {
         ArrayList<Monster> monsters= new ArrayList();
         
         for(Monster m: monstruos){
-            if(m.getCastigo().getLevels()>0 && m.getCastigo().getnHiddenTreasures()==0 && m.getCastigo().getnVisibleTreasures()==0 && m.getCastigo().getSpecificHiddenTreasures().isEmpty() && m.getCastigo().getSpecificVisibleTreasures().isEmpty())
+            if(m.getBadConsequence().getLevels()>0 && m.getBadConsequence().getNHiddenTreasures()==0 && m.getBadConsequence().getNVisibleTreasures()==0 && m.getBadConsequence().getSpecificHiddenTreasures().isEmpty() && m.getBadConsequence().getSpecificVisibleTreasures().isEmpty())
                 monsters.add(m);
         }
         
@@ -43,7 +43,7 @@ public class PruebaNapakalaki {
         ArrayList<Monster> monsters= new ArrayList();
         
         for(Monster m: monstruos){
-            if(m.getPremio().getLevel()>1)
+            if(m.getLevelsGained()>1)
                 monsters.add(m);
         }
         
@@ -55,8 +55,8 @@ public class PruebaNapakalaki {
        boolean aniadir = true;
         
         for(Monster m: monstruos){
-            BadConsequence bad_aux= m.getCastigo();
-            if(!m.getCastigo().getSpecificHiddenTreasures().isEmpty())
+            BadConsequence bad_aux= m.getBadConsequence();
+            if(!m.getBadConsequence().getSpecificHiddenTreasures().isEmpty())
                 for(int i=0; i<bad_aux.getSpecificHiddenTreasures().size(); i++)
                     //System.out.println(bad_aux.getSpecificHiddenTreasures().get(i));
                     if(bad_aux.getSpecificHiddenTreasures().get(i)==tr)

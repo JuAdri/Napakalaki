@@ -15,10 +15,10 @@ import java.util.Collections;
 public class CardDealer {
     private static final CardDealer instance= new CardDealer();
     
-    private ArrayList<Treasure> unusedTreasures;
-    private ArrayList<Treasure> usedTreasures;
-    private ArrayList<Monster> unusedMonster;
-    private ArrayList<Monster> usedMonster;
+    private ArrayList<Treasure> unusedTreasures=new ArrayList();
+    private ArrayList<Treasure> usedTreasures=new ArrayList();
+    private ArrayList<Monster> unusedMonster=new ArrayList();
+    private ArrayList<Monster> usedMonster=new ArrayList();
     
     private CardDealer() {}
     
