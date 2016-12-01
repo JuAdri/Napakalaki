@@ -24,7 +24,7 @@ public class Player {
     
     public Player(String name){
         this.name= name;
-        level=0;
+        level=1;
         enemy= null;
         visibleTreasures= new ArrayList();
         hiddenTreasures= new ArrayList();         
@@ -215,7 +215,7 @@ public class Player {
         Treasure t = null;
         if(canISteal()){
             if(enemy.canYouGiveMeATreasure()){
-                t = giveMeATreasure();
+                t = enemy.giveMeATreasure();
                 hiddenTreasures.add(t);
                 haveStolen();
             }
@@ -228,8 +228,7 @@ public class Player {
     }
     
     private Treasure giveMeATreasure(){
-        
-        return hiddenTreasures.get((int) (Math.random() * hiddenTreasures.size()));
+        return hiddenTreasures.get((int) (Math.random() * (hiddenTreasures.size()-1)));
     }
     
     public boolean canISteal(){
@@ -237,7 +236,7 @@ public class Player {
     }
     
     private boolean canYouGiveMeATreasure(){
-        return visibleTreasures.size()>0;
+        return hiddenTreasures.size()>0;
     }
     
     private void haveStolen(){
