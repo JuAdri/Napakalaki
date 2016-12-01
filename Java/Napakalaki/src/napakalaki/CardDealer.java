@@ -242,11 +242,11 @@ public class CardDealer {
     }
     
     public Monster nextMonster(){
-         Monster devolver;
+        Monster devolver;
          
         if(!unusedMonster.isEmpty()){
-            devolver = unusedMonster.get(4);
-            unusedMonster.remove(4);
+            devolver = unusedMonster.get(0);
+            unusedMonster.remove(0);
             
             return devolver;
         }

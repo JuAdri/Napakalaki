@@ -5,22 +5,15 @@
 class Player
   @@MAXLEVEL=10
   
-  attr_reader :canISteal, :level, :name
-  attr_writer :enemy, :pendingBadConsequence
-  private :bringToLife, :getCombatLevel, :incrementLevels, :decrementLevels,
-    :setPendingBadConsequence, :applyPrize, :applyBadConsequence, :canMakeTreasureVisible,
-    :howManyVisibleTreasures, :dielfNoTreasures, :giveMeATreasure, :canYouGiveMeATreasure,
-    :haveStolen
-  
   def initialize(name_p)
     @name=name_p
     @level= 0
     @dead=true
     @canISteal= true
-    @enemy= Player.new
+    @enemy= nil
     @hiddenTreasures= Array.new
     @visibleTreasures= Array.new
-    @pendingBadConsequence= BadConsequence.new
+    @pendingBadConsequence= nil
   end
   
   def bringToLife
@@ -31,7 +24,7 @@ class Player
     level_combat= @level
     for i in(0..@hiddenTreasures.length)
       level_combat+=hiddenTreasures[i].bonus
-    endfor
+    end
     
     for i in(0..@visibleTreasures.length)
       level_combat+=visibleTreasures[i]
@@ -59,7 +52,7 @@ class Player
     incrementLevels(nLevels)
 
     if n_treasures>0
-        dealer = CardDealer.getInstance
+        dealer = CardDealer.instance
         n_treasures.each do |tr|
           tr_aux = dealer.nextTreasure
           hiddenTreasures.push(tr_aux)
@@ -156,7 +149,7 @@ class Player
     myLevel = getCombatLevel
     monsterLevel = m.getCombatLevel
     if !canISteal
-      dice = Dice.getInstance
+      dice = Dice.instance
       number = dice.nextNumber
 
       if number < 3 
@@ -208,8 +201,8 @@ class Player
   end
   
   def initTreasures
-    dealer = CardDealer.getInstance
-    dice = Dice.getInstance
+    dealer = CardDealer.instance
+    dice = Dice.instance
     bringToLife
     t = dealer.nextTreasure
     @hiddenTreasures.push(t)
@@ -273,4 +266,11 @@ class Player
       discardHiddenTreasure(h_tr)
     end
   end
+  
+  attr_reader :canISteal, :level, :name
+  attr_writer :enemy, :pendingBadConsequence
+  private :bringToLife, :getCombatLevel, :incrementLevels, :decrementLevels,
+    :setPendingBadConsequence, :applyPrize, :applyBadConsequence, :canMakeTreasureVisible,
+    :howManyVisibleTreasures, :dielfNoTreasures, :giveMeATreasure, :canYouGiveMeATreasure,
+    :haveStolen
 end

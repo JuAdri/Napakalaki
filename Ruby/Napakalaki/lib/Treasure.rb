@@ -9,8 +9,8 @@ class Treasure
     @type = t
   end
   
-  def getType
-    return @type
+  def to_s
+    "\nNobre_objeto = #{@name}"
   end
   
   attr_reader :name, :bonus, :type

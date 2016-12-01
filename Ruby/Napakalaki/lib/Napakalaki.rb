@@ -2,21 +2,18 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require 'singleton'
+require_relative 'Monster.rb'
+require_relative 'Player.rb'
+require_relative 'CardDealer.rb'
+
 class Napakalaki
   include Singleton
   
-  attr_reader :currentPlayer, :currentMonster
-  private :initPlayers, :nextPlayer, :nextTurnAllowed, :setEnemies
-  
   def initialize
-    @currentPlayer= Player.new
-    @players= Array.new
-    @dealer= CardDealer.new
-    @currentMonster= Monster.new
-  end
-  
-  def self.getInstance
-    return instance
+    @players = Array.new
+    @currentMonster= Monster.new("", 0, nil, nil)
+    @dealer= CardDealer.instance
   end
   
   def makeTreasuresVisible(tr)
@@ -90,7 +87,7 @@ class Napakalaki
     
     for i in(0..@players.length)
       while no_asignado
-        aleatorio = rand(@players.length + 1)
+        aleatorio = rand(0..@players.length-1)
         if(aleatorio != i)
           @players[i].setEnemy(@players[aleatorio])
           no_asignado = false
@@ -163,3 +160,7 @@ class Napakalaki
     end
     return false
   end
+  
+  attr_reader :currentPlayer, :currentMonster
+  private :initPlayers, :nextPlayer, :nextTurnAllowed, :setEnemies
+end
