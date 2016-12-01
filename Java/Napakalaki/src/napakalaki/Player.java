@@ -213,13 +213,13 @@ public class Player {
     
     public Treasure stealTreasure(){
         Treasure t = null;
-        if(canISteal())
+        if(canISteal()){
             if(enemy.canYouGiveMeATreasure()){
                 t = giveMeATreasure();
                 hiddenTreasures.add(t);
                 haveStolen();
             }
-                    
+        }
         return t;
     }
     
@@ -228,7 +228,7 @@ public class Player {
     }
     
     private Treasure giveMeATreasure(){
-        return hiddenTreasures.get((int) (Math.random() * hiddenTreasures.size()));
+        return hiddenTreasures.get((int) (Math.random() * hiddenTreasures.size()-1));
     }
     
     public boolean canISteal(){
