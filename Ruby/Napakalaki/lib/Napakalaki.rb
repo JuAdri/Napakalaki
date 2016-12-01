@@ -47,7 +47,7 @@ class Napakalaki
   
   def initPlayers(names)
     if names.length > 0
-      for i in (0..names.length)
+      for i in (0..names.length-1)
         aux = Player.new(names[i])
         @players.push(aux)
       end
@@ -84,8 +84,7 @@ class Napakalaki
   
   def setEnemies
     no_asignado = true
-    
-    for i in(0..@players.length)
+    for i in(0..@players.length-1)
       while no_asignado
         aleatorio = rand(0..@players.length-1)
         if(aleatorio != i)
