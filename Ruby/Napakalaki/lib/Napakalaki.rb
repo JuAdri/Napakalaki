@@ -56,8 +56,8 @@ class Napakalaki
   
   def nextPlayer
     index_next = 0
-    n_pl = null
-    if @currentPlayer == null
+    n_pl = nil
+    if @currentPlayer == nil
       index_next = rand(@players.size - 1)
       n_pl = @players[index_next]
     else
@@ -143,8 +143,9 @@ class Napakalaki
     stateOK = nextTurnAllowed
 
     if stateOK
-      @currentMonster = @dealer.nextMonster
       @currentPlayer = nextPlayer
+      @currentMonster = @dealer.nextMonster
+      
       @dead = @currentPlayer.isDead
       if dead
           @currentPlayer.initTreasures

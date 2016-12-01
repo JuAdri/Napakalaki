@@ -13,17 +13,14 @@ class CardDealer
   include Singleton
   
   def initialize
-    @unusedTreasures = []
+    @unusedTreasures = Array.new
     @usedTreasures = Array.new
-    @unusedMonster = Array.new
+    @unusedMonsters = Array.new
     @usedMonster = Array.new
   end
       
   def initTreasureCardDeck
-    
-    @unusedtreasures << Treasure.new("¡Si mi amo!", 4, TreasureKind::SHOES)
-    
-    puts "Hasta aqui llega"
+    @unusedTreasures << Treasure.new("¡Si mi amo!", 4, TreasureKind::SHOES)
     @unusedTreasures << Treasure.new('Botas de investigacion', 3, TreasureKind::SHOES)
     @unusedTreasures << Treasure.new('Capucha de Cthulhu', 3, TreasureKind::HELMET)
     @unusedTreasures << Treasure.new('A prueba de babas', 2, TreasureKind::ARMOR)
@@ -54,14 +51,16 @@ class CardDealer
     @unusedTreasures<< Treasure.new('Varita de atizamiento', 3, TreasureKind::ONEHAND)
     @unusedTreasures<< Treasure.new('Tentáculo de pega', 2, TreasureKind::HELMET)
     @unusedTreasures<< Treasure.new('Zapato deja-amigos', 1, TreasureKind::SHOES)
+    
   end
   
   def initMonsterCardDeck
     # Monstruo 1 -> Byakhees de bonanza
     prize = Prize.new(2, 1)
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Pierdes tu armadura visible y otra oculta', 0, [TreasureKind::ARMOR], [TreasureKind::ARMOR])
+    
     @unusedMonsters<< Monster.new('Byakhees de bonanza', 8, prize, bad_consequence)
-
+   puts "Hasta aqui llega inicio monstruops"
     # Monstruo 2 -> Tenochtitlan
     prize = Prize.new(1, 1)
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Embobados con el lindo primigenio te descartas de tu casco visible.', 0, [TreasureKind::HELMET], Array.new)
@@ -179,9 +178,9 @@ class CardDealer
   end
   
   def nextMonster
-    if !@unusedMonster.isEmpty
-      devolver = @unusedMonster[0]
-      @unusedMonster.delete(0)
+    if !@unusedMonsters.empty?
+      devolver = @unusedMonsters[0]
+      @unusedMonsters.delete(0)
 
       return devolver
     end
