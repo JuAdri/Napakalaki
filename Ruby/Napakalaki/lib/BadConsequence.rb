@@ -4,6 +4,8 @@
 
 #encoding: utf-8
 
+require_relative 'Treasure.rb'
+
 class BadConsequence
   private_class_method :new
   
@@ -43,15 +45,67 @@ class BadConsequence
   end
   
   def substractVisibleTreasure(t)
-    specificVisibleTreasures.remove(t.getType)
+    @specificVisibleTreasures.delete(t.getType)
   end
   
   def substractHiddenTreasure(t)
-    specificHiddenTreasures.remove(t.getType)
+    @specificHiddenTreasures.delete(t.getType)
   end
   
-  def adjustToFitTreasureLists(array1_tesoros, array2_tesoros)
-    
+  def adjustToFitTreasureLists(v, h)
+    pn_vis = v.length
+    pn_hid = h.length
+        
+    bad_ret = BadConsequence.new(text, levels, specificVisibleTreasures, specificHiddenTreasures )
+
+    if !isEmpty
+      if nHiddenTreasures == 0 && nVisibleTreasures == 0
+        insertado = false;
+
+        sp_v = Array.new
+        sp_h = Array.new
+
+        specificVisibleTreasures.each do |spvi|
+          insertado = false;
+          spvi.each do spvp
+            if !insertado
+              if spvi == spvp.getType
+                if !sp_v.contains(spvi)
+                  sp_v.push(spvi)
+                  insertado = true
+                end
+              end
+            end
+          end
+        end
+
+        specificHiddenTreasures.each do |sphi|
+          insertado = false;
+          h.each do |sphp|
+            if !insertado
+              if sphi == sphp.getType
+                if !sp_h.contains(sphi)
+                  sp_h.push(sphi)
+                  insertado = true
+                end
+              end
+            end
+          end
+        end
+        bad_ret.specificVisibleTreasures = sp_v
+        bad_ret.specificHiddenTreasures = sp_h
+      else
+        if(pn_vis < nVisibleTreasures)
+            bad_ret.nVisibleTreasures = pn_vis
+        end
+
+        if(pn_hid < nHiddenTreasures)
+            bad_ret.nHiddenTreasures = pn_hid
+        end
+      end
+      return bad_ret
+    end
+    return this
   end
   
 end
