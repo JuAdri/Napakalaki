@@ -160,7 +160,7 @@ class CardDealer
   end
   
   def nextTreasure
-    if !@unusedTreasures.isEmpty
+    if !@unusedTreasures.empty?
         devolver = @unusedTreasures[0]
         @unusedTreasures.delete(0)
 
