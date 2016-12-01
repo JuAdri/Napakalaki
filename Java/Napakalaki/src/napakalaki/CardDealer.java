@@ -207,7 +207,7 @@ public class CardDealer {
         Monster m19= new Monster("Bicefalo", 21, bc19, pz19);
         unusedMonster.add(m19);
         
-        //shuffleMonster();
+        shuffleMonster();
     }
     
     private void shuffleTreasures(){
