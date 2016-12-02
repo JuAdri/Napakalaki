@@ -51,6 +51,8 @@ class CardDealer
     @unusedTreasures.push Treasure.new('Varita de atizamiento', 3, TreasureKind::ONEHAND)
     @unusedTreasures.push Treasure.new('Tentáculo de pega', 2, TreasureKind::HELMET)
     @unusedTreasures.push Treasure.new('Zapato deja-amigos', 1, TreasureKind::SHOES)
+    shuffleTreasures
+    
   end
   
   def initMonsterCardDeck
@@ -59,7 +61,6 @@ class CardDealer
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Pierdes tu armadura visible y otra oculta', 0, [TreasureKind::ARMOR], [TreasureKind::ARMOR])
     
     @unusedMonsters<< Monster.new('Byakhees de bonanza', 8, prize, bad_consequence)
-   puts "Hasta aqui llega inicio monstruops"
     # Monstruo 2 -> Tenochtitlan
     prize = Prize.new(1, 1)
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Embobados con el lindo primigenio te descartas de tu casco visible.', 0, [TreasureKind::HELMET], Array.new)
@@ -149,6 +150,8 @@ class CardDealer
     prize = Prize.new(2, 1)
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.', 3, [TreasureKind::ONEHAND], [TreasureKind::BOTHHANDS])
     @unusedMonsters<< Monster.new('Bicefalo', 21, prize, bad_consequence)
+    
+    shuffleMonsters
   end
   
   def shuffleTreasures
