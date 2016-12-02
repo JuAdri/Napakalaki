@@ -78,21 +78,21 @@ class Player
     puede_make = true
     n_tr_oh = 0
     @visibleTreasures.each do |tes|
-      if tes.getType == t.getType && t.getType != TreasureKind::ONEHAND
+      if tes.type == t.type && t.type != TreasureKind::ONEHAND
         return false
       end
-      if tes.getType == TreasureKind::ONEHAND
+      if tes.type == TreasureKind::ONEHAND
           n_tr_oh += 1
 
-          if t.getType == TreasureKind::BOTHHANDS
+          if t.type == TreasureKind::BOTHHANDS
             return false
           end
       end
-      if tes.getType == TreasureKind::BOTHHANDS && t.getType == TreasureKind::ONEHAND
+      if tes.type == TreasureKind::BOTHHANDS && t.type == TreasureKind::ONEHAND
         return false
       end
     end
-    if t.getType == TreasureKind::ONEHAND && n_tr_oh >= 2
+    if t.type == TreasureKind::ONEHAND && n_tr_oh >= 2
       return false
     end
 
@@ -179,8 +179,8 @@ class Player
   def makeTreasureVisible(t)
     canI = canMakeTreasureVisible(t)
     if canI
-      visibleTreasures<<(t)
-      hiddenTreasures.delete(t)
+      @visibleTreasures<<(t)
+      @hiddenTreasures.delete(t)
     end
   end
   

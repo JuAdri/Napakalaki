@@ -1,6 +1,7 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
+require_relative 'Dice.rb'
 
 class Player
   @@MAXLEVEL=10
@@ -202,16 +203,16 @@ class Player
   
   def initTreasures
     dealer = CardDealer.instance
+    dice = Dice.instance
     bringToLife
     t = dealer.nextTreasure
     @hiddenTreasures<<(t)
-    number = Dice.instance.nextNumber
+    number = dice.nextNumber
 
     if(number > 1)
         t = dealer.nextTreasure
         @hiddenTreasures<<(t)
-    end
-    if(number == 6)
+    elsif(number == 6)
         t = dealer.nextTreasure
         @hiddenTreasures<<(t)
     end
