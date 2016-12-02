@@ -4,6 +4,10 @@
 
 require_relative 'Dice.rb'
 require_relative 'CardDealer.rb'
+require_relative 'TreasureKind.rb'
+require_relative 'Monster.rb'
+require_relative 'CombatResult.rb'
+require_relative 'BadConsequence.rb'
 
 class Player
   @@MAXLEVEL=10
@@ -26,11 +30,11 @@ class Player
   def getCombatLevel
     level_combat= @level
     for i in(0..@hiddenTreasures.length-1)
-      level_combat+=hiddenTreasures[i].bonus
+      level_combat+= @hiddenTreasures[i].bonus
     end
     
     for i in(0..@visibleTreasures.length-1)
-      level_combat+=visibleTreasures[i]
+      level_combat+= @visibleTreasures[i]
     end
     
     return level_combat
@@ -55,21 +59,21 @@ class Player
     incrementLevels(nLevels)
 
     if n_treasures>0
-        dealer = CardDealer.instance
-        n_treasures.each do |tr|
-          tr_aux = dealer.nextTreasure
-          hiddenTreasures<<(tr_aux)
-        end
+      dealer = CardDealer.instance
+      for i in 0..n_treasures
+        tr_aux = dealer.nextTreasure
+        @hiddenTreasures<<(tr_aux)
+      end
     end
   end
   
   def applyBadConsequence(m)
-    badC = m.getBadConsequence
-    nLevels= badC.getLevels
+    badC = m.bc
+    nLevels= badC.levels
         
     decrementLevels(nLevels)
 
-    pendingBad= badC.adjustToFitTreasureLists(visibleTreasures, hiddenTreasures)
+    pendingBad= badC.adjustToFitTreasureLists(@visibleTreasures, @hiddenTreasures)
     setPendingBadConsequence(pendingBad)
   end
   
@@ -77,21 +81,21 @@ class Player
     puede_make = true
     n_tr_oh = 0
     @visibleTreasures.each do |tes|
-      if tes.getType == t.getType && t.getType != TreasureKind::ONEHAND
+      if tes.type == t.type && t.type != TreasureKind::ONEHAND
         return false
       end
-      if tes.getType == TreasureKind::ONEHAND
+      if tes.type == TreasureKind::ONEHAND
           n_tr_oh += 1
 
-          if t.getType == TreasureKind::BOTHHANDS
+          if t.type == TreasureKind::BOTHHANDS
             return false
           end
       end
-      if tes.getType == TreasureKind::BOTHHANDS && t.getType == TreasureKind::ONEHAND
+      if tes.type == TreasureKind::BOTHHANDS && t.type == TreasureKind::ONEHAND
         return false
       end
     end
-    if t.getType == TreasureKind::ONEHAND && n_tr_oh >= 2
+    if t.type == TreasureKind::ONEHAND && n_tr_oh >= 2
       return false
     end
 
@@ -123,7 +127,7 @@ class Player
   def howManyVisibleTreasures(t)
     n_trs = 0
     for i in(0..@visibleTreasures.length-1)
-      if visibleTreasures[i].getType == t
+      if visibleTreasures[i].type == t
         n_trs += 1
       end
     end
@@ -131,7 +135,7 @@ class Player
   end
   
   def dielfNoTreasures
-    if @visibleTreasures.isEmpty && hiddenTreasures.isEmpty
+    if @visibleTreasures.empty? && @hiddenTreasures.empty?
       @dead = true
     end
   end
@@ -150,19 +154,19 @@ class Player
   
   def combat(m)
     myLevel = getCombatLevel
-    monsterLevel = m.getCombatLevel
+    monsterLevel = m.combatLevel
     if !canISteal
       dice = Dice.instance
       number = dice.nextNumber
 
       if number < 3 
-        enemyLevel = @enemy.getCombatLevel
+        enemyLevel = @enemy.combatLevel
         monsterLevel += enemyLevel;
       end
     end
     if myLevel > monsterLevel
       applyPrize(m)
-      if level >= MAXLEVEL 
+      if level >= @@MAXLEVEL 
         cr = CombatResult::WINGAME
       else
         cr = CombatResult::WIN
@@ -178,14 +182,14 @@ class Player
   def makeTreasureVisible(t)
     canI = canMakeTreasureVisible(t)
     if canI
-      visibleTreasures<<(t)
-      hiddenTreasures.delete(t)
+      @visibleTreasures.push(t)
+      @hiddenTreasures.delete(t)
     end
   end
   
   def discardVisibleTreasure(t)
     @visibleTreasures.delete(t)
-    if(@pendingBadConsequence != null && !@pendingBadConsequence.isEmpty)
+    if @pendingBadConsequence != nil && !@pendingBadConsequence.isEmpty 
       @pendingBadConsequence.substractVisibleTreasure(t)
     end
     dielfNoTreasures()
@@ -193,7 +197,7 @@ class Player
   
   def discardHiddenTreasure(t)
     @hiddenTreasures.delete(t)
-    if(@pendingBadConsequence != null && !@pendingBadConsequence.isEmpty)
+    if @pendingBadConsequence != nil && !@pendingBadConsequence.isEmpty
       @pendingBadConsequence.substractHiddenTreasure(t)
     end
     dielfNoTreasures()
@@ -207,16 +211,16 @@ class Player
     dealer = CardDealer.instance
     bringToLife
     t = dealer.nextTreasure
-    @hiddenTreasures<<(t)
+    @hiddenTreasures.push(t)
     number = Dice.instance.nextNumber
 
     if(number > 1)
         t = dealer.nextTreasure
-        @hiddenTreasures<<(t)
+        @hiddenTreasures.push(t)
     end
     if(number == 6)
         t = dealer.nextTreasure
-        @hiddenTreasures<<(t)
+        @hiddenTreasures.push(t)
     end
   end
   
@@ -267,6 +271,10 @@ class Player
     tr_hid_aux.each do |h_tr|
       discardHiddenTreasure(h_tr)
     end
+  end
+  
+  def to_s
+    "#{@name}"
   end
   
   attr_reader :canISteal, :level, :name
