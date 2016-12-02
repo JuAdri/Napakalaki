@@ -10,7 +10,7 @@ class Player
   
   def initialize(name_p)
     @name=name_p
-    @level= 0
+    @level= 1
     @dead=true
     @canISteal= true
     @enemy= nil
@@ -205,11 +205,10 @@ class Player
   
   def initTreasures
     dealer = CardDealer.instance
-    dice = Dice.instance
     bringToLife
     t = dealer.nextTreasure
     @hiddenTreasures<<(t)
-    number = dice.nextNumber
+    number = Dice.instance.nextNumber
 
     if(number > 1)
         t = dealer.nextTreasure
