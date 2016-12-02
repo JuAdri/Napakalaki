@@ -2,10 +2,10 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require 'singleton'
+
 class Dice
   include Singleton
-  
-  attr_reader :instance
   
   def nextNumber
     return rand(6) + 1
