@@ -3,6 +3,9 @@
 # and open the template in the editor.
 require_relative 'Dice.rb'
 
+require_relative 'Dice.rb'
+require_relative 'CardDealer.rb'
+
 class Player
   @@MAXLEVEL=10
   

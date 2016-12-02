@@ -3,6 +3,8 @@
 # and open the template in the editor.
 require 'singleton'
 
+require 'singleton'
+
 class Dice
   include Singleton
   
