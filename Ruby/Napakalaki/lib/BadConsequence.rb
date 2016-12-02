@@ -56,16 +56,16 @@ class BadConsequence
     pn_vis = v.length
     pn_hid = h.length
         
-    bad_ret = BadConsequence.new(text, levels, specificVisibleTreasures, specificHiddenTreasures )
+    bad_ret = BadConsequence.new(@text, @levels, @specificVisibleTreasures, @specificHiddenTreasures )
 
     if !isEmpty
-      if nHiddenTreasures == 0 && nVisibleTreasures == 0
+      if @nHiddenTreasures == 0 && @nVisibleTreasures == 0
         insertado = false;
 
         sp_v = Array.new
         sp_h = Array.new
 
-        specificVisibleTreasures.each do |spvi|
+        @specificVisibleTreasures.each do |spvi|
           insertado = false;
           spvi.each do spvp
             if !insertado
@@ -79,7 +79,7 @@ class BadConsequence
           end
         end
 
-        specificHiddenTreasures.each do |sphi|
+        @specificHiddenTreasures.each do |sphi|
           insertado = false;
           h.each do |sphp|
             if !insertado
