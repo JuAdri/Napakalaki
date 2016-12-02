@@ -35,7 +35,7 @@ class Player
     end
     
     for i in(0..@visibleTreasures.length-1)
-      level_combat+= @visibleTreasures[i]
+      level_combat+= @visibleTreasures[i].bonus
     end
     
     return level_combat
@@ -75,6 +75,7 @@ class Player
     decrementLevels(nLevels)
 
     pendingBad= badC.adjustToFitTreasureLists(@visibleTreasures, @hiddenTreasures)
+    puts "LLEGA AQUI"
     setPendingBadConsequence(pendingBad)
   end
   
@@ -224,6 +225,8 @@ class Player
         t = dealer.nextTreasure
         @hiddenTreasures.push(t)
     end
+    
+    
   end
   
   def getLevels
@@ -231,7 +234,7 @@ class Player
   end
   
   def stealTreasure
-    t = null;
+    t = nil;
     if canISteal
       if enemy.canYouGiveMeATreasure
         t = giveMeATreasure

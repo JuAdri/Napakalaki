@@ -12,6 +12,7 @@ class Napakalaki
   
   def initialize
     @players = Array.new
+    @currentPlayer = nil
     @currentMonster= Monster.new("", 0, nil, nil)
     @dealer= CardDealer.instance
   end

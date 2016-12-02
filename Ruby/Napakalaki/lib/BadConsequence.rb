@@ -55,8 +55,8 @@ class BadConsequence
   def adjustToFitTreasureLists(v, h)
     pn_vis = v.length
     pn_hid = h.length
-        
-    bad_ret = BadConsequence.new(@text, @levels, @specificVisibleTreasures, @specificHiddenTreasures )
+       
+    bad_ret = BadConsequence.newLevelSpecificTreasures(@text, @levels, @specificVisibleTreasures, @specificHiddenTreasures )
 
     if !isEmpty
       if @nHiddenTreasures == 0 && @nVisibleTreasures == 0
@@ -95,11 +95,11 @@ class BadConsequence
         bad_ret.specificVisibleTreasures = sp_v
         bad_ret.specificHiddenTreasures = sp_h
       else
-        if(pn_vis < nVisibleTreasures)
+        if(pn_vis < @nVisibleTreasures)
             bad_ret.nVisibleTreasures = pn_vis
         end
 
-        if(pn_hid < nHiddenTreasures)
+        if(pn_hid < @nHiddenTreasures)
             bad_ret.nHiddenTreasures = pn_hid
         end
       end

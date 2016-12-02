@@ -165,7 +165,7 @@ class CardDealer
   def nextTreasure
     if !@unusedTreasures.empty?
       devolver = @unusedTreasures[0]
-      @unusedTreasures.delete(0)
+      @unusedTreasures.delete(devolver)
 
       return devolver
     end
@@ -174,7 +174,7 @@ class CardDealer
     @usedTreasures.clear
     shuffleTreasures
     devolver = @unusedTreasures[0]
-    @unusedTreasures.delete(0)
+    @unusedTreasures.delete(devolver)
 
     return devolver
   end
@@ -182,7 +182,7 @@ class CardDealer
   def nextMonster
     if !@unusedMonsters.empty?
       devolver = @unusedMonsters[0]
-      @unusedMonsters.delete(0)
+      @unusedMonsters.delete(devolver)
 
       return devolver
     end
@@ -191,7 +191,7 @@ class CardDealer
     @usedMonsters.clear
     shuffleMonster
     devolver = @unusedMonsters[0]
-    @unusedMonsters.delete(0)
+    @unusedMonsters.delete(devolver)
 
     return devolver
   end
