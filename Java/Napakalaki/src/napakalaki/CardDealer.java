@@ -19,6 +19,7 @@ public class CardDealer {
     private ArrayList<Treasure> usedTreasures=new ArrayList();
     private ArrayList<Monster> unusedMonster=new ArrayList();
     private ArrayList<Monster> usedMonster=new ArrayList();
+    private ArrayList<Cultist> unusedCultist= new ArrayList();
     
     private CardDealer() {}
     
@@ -207,7 +208,90 @@ public class CardDealer {
         Monster m19= new Monster("Bicefalo", 21, bc19, pz19);
         unusedMonster.add(m19);
         
+        //SECTARIOS
+        ArrayList <TreasureKind> tr_vis_sec1= new ArrayList<TreasureKind>();
+        ArrayList <TreasureKind> tr_hid_sec1= new ArrayList<TreasureKind>();
+        tr_vis_sec1.add(TreasureKind.ONEHAND);
+        
+        Prize pz_sec1=new Prize(3, 1);
+        BadConsequence bc_sec_1= new BadConsequence("Pierdes 1 mano visible.", 0, tr_vis_sec1, tr_hid_sec1);
+        Monster m_sec_1= new Monster("El mal indecible impronunciable", 10, bc_sec_1, pz_sec1, -2);
+        unusedMonster.add(m_sec_1);
+        
+        ArrayList <TreasureKind> tr_vis_sec2= new ArrayList<TreasureKind>();
+        ArrayList <TreasureKind> tr_hid_sec2= new ArrayList<TreasureKind>();
+        tr_vis_sec2.add(TreasureKind.ONEHAND);
+        
+        Prize pz_sec2=new Prize(3, 1);
+        BadConsequence bc_sec_2= new BadConsequence("Pierdes 1 mano visible.", 0, tr_vis_sec2, tr_hid_sec2);
+        Monster m_sec_2= new Monster("El mal indecible impronunciable", 10, bc_sec_2, pz_sec2, -2);
+        unusedMonster.add(m_sec_2);
+        
+        ArrayList <TreasureKind> tr_vis_sec1= new ArrayList<TreasureKind>();
+        ArrayList <TreasureKind> tr_hid_sec1= new ArrayList<TreasureKind>();
+        tr_vis_sec1.add(TreasureKind.ONEHAND);
+        
+        Prize pz_sec1=new Prize(3, 1);
+        BadConsequence bc_sec_1= new BadConsequence("Pierdes 1 mano visible.", 0, tr_vis_sec1, tr_hid_sec1);
+        Monster m_sec_1= new Monster("El mal indecible impronunciable", 10, bc_sec_1, pz_sec1, -2);
+        unusedMonster.add(m_sec_1);
+        
+        ArrayList <TreasureKind> tr_vis_sec1= new ArrayList<TreasureKind>();
+        ArrayList <TreasureKind> tr_hid_sec1= new ArrayList<TreasureKind>();
+        tr_vis_sec1.add(TreasureKind.ONEHAND);
+        
+        Prize pz_sec1=new Prize(3, 1);
+        BadConsequence bc_sec_1= new BadConsequence("Pierdes 1 mano visible.", 0, tr_vis_sec1, tr_hid_sec1);
+        Monster m_sec_1= new Monster("El mal indecible impronunciable", 10, bc_sec_1, pz_sec1, -2);
+        unusedMonster.add(m_sec_1);
+        
+        ArrayList <TreasureKind> tr_vis_sec1= new ArrayList<TreasureKind>();
+        ArrayList <TreasureKind> tr_hid_sec1= new ArrayList<TreasureKind>();
+        tr_vis_sec1.add(TreasureKind.ONEHAND);
+        
+        Prize pz_sec1=new Prize(3, 1);
+        BadConsequence bc_sec_1= new BadConsequence("Pierdes 1 mano visible.", 0, tr_vis_sec1, tr_hid_sec1);
+        Monster m_sec_1= new Monster("El mal indecible impronunciable", 10, bc_sec_1, pz_sec1, -2);
+        unusedMonster.add(m_sec_1);
+        
+        ArrayList <TreasureKind> tr_vis_sec1= new ArrayList<TreasureKind>();
+        ArrayList <TreasureKind> tr_hid_sec1= new ArrayList<TreasureKind>();
+        tr_vis_sec1.add(TreasureKind.ONEHAND);
+        
+        Prize pz_sec1=new Prize(3, 1);
+        BadConsequence bc_sec_1= new BadConsequence("Pierdes 1 mano visible.", 0, tr_vis_sec1, tr_hid_sec1);
+        Monster m_sec_1= new Monster("El mal indecible impronunciable", 10, bc_sec_1, pz_sec1, -2);
+        unusedMonster.add(m_sec_1);
+        
+        ArrayList <TreasureKind> tr_vis_sec1= new ArrayList<TreasureKind>();
+        ArrayList <TreasureKind> tr_hid_sec1= new ArrayList<TreasureKind>();
+        tr_vis_sec1.add(TreasureKind.ONEHAND);
+        
+        Prize pz_sec1=new Prize(3, 1);
+        BadConsequence bc_sec_1= new BadConsequence("Pierdes 1 mano visible.", 0, tr_vis_sec1, tr_hid_sec1);
+        Monster m_sec_1= new Monster("El mal indecible impronunciable", 10, bc_sec_1, pz_sec1, -2);
+        unusedMonster.add(m_sec_1);
         shuffleMonster();
+    }
+    
+    private void initCultistCardDeck(){
+        Cultist sec1= new Cultist("Sectario", 1);
+        unusedCultist.add(sec1);
+        
+        Cultist sec2= new Cultist("Sectario", 2);
+        unusedCultist.add(sec2);
+        
+        Cultist sec3= new Cultist("Sectario", 1);
+        unusedCultist.add(sec3);
+        
+        Cultist sec4= new Cultist("Sectario", 2);
+        unusedCultist.add(sec4);
+        
+        Cultist sec5= new Cultist("Sectario", 1);
+        unusedCultist.add(sec5);
+        
+        Cultist sec6= new Cultist("Sectario", 1);
+        unusedCultist.add(sec6);
     }
     
     private void shuffleTreasures(){
@@ -217,6 +301,8 @@ public class CardDealer {
     private void shuffleMonster(){
         Collections.shuffle(unusedMonster);
     }
+    
+    private void shuffleCultist(){}
     
     
     public static CardDealer getInstance() {
@@ -258,6 +344,10 @@ public class CardDealer {
         unusedMonster.remove(0);
         
         return devolver;
+    }
+    
+    public Cultist nextCultist(){
+        
     }
     
     public void giveTreasuresBack(Treasure t){
