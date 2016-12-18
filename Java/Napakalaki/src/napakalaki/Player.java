@@ -17,7 +17,7 @@ public class Player {
     private int level;
     private boolean dead=true;
     private boolean canISteal=true;
-    private Player enemy;
+    protected Player enemy;
     private ArrayList<Treasure> hiddenTreasures;
     private ArrayList<Treasure> visibleTreasures;
     private BadConsequence pendingBadConsequence;
@@ -28,6 +28,29 @@ public class Player {
         enemy= null;
         visibleTreasures= new ArrayList();
         hiddenTreasures= new ArrayList();         
+    }
+    
+    public Player(Player p){
+        name= p.name;
+        level=p.level;
+        dead=p.dead;
+        canISteal=p.canISteal;
+        enemy= p.enemy;
+        hiddenTreasures= p.hiddenTreasures;
+        visibleTreasures= p.visibleTreasures;
+        pendingBadConsequence= p.pendingBadConsequence;
+    }
+    
+    protected int getOponentLevel(Monster m){
+        
+    }
+    
+    protected boolean shouldConvert(){
+        
+    }
+    
+    protected int getCombatLevel(){
+        
     }
     
     public String getName(){
