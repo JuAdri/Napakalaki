@@ -189,7 +189,7 @@ class CardDealer
 
     @unusedMonsters = @usedMonsters
     @usedMonsters.clear
-    shuffleMonster
+    shuffleMonsters
     devolver = @unusedMonsters[0]
     @unusedMonsters.delete(devolver)
 

@@ -24,7 +24,7 @@ class BadConsequence
   end
   
   def self.newLevelSpecificTreasures(aText, someLevels, someSpecificVisibleTreasures, someSpecificHiddenTreasures)
-    new(aText, someLevels, someSpecificVisibleTreasures.length, someSpecificHiddenTreasures.size, someSpecificVisibleTreasures, someSpecificHiddenTreasures, false)
+    new(aText, someLevels, 0, 0, someSpecificVisibleTreasures, someSpecificHiddenTreasures, false)
   end
 
   def self.newDeath(aText)
@@ -34,11 +34,11 @@ class BadConsequence
   def isEmpty
     return @nVisibleTreasures==0 && 
            @nHiddenTreasures==0 && 
-           @specificHiddenTreasures.isEmpty && 
-           @specificVisibleTreasures.isEmpty
+           @specificHiddenTreasures.empty? && 
+           @specificVisibleTreasures.empty?
   end
   
-  attr_reader :levels, :nVisibleTreasures, :nHiddenTreasures, :specificHiddenTreasures, :specificVisibleTreasures
+  attr_accessor :levels, :nVisibleTreasures, :nHiddenTreasures, :specificHiddenTreasures, :specificVisibleTreasures
 
   def to_s
     "Text = #{@text} \n  Levels = #{@levels} \n  VisibleObjects = #{@nVisibleTreasures} \n  HiddenObjects = #{@nHiddenTreasures} \n  Death = #{@death} \n  SpecificHiddenObjects = #{@specificHiddenTreasures} \n  SpecificVisibleObjects = #{@specificVisibleTreasures}"
@@ -67,9 +67,9 @@ class BadConsequence
 
         @specificVisibleTreasures.each do |spvi|
           insertado = false;
-          spvi.each do spvp
+          v.each do spvp
             if !insertado
-              if spvi == spvp.getType
+              if spvi == spvp.type
                 if !sp_v.contains(spvi)
                   sp_v.push(spvi)
                   insertado = true
@@ -83,7 +83,7 @@ class BadConsequence
           insertado = false;
           h.each do |sphp|
             if !insertado
-              if sphi == sphp.getType
+              if sphi == sphp.type
                 if !sp_h.contains(sphi)
                   sp_h.push(sphi)
                   insertado = true
@@ -95,17 +95,17 @@ class BadConsequence
         bad_ret.specificVisibleTreasures = sp_v
         bad_ret.specificHiddenTreasures = sp_h
       else
-        if(pn_vis < @nVisibleTreasures)
+        if(pn_vis < @nVisibleTreasures.to_i)
             bad_ret.nVisibleTreasures = pn_vis
         end
 
-        if(pn_hid < @nHiddenTreasures)
+        if(pn_hid < @nHiddenTreasures.to_i)
             bad_ret.nHiddenTreasures = pn_hid
         end
       end
       return bad_ret
     end
-    return this
+    return self
   end
   
 end
