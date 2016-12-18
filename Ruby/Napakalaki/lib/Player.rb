@@ -30,9 +30,6 @@ class Player
   
   def getCombatLevel
     level_combat= @level
-    for i in(0..@hiddenTreasures.length-1)
-      level_combat+= @hiddenTreasures[i].bonus
-    end
     
     for i in(0..@visibleTreasures.length-1)
       level_combat+= @visibleTreasures[i].bonus
@@ -42,11 +39,17 @@ class Player
   end
   
   def incrementLevels(i)
-    @level+=i
+    @level += i.to_i
+    if @level >= @@MAXLEVEL
+      @level = 10
+    end
   end
   
   def decrementLevels(i)
-    @level-=i
+    @level -= i.to_i
+    if @level <= 0
+      @level = 1
+    end
   end
   
   def setPendingBadConsequence(b)
@@ -75,7 +78,6 @@ class Player
     decrementLevels(nLevels)
 
     pendingBad= badC.adjustToFitTreasureLists(@visibleTreasures, @hiddenTreasures)
-    puts "LLEGA AQUI"
     setPendingBadConsequence(pendingBad)
   end
   
@@ -140,10 +142,6 @@ class Player
     if @visibleTreasures.empty? && @hiddenTreasures.empty?
       @dead = true
     end
-  end
-  
-  def isDead
-    return @dead
   end
   
   def getHiddenTreasures
@@ -279,10 +277,12 @@ class Player
   end
   
   def to_s
-    "#{@name}"
+    "#{@name}
+    \tNivel = #{@level}
+    \tNivel de combate = " + getCombatLevel.to_s
   end
   
-  attr_reader :canISteal, :level, :name
+  attr_reader :canISteal, :level, :name, :dead
   attr_writer :enemy, :pendingBadConsequence
   private :bringToLife, :getCombatLevel, :incrementLevels, :decrementLevels,
     :setPendingBadConsequence, :applyPrize, :applyBadConsequence, :canMakeTreasureVisible,

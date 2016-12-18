@@ -60,7 +60,6 @@ class CardDealer
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Pierdes tu armadura visible y otra oculta', 0, [TreasureKind::ARMOR], [TreasureKind::ARMOR])
     
     @unusedMonsters<< Monster.new('Byakhees de bonanza', 8, prize, bad_consequence)
-   puts "Hasta aqui llega inicio monstruops"
     # Monstruo 2 -> Tenochtitlan
     prize = Prize.new(1, 1)
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Embobados con el lindo primigenio te descartas de tu casco visible.', 0, [TreasureKind::HELMET], Array.new)
@@ -187,7 +186,7 @@ class CardDealer
 
     @unusedMonster = @usedMonster
     @usedMonster.clear
-    shuffleMonster
+    shuffleMonsters
     devolver = @unusedMonster[0]
     @unusedMonster.delete(devolver)
 

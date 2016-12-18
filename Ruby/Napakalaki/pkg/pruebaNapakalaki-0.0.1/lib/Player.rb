@@ -134,10 +134,6 @@ class Player
     end
   end
   
-  def isDead
-    return @dead
-  end
-  
   def getHiddenTreasures
     return @hiddenTreasures
   end

@@ -37,7 +37,7 @@ class Napakalaki
     if(stateOK)
       @currentMonster = @dealer.nextMonster
       @currentPlayer = nextPlayer
-      dead = @currentPlayer.isDead
+      dead = @currentPlayer.dead
       if(dead)
           @currentPlayer.initTreasures
       end
@@ -63,17 +63,15 @@ class Napakalaki
       n_pl = @players[index_next]
     else
       index_next = @players.index(@currentPlayer)
-      if index_next == @players.size
+      if index_next == @players.size - 1
           index_next = 0
       else
           index_next+=1
       end
+      n_pl = @players[index_next]
     end
-    
-    n_pl = @players[index_next]
     @currentPlayer = n_pl
     return n_pl
-    
   end
   
   def nextTurnAllowed
@@ -147,9 +145,9 @@ class Napakalaki
       @currentPlayer = nextPlayer
       @currentMonster = @dealer.nextMonster
       
-      dead = @currentPlayer.isDead
+      dead = @currentPlayer.dead
       if dead
-          @currentPlayer.initTreasures
+        @currentPlayer.initTreasures
       end
     end
 
