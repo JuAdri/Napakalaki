@@ -58,9 +58,7 @@ public class BadConsequence {
     }
     
     public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, ArrayList<Treasure> h){
-        
-        
-        BadConsequence bad_ret = new BadConsequence(text, levels, specificVisibleTreasures, specificHiddenTreasures );
+        BadConsequence bad_ret;
         
         if(!isEmpty()){
             if(nHiddenTreasures==0 && nVisibleTreasures==0){
@@ -71,11 +69,11 @@ public class BadConsequence {
                 for(TreasureKind spvi :specificVisibleTreasures){
                     insertado= false;
                     for(Treasure spvp :v){
-                        if(!insertado)
+                        //if(!insertado)
                             if(spvi==spvp.getType()){
                                 if(!sp_v.contains(spvi)){
                                     sp_v.add(spvi);
-                                    insertado=true;
+                                    //insertado=true;
                                 }
                             }
                     }
@@ -84,26 +82,24 @@ public class BadConsequence {
                 for(TreasureKind sphi :specificHiddenTreasures){
                     insertado= false;
                     for(Treasure sphp :h){
-                        if(!insertado)
+                        //if(!insertado)
                             if(sphi==sphp.getType()){
                                 if(!sp_h.contains(sphi)){
                                     sp_h.add(sphi);
-                                    insertado= true;
+                                    //insertado= true;
                                 }
                             }
                     }
                 }
-                bad_ret.specificVisibleTreasures= sp_v;
-                bad_ret.specificHiddenTreasures= sp_h;
+                bad_ret= new BadConsequence(text, levels, sp_v, sp_h);
             }
             else{
-                int pn_vis=v.size(), pn_hid= h.size();
+                int pn_vis=v.size();
+                int pn_hid= h.size();
                 
-                if(pn_vis<nVisibleTreasures)
-                    bad_ret.nVisibleTreasures=pn_vis;
-                
-                if(pn_hid<nHiddenTreasures)
-                    bad_ret.nHiddenTreasures=pn_hid;
+                pn_vis=pn_vis>nVisibleTreasures?nVisibleTreasures:pn_vis;
+                pn_hid=pn_hid>nHiddenTreasures?nHiddenTreasures:pn_hid;
+                bad_ret= new BadConsequence(text, levels, pn_vis, pn_hid);
             }
             return bad_ret;
         }
@@ -132,15 +128,21 @@ public class BadConsequence {
     }
     
     public void substractVisibleTreasure(Treasure t){
-        if(nVisibleTreasures==0 && nHiddenTreasures==0 && !specificVisibleTreasures.isEmpty())
+        if(!specificVisibleTreasures.isEmpty()){
             specificVisibleTreasures.remove(t.getType());
+            if(nVisibleTreasures!=0)
+                nVisibleTreasures--;
+        }
         else if(nVisibleTreasures!=0)
-            nVisibleTreasures-=t.;
+            nVisibleTreasures--;
     }
     
     public void substractHiddenTreasure(Treasure t){
-        if(nVisibleTreasures==0 && nHiddenTreasures==0 && !specificHiddenTreasures.isEmpty())
+        if(!specificHiddenTreasures.isEmpty()){
             specificHiddenTreasures.remove(t.getType());
+            if(nHiddenTreasures!=0)
+                nHiddenTreasures--;
+        }
         else if(nHiddenTreasures!=0)
             nHiddenTreasures--;
     }

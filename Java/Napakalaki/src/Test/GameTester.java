@@ -56,7 +56,7 @@ public class GameTester {
               System.out.println ("\n\n Ganaste el combate");
               break;
             case LOSE :
-              System.out.println ("\n\n Has perdido el combate, te toca cumplir el mal rollo: " + currentPlayer.getPendingBadConsequence().toString());
+              System.out.println ("\n\n Has perdido el combate, te toca cumplir el mal rollo: ");
               break;
           }
           if (combatResult != CombatResult.WINGAME) {
