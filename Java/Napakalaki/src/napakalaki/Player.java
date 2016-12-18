@@ -18,8 +18,8 @@ public class Player {
     private boolean dead=true;
     private boolean canISteal=true;
     protected Player enemy;
-    private ArrayList<Treasure> hiddenTreasures;
-    private ArrayList<Treasure> visibleTreasures;
+    protected ArrayList<Treasure> hiddenTreasures;
+    protected ArrayList<Treasure> visibleTreasures;
     private BadConsequence pendingBadConsequence;
     
     public Player(String name){
@@ -42,15 +42,16 @@ public class Player {
     }
     
     protected int getOponentLevel(Monster m){
-        
+        return m.getCombatLevel();
     }
     
     protected boolean shouldConvert(){
-        
+        Dice dice=Dice.getInstance();
+        return dice.nextNumber()==6;
     }
     
-    protected int getCombatLevel(){
-        
+    protected Player getEnemy(){
+        return enemy;
     }
     
     public String getName(){
@@ -61,7 +62,7 @@ public class Player {
         dead=false;
     }
     
-    private int getCombatLevel(){
+    protected int getCombatLevel(){
         int i;
         int level_combat=level;
         for(i=0; i<visibleTreasures.size(); i++)
@@ -162,11 +163,15 @@ public class Player {
         return visibleTreasures;
     }
     
+    public BadConsequence getPendingBadConsequence(){
+        return pendingBadConsequence;
+    }
+    
     public CombatResult combat(Monster m){
         CombatResult cr;
         Dice dice;
         int myLevel = getCombatLevel();
-        int monsterLevel = m.getCombatLevel();
+        int monsterLevel = getOponentLevel(m);
         if(!canISteal()){
             dice = Dice.getInstance();
             int number = dice.nextNumber();
@@ -176,17 +181,20 @@ public class Player {
                 monsterLevel += enemyLevel;
             }
         }
-            if(myLevel > monsterLevel){
-                applyPrize(m);
-                if(level >= MAXLEVEL) 
-                    cr=CombatResult.WINGAME;
-                else
-                    cr= CombatResult.WIN;
-            }
-            else{
+        if(myLevel > monsterLevel){
+            applyPrize(m);
+            if(level >= MAXLEVEL) 
+                cr=CombatResult.WINGAME;
+            else
+                cr= CombatResult.WIN;
+        }
+        else{
+            if(shouldConvert())
+                cr= CombatResult.LOSEANDCONVERT;
+            else
                 applyBadConsequence(m);
                 cr= CombatResult.LOSE;
-            }
+        }
         return cr;
     }
     

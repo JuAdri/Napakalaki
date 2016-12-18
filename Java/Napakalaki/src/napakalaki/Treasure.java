@@ -34,6 +34,6 @@ public class Treasure {
     
     @Override
     public String toString(){
-        return name + "\n\tBonus = " + bonus + "\n\tTipo de tesoro = " + TreasureKind;
+        return name + "\n\tBonus = " + bonus + "\n\tTipo de tesoro = " + getType();
     }
 }

@@ -56,7 +56,7 @@ public class GameTester {
               System.out.println ("\n\n Ganaste el combate");
               break;
             case LOSE :
-              System.out.println ("\n\n Has perdido el combate, te toca cumplir el mal rollo");
+              System.out.println ("\n\n Has perdido el combate, te toca cumplir el mal rollo: " + currentPlayer.getPendingBadConsequence().toString());
               break;
           }
           if (combatResult != CombatResult.WINGAME) {
@@ -258,7 +258,7 @@ public class GameTester {
           System.out.println ("\n\n Has robado este tesoro: \n\n" + aTreasure.toString());
         break;
       case NextTurn :
-        if (! game.nextTurn ()) {
+        if (!game.nextTurn ()) {
           System.out.println ("\n\n ERROR \n");
           System.out.println ("No cumples las condiciones para pasar de turno.");
           System.out.println ("O bien tienes más de 4 tesoros ocultos");

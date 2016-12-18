@@ -54,7 +54,7 @@ public class Monster {
     }
     
     public int getCombatLevelAgainstCultistPlayer(){
-        return levelChangeAgainstCultistPlayer;
+        return levelChangeAgainstCultistPlayer+combatLevel;
     }
     
     @Override

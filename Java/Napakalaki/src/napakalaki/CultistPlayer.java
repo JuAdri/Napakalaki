@@ -20,29 +20,33 @@ public class CultistPlayer extends Player{
         totalCultistPlayers++;
     }
     
-    protected int getCombatLevel(Monster m){
-        return m.getCombatLevelAgainstCultistPlayer();
+    @Override
+    protected int getCombatLevel(){
+        int combat_level= super.getCombatLevel();
+        return combat_level+(70*combat_level/100)+myCultistCard.getGainedLevels()*totalCultistPlayers;
     }
     
     @Override
     protected int getOponentLevel(Monster m){
-        
+        return m.getCombatLevelAgainstCultistPlayer();
     }
     
     @Override
     protected boolean shouldConvert(){
-        
+        return false;
     }
     
     private Treasure giveMeATreasure(){
-        
+        int aleat;
+        aleat = (int)(Math.random()*visibleTreasures.size());
+        return visibleTreasures.get(aleat);
     }
     
-    private void canYouyGiveMeATreasure(){
-        
+    private boolean canYouyGiveMeATreasure(){
+        return enemy.visibleTreasures.size()>0;
     }
     
     public int getTotalCultistPlayers(){
-        
+        return totalCultistPlayers;
     }
 }
