@@ -181,17 +181,11 @@ public class Player {
         }
         if(myLevel > monsterLevel){
             applyPrize(m);
-            if(level >= MAXLEVEL) 
-                cr=CombatResult.WINGAME;
-            else
-                cr= CombatResult.WIN;
+            cr=(level >= MAXLEVEL)?CombatResult.WINGAME:CombatResult.WIN;
         }
         else{
-            if(shouldConvert())
-                cr= CombatResult.LOSEANDCONVERT;
-            else
-                applyBadConsequence(m);
-                cr= CombatResult.LOSE;
+            cr=shouldConvert()?CombatResult.LOSEANDCONVERT:CombatResult.LOSE;
+            applyBadConsequence(m); 
         }
         return cr;
     }
@@ -234,7 +228,7 @@ public class Player {
             t = dealer.nextTreasure();
             hiddenTreasures.add(t);
         }
-        else if(number == 6){
+        if(number == 6){
             t = dealer.nextTreasure();
             hiddenTreasures.add(t);
         }

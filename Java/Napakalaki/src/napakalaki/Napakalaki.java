@@ -55,7 +55,7 @@ public class Napakalaki {
     }
     
     private boolean nextTurnAllowed(){
-        if(currentPlayer==null)
+        if(currentPlayer==null || currentPlayer.isDead())
             return true;
         return currentPlayer.validState();
     }
@@ -139,8 +139,7 @@ public class Napakalaki {
         if(stateOK){
             currentMonster= dealer.nextMonster();
             currentPlayer= nextPlayer();
-            Boolean dead= currentPlayer.isDead();
-            if(dead){
+            if(currentPlayer.isDead()){
                 currentPlayer.initTreasures();
             }
         }
@@ -149,8 +148,6 @@ public class Napakalaki {
     }
     
     public boolean endOfGame(CombatResult result){
-        if(result == result.WINGAME)
-            return true;
-        return false;
+        return result == CombatResult.WINGAME;
     }
 }

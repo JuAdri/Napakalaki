@@ -69,11 +69,11 @@ public class BadConsequence {
                 for(TreasureKind spvi :specificVisibleTreasures){
                     insertado= false;
                     for(Treasure spvp :v){
-                        //if(!insertado)
+                        if(!insertado)
                             if(spvi==spvp.getType()){
                                 if(!sp_v.contains(spvi)){
                                     sp_v.add(spvi);
-                                    //insertado=true;
+                                    insertado=true;
                                 }
                             }
                     }
@@ -82,11 +82,11 @@ public class BadConsequence {
                 for(TreasureKind sphi :specificHiddenTreasures){
                     insertado= false;
                     for(Treasure sphp :h){
-                        //if(!insertado)
+                        if(!insertado)
                             if(sphi==sphp.getType()){
                                 if(!sp_h.contains(sphi)){
                                     sp_h.add(sphi);
-                                    //insertado= true;
+                                    insertado= true;
                                 }
                             }
                     }
@@ -148,7 +148,7 @@ public class BadConsequence {
     }
     
     public String toString(){
-        return "\nMal rollo= " +text + 
+        return "\n\nMal rollo= " +text + 
                 "\nPErderas niveles= "+Integer.toString(levels)+
                 "\nPErderas tesoros visibles= " + Integer.toString(nVisibleTreasures)+
                 "\nPErderas Tesoros ocultos: " +  Integer.toString(nHiddenTreasures)+
