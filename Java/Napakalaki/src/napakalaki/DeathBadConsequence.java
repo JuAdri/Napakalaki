@@ -4,16 +4,28 @@
  * and open the template in the editor.
  */
 package napakalaki;
-import java.util.ArrayList;
 /**
  *
  * @author juane
  */
 public class DeathBadConsequence extends NumericBadConsequence{
-    private boolean death;
+    private final boolean death;
     
     public DeathBadConsequence(String p_text, boolean p_death){
         super(p_text, Player.MAXLEVEL, MAXTREASURES, MAXTREASURES);
         death= p_death;
+    }
+    
+    public boolean isDead(){
+        return death;
+    }
+    
+    @Override
+    public String toString(){
+        return "\n\nDescripcion= " +text + 
+                "\nPerderas niveles: "+Integer.toString(levels)+
+                "\nPErderas tesoros visibles: " + Integer.toString(nVisibleTreasures)+
+                "\nPErderas Tesoros ocultos: " +  Integer.toString(nHiddenTreasures)+
+                "\nMoriras: " + Boolean.toString(death);
     }
 }

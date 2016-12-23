@@ -24,91 +24,15 @@ public abstract class BadConsequence {
     
     public abstract Boolean isEmpty();
     
-    public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, ArrayList<Treasure> h){
-        BadConsequence bad_ret;
-        
-        if(!isEmpty()){
-            if(nHiddenTreasures==0 && nVisibleTreasures==0){
-                Boolean insertado=false;
-                
-                ArrayList<TreasureKind> sp_v=new ArrayList(), sp_h=new ArrayList();
-                
-                for(TreasureKind spvi :specificVisibleTreasures){
-                    insertado= false;
-                    for(Treasure spvp :v){
-                        if(!insertado)
-                            if(spvi==spvp.getType()){
-                                if(!sp_v.contains(spvi)){
-                                    sp_v.add(spvi);
-                                    insertado=true;
-                                }
-                            }
-                    }
-                }
-                
-                for(TreasureKind sphi :specificHiddenTreasures){
-                    insertado= false;
-                    for(Treasure sphp :h){
-                        if(!insertado)
-                            if(sphi==sphp.getType()){
-                                if(!sp_h.contains(sphi)){
-                                    sp_h.add(sphi);
-                                    insertado= true;
-                                }
-                            }
-                    }
-                }
-                bad_ret= new BadConsequence(text, levels, sp_v, sp_h);
-            }
-            else{
-                int pn_vis=v.size();
-                int pn_hid= h.size();
-                
-                pn_vis=pn_vis>nVisibleTreasures?nVisibleTreasures:pn_vis;
-                pn_hid=pn_hid>nHiddenTreasures?nHiddenTreasures:pn_hid;
-                bad_ret= new BadConsequence(text, levels, pn_vis, pn_hid);
-            }
-            return bad_ret;
-        }
-        return this;
-    }
+    public abstract BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, ArrayList<Treasure> h);
 
-     public int getLevels() {
+    public int getLevels() {
         return levels;
     }
     
+    public abstract void substractVisibleTreasure(Treasure t);
     
-
-
+    public abstract void substractHiddenTreasure(Treasure t);
     
-    
-    public void substractVisibleTreasure(Treasure t){
-        if(!specificVisibleTreasures.isEmpty()){
-            specificVisibleTreasures.remove(t.getType());
-            if(nVisibleTreasures!=0)
-                nVisibleTreasures--;
-        }
-        else if(nVisibleTreasures!=0)
-            nVisibleTreasures--;
-    }
-    
-    public void substractHiddenTreasure(Treasure t){
-        if(!specificHiddenTreasures.isEmpty()){
-            specificHiddenTreasures.remove(t.getType());
-            if(nHiddenTreasures!=0)
-                nHiddenTreasures--;
-        }
-        else if(nHiddenTreasures!=0)
-            nHiddenTreasures--;
-    }
-    
-    public String toString(){
-        return "\n\nMal rollo= " +text + 
-                "\nPErderas niveles= "+Integer.toString(levels)+
-                "\nPErderas tesoros visibles= " + Integer.toString(nVisibleTreasures)+
-                "\nPErderas Tesoros ocultos: " +  Integer.toString(nHiddenTreasures)+
-                "\nMoriras: " + Boolean.toString(death) +
-                "\nPerderas estos tesoros especificos visibles: " + specificVisibleTreasures.toString() +
-                "\nPerderas estos tesoros especificos ocultos: " + specificHiddenTreasures.toString();
-    }
+    public abstract String toString();
 }
