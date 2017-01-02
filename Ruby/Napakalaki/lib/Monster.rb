@@ -5,11 +5,20 @@
 #encoding: utf-8
 
 class Monster
-  def initialize(name, combatLevel, prize, bc)
+  def initialize(name, combatLevel, prize, bc, lc)
     @name = name
     @combatLevel = combatLevel
     @prize = prize
     @bc = bc
+    @levelChangeAgainstCultistPlayer = lc
+  end
+  
+  def self.newMosterNoCultist(aname, acombatLevel, aprize, abc)
+    new(aname, acombatLevel, aprize, abc, 0)
+  end
+  
+  def self.newMonsterCultist(aname, acombatLevel, aprize, abc, alc)
+    new(aname, acombatLevel, aprize, abc, alc)
   end
   
   attr_reader :name, :combatLevel, :bc

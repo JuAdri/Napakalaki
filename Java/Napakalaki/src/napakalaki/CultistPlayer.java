@@ -16,7 +16,7 @@ public class CultistPlayer extends Player{
     
     public CultistPlayer(Player p, Cultist c){
         super(p);
-        myCultistCard= c;
+        myCultistCard = c;
         totalCultistPlayers++;
     }
     
@@ -42,7 +42,7 @@ public class CultistPlayer extends Player{
         return visibleTreasures.get(aleat);
     }
     
-    private boolean canYouyGiveMeATreasure(){
+    private boolean canYouGiveMeATreasure(){
         return enemy.visibleTreasures.size()>0;
     }
     

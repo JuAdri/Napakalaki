@@ -13,15 +13,23 @@ require_relative 'BadConsequence.rb'
 class Player
   @@MAXLEVEL=10
   
-  def initialize(name_p)
-    @name=name_p
-    @level= 1
-    @dead=true
-    @canISteal= true
-    @enemy= nil
-    @hiddenTreasures= Array.new
-    @visibleTreasures= Array.new
-    @pendingBadConsequence= nil
+  def initialize(name_p, lvl, dd, steal, ene, hidT, visT, pbad)    
+    @name = name_p
+    @level = lvl
+    @dead = dd
+    @canISteal = steal
+    @enemy = ene
+    @hiddenTreasures = hidT
+    @visibleTreasures = visT
+    @pendingBadConsequence = pbad
+  end
+  
+  def self.create(name_a)
+    new(name_a, 1, true, true, nil, Array.new, Array.new, nil)
+  end
+  
+  def self.copyPlayer(player)
+    new(player.name, player.level, player.dead, player.canISteal, player.enemy, player.hiddenTreasures, player.visibleTreasures, player.pendingBadConsequence)
   end
   
   def bringToLife
@@ -282,8 +290,7 @@ class Player
     \tNivel de combate = " + getCombatLevel.to_s
   end
   
-  attr_reader :canISteal, :level, :name, :dead
-  attr_writer :enemy, :pendingBadConsequence
+  attr_accesor :canISteal, :level, :name, :dead, :enemy, :pendingBadConsequence, :hiddenTreasures, :VisibleTreasures
   private :bringToLife, :getCombatLevel, :incrementLevels, :decrementLevels,
     :setPendingBadConsequence, :applyPrize, :applyBadConsequence, :canMakeTreasureVisible,
     :howManyVisibleTreasures, :dielfNoTreasures, :giveMeATreasure, :canYouGiveMeATreasure,

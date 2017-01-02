@@ -21,7 +21,7 @@ public class Monster {
        this.combatLevel= level;
        this.premio= prize;
        this.bc= bc;
-       levelChangeAgainstCultistPlayer=0;
+       levelChangeAgainstCultistPlayer = 0;
     }
     
     public Monster(String name, int level, BadConsequence bc, Prize prize, int lc){
@@ -29,7 +29,7 @@ public class Monster {
        this.combatLevel= level;
        this.premio= prize;
        this.bc= bc;   
-       levelChangeAgainstCultistPlayer= lc;
+       levelChangeAgainstCultistPlayer = lc;
     }
 
     public String getName() {

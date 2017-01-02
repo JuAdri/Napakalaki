@@ -9,6 +9,8 @@ require_relative 'Treasure.rb'
 class BadConsequence
   private_class_method :new
   
+  @@MAXTREASURES = 10
+  
   def initialize(aText, someLevels, someVisibleTreasures, someHiddenTreasures,someSpecificVisibleTreasures, someSpecificHiddenTreasures, death)
     @text = aText
     @levels = someLevels
@@ -38,6 +40,7 @@ class BadConsequence
            @specificVisibleTreasures.empty?
   end
   
+  attr_reader :MAXTREASURES  
   attr_accessor :levels, :nVisibleTreasures, :nHiddenTreasures, :specificHiddenTreasures, :specificVisibleTreasures
 
   def to_s

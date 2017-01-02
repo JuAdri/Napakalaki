@@ -49,7 +49,7 @@ class Napakalaki
   def initPlayers(names)
     if names.length > 0
       for i in 0..names.length-1
-        aux = Player.new(names[i])
+        aux = Player.create(names[i])
         @players<<(aux)
       end
     end
