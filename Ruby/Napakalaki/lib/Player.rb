@@ -46,6 +46,14 @@ class Player
     return level_combat
   end
   
+  def getOponentLevel(monster)
+    monster.combatLevel
+  end
+  
+  def shouldConvert
+    return dice.nextNumber == 6
+  end
+  
   def incrementLevels(i)
     @level += i.to_i
     if @level >= @@MAXLEVEL

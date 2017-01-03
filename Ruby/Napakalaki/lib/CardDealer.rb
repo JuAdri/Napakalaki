@@ -151,7 +151,7 @@ class CardDealer
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.', 3, [TreasureKind::ONEHAND], [TreasureKind::BOTHHANDS])
     @unusedMonsters<< Monster.newMonsterNoCultist('Bicefalo', 21, prize, bad_consequence)
     
-    #SECTARIOS
+    #SECTARIOS (modificar, despues de hacer herencia)
     #sec1
     prize = Prize.new(3, 1)
     bad_consequence = SpecificBadConsequence("Pierdes 1 mano visible.", 0, [TreasureKind::ONEHAND], tr_hid_sec1)
@@ -172,9 +172,16 @@ class CardDealer
     bad_consequence = NumericBadConsequence.new("Tu gobierno te recorta 2 niveles", 2, 0, 0)
     @unusedMonster << Monster.newMonsterCultist("Serpiente político", 8, prize, bad_consequence, -2)
         
-    #FALTAN MONSTRUOS JUANE
+    #sec5
+    prize = new Prize(1, 1)
+    bad_consequence = NumericBadConsequence.new("Pierdes tu casco y tu armadura visible. Pierdes tus manos ocultas.", 2, 0, 0)
+    @unusedMonster << Monster.newMonsterCultist("Felpuggoth", 2, prize, bad_consequence, -2)
     
     shuffleMonsters
+  end
+  
+  def initCultistCardDeck
+    #Crear Cultists
   end
   
   def shuffleTreasures
@@ -183,6 +190,10 @@ class CardDealer
   
   def shuffleMonsters
     @unusedMonsters.shuffle
+  end
+  
+  def shuffleCultists
+    @unusedCultists.shuffle
   end
   
   def nextTreasure
@@ -198,6 +209,23 @@ class CardDealer
     shuffleTreasures
     devolver = @unusedTreasures[0]
     @unusedTreasures.delete(devolver)
+
+    return devolver
+  end
+  
+  def nextCultist
+    if !@unusedCultists.empty?
+      devolver = @unusedCultists[0]
+      @unusedCultists.delete(devolver)
+
+      return devolver
+    end
+
+    @unusedCultists = @usedCultists
+    @usedCultist.clear
+    shuffleCultists
+    devolver = @unusedCultists[0]
+    @unusedCultists.delete(devolver)
 
     return devolver
   end

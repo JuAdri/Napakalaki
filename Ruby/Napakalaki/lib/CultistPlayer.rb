@@ -11,4 +11,17 @@ class CultistPlayer < Player
     @myCultistCard = cultist
     @@totalCultistPlayers + 1;
   end
+  
+  def getOponentLevel(monster)
+    monster.getCombatLevelAgainstCultistPlayer
+  end
+  
+  def getCombatLevel
+    combat_level= super.getCombatLevel
+    return combat_level + (70*combat_level/100) + myCultistCard.getGainedLevels * totalCultistPlayers
+  end
+  
+  def shouldConvert
+    return false
+  end
 end
