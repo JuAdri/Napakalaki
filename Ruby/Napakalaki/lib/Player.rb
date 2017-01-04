@@ -170,13 +170,13 @@ class Player
   
   def combat(m)
     myLevel = getCombatLevel
-    monsterLevel = m.combatLevel
+    monsterLevel = getOponentLevel(m)
     if !canISteal
       dice = Dice.instance
       number = dice.nextNumber
 
       if number < 3 
-        enemyLevel = @enemy.combatLevel
+        enemyLevel = @enemy.getCombatLevel
         monsterLevel += enemyLevel;
       end
     end
@@ -190,6 +190,9 @@ class Player
     else
       applyBadConsequence(m)
       cr = CombatResult::LOSE
+      if shouldConvert
+        cr = CombatResult::LOSEANDCONVERT
+      end
     end
     
     return cr;

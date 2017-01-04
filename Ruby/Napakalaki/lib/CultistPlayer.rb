@@ -24,4 +24,17 @@ class CultistPlayer < Player
   def shouldConvert
     return false
   end
+  
+  def giveMeATreasure
+    devolver = getVisibleTreasures
+    return devolver[rand(devolver.length)]
+  end
+  
+  def canYouGiveMeATreasure
+    return enemy.visibleTreasures.length > 0
+  end
+  
+  def getTotalCultistPlayers
+    return @@totalCultistPlayers
+  end
 end

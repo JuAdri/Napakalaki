@@ -21,7 +21,7 @@ class Monster
     new(aname, acombatLevel, aprize, abc, alc)
   end
   
-  attr_reader :name, :combatLevel, :bc
+  attr_reader :name, :combatLevel, :bc, :levelChangeAgainstCultistPlayer
   
   def to_s
     "\nName = #{@name} \nCombatLevel = #{@combatLevel} \nPrize: \n  #{@prize.to_s} \nBadConsequence: \n  #{@bc.to_s}"
@@ -33,6 +33,10 @@ class Monster
   
   def getTreasuresGained
     return @prize.treasures
+  end
+  
+  def getCombatLevelAgainstCultistPlayer
+    return @combatLevel + @levelChangeAgainstCultistPlayer
   end
   
 end

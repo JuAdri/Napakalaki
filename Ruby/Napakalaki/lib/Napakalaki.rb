@@ -99,6 +99,15 @@ class Napakalaki
   def developCombat
     m = @currentMonster
     combat = @currentPlayer.combat(m)
+    if(combat == CombatResult::LOSEANDCONVERT)
+      cultist = CultistPlayer.new(@currentPlayer, CardDealer.nextCultist)  
+      indice = @players.index(@currentPlayer)
+      @players.each do |ene|
+        self.enemy = cultist if (ene == @currentPlayer)
+      end
+      @players[indice] = cultist
+      @currentPlayer = cultist
+    end
     @dealer.giveMonsterBack(m)
     return combat
   end
@@ -161,6 +170,6 @@ class Napakalaki
     return false
   end
   
-  attr_reader :currentPlayer, :currentMonster
+  attr_reader :currentPlayer, :currentMonster, :enemy
   private :initPlayers, :nextPlayer, :nextTurnAllowed, :setEnemies
 end

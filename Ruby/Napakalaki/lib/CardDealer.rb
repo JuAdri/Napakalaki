@@ -17,6 +17,8 @@ class CardDealer
     @usedTreasures = Array.new
     @unusedMonsters = Array.new
     @usedMonsters = Array.new
+    @unusedCultists = Array.new
+    @usedCultists = Array.new
   end
       
   def initTreasureCardDeck
@@ -181,7 +183,23 @@ class CardDealer
   end
   
   def initCultistCardDeck
-    #Crear Cultists
+    #Cultist 1
+    @unusedCultists << Cultist.new(Sectario, 1)
+    
+    #Cultist 2
+    @unusedCultists << Cultist.new(Sectario, 2)
+    
+    #Cultist 3
+    @unusedCultists << Cultist.new(Sectario, 1)
+    
+    #Cultist 4
+    @unusedCultists << Cultist.new(Sectario, 2)
+    
+    #Cultist 5
+    @unusedCultists << Cultist.new(Sectario, 1)
+    
+    #Cultist 6
+    @unusedCultists << Cultist.new(Sectario, 1)
   end
   
   def shuffleTreasures
@@ -248,18 +266,19 @@ class CardDealer
   end
   
   def giveTreasureBack(tesoro)
-    @usedTreasures<< tesoro
+    @usedTreasures << tesoro
   end
   
   def giveMonsterBack(monstruo)
-    @usedMonsters<< monstruo
+    @usedMonsters << monstruo
   end
   
   def initCards
     initTreasureCardDeck
     initMonsterCardDeck
+    initCultistCardDeck
   end
   
-  private :initTreasureCardDeck, :initMonsterCardDeck, :shuffleTreasures, :shuffleMonsters
+  private :initTreasureCardDeck, :initMonsterCardDeck, :initCultistCardDeck, :shuffleTreasures, :shuffleMonsters, :shuffleCultists
 
 end
