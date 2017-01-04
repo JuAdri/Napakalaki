@@ -12,7 +12,9 @@ class Treasure
   end
   
   def to_s
-    "\nNobre_objeto = #{@name}"
+    "#{@name}
+    \tBonus = #{@bonus}
+    \tTipo de tesoro = #{@type}"
   end
   
   attr_reader :name, :bonus, :type

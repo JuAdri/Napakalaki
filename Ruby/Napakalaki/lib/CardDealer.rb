@@ -7,7 +7,7 @@ require_relative 'Prize.rb'
 require_relative 'Monster.rb'
 require_relative 'Treasure.rb'
 require_relative 'TreasureKind.rb'
-
+require_relative 'Cultist.rb'
 
 class CardDealer
   include Singleton
@@ -153,6 +153,7 @@ class CardDealer
     bad_consequence = BadConsequence.newLevelSpecificTreasures('Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.', 3, [TreasureKind::ONEHAND], [TreasureKind::BOTHHANDS])
     @unusedMonsters<< Monster.newMonsterNoCultist('Bicefalo', 21, prize, bad_consequence)
     
+=begin
     #SECTARIOS (modificar, despues de hacer herencia)
     #sec1
     prize = Prize.new(3, 1)
@@ -178,28 +179,29 @@ class CardDealer
     prize = new Prize(1, 1)
     bad_consequence = NumericBadConsequence.new("Pierdes tu casco y tu armadura visible. Pierdes tus manos ocultas.", 2, 0, 0)
     @unusedMonster << Monster.newMonsterCultist("Felpuggoth", 2, prize, bad_consequence, -2)
+=end
     
     shuffleMonsters
   end
   
   def initCultistCardDeck
     #Cultist 1
-    @unusedCultists << Cultist.new(Sectario, 1)
+    @unusedCultists << Cultist.new("Sectario", 1)
     
     #Cultist 2
-    @unusedCultists << Cultist.new(Sectario, 2)
+    @unusedCultists << Cultist.new("Sectario", 2)
     
     #Cultist 3
-    @unusedCultists << Cultist.new(Sectario, 1)
+    @unusedCultists << Cultist.new("Sectario", 1)
     
     #Cultist 4
-    @unusedCultists << Cultist.new(Sectario, 2)
+    @unusedCultists << Cultist.new("Sectario", 2)
     
     #Cultist 5
-    @unusedCultists << Cultist.new(Sectario, 1)
+    @unusedCultists << Cultist.new("Sectario", 1)
     
     #Cultist 6
-    @unusedCultists << Cultist.new(Sectario, 1)
+    @unusedCultists << Cultist.new("Sectario", 1)
   end
   
   def shuffleTreasures

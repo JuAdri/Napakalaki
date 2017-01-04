@@ -5,6 +5,7 @@
 require 'singleton'
 require_relative 'Monster.rb'
 require_relative 'Player.rb'
+require_relative 'CultistPlayer.rb'
 require_relative 'CardDealer.rb'
 
 class Napakalaki
@@ -13,7 +14,7 @@ class Napakalaki
   def initialize
     @players = Array.new
     @currentPlayer = nil
-    @currentMonster= Monster.new("", 0, nil, nil)
+    @currentMonster = nil
     @dealer= CardDealer.instance
   end
   
@@ -100,10 +101,10 @@ class Napakalaki
     m = @currentMonster
     combat = @currentPlayer.combat(m)
     if(combat == CombatResult::LOSEANDCONVERT)
-      cultist = CultistPlayer.new(@currentPlayer, CardDealer.nextCultist)  
+      cultist = CultistPlayer.new(@currentPlayer, @dealer.nextCultist)  
       indice = @players.index(@currentPlayer)
       @players.each do |ene|
-        self.enemy = cultist if (ene == @currentPlayer)
+        ene.enemy = cultist if (ene == @currentPlayer)
       end
       @players[indice] = cultist
       @currentPlayer = cultist

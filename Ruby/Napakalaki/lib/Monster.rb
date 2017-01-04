@@ -13,7 +13,7 @@ class Monster
     @levelChangeAgainstCultistPlayer = lc
   end
   
-  def self.newMosterNoCultist(aname, acombatLevel, aprize, abc)
+  def self.newMonsterNoCultist(aname, acombatLevel, aprize, abc)
     new(aname, acombatLevel, aprize, abc, 0)
   end
   

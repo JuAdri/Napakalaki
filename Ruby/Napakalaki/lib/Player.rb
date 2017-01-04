@@ -51,7 +51,8 @@ class Player
   end
   
   def shouldConvert
-    return dice.nextNumber == 6
+    dice = Dice.instance
+    return dice.nextNumber <= 6
   end
   
   def incrementLevels(i)
@@ -301,7 +302,7 @@ class Player
     \tNivel de combate = " + getCombatLevel.to_s
   end
   
-  attr_accesor :canISteal, :level, :name, :dead, :enemy, :pendingBadConsequence, :hiddenTreasures, :VisibleTreasures
+  attr_accessor :canISteal, :level, :name, :dead, :enemy, :pendingBadConsequence, :hiddenTreasures, :visibleTreasures
   private :bringToLife, :getCombatLevel, :incrementLevels, :decrementLevels,
     :setPendingBadConsequence, :applyPrize, :applyBadConsequence, :canMakeTreasureVisible,
     :howManyVisibleTreasures, :dielfNoTreasures, :giveMeATreasure, :canYouGiveMeATreasure,

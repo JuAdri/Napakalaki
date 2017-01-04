@@ -4,8 +4,12 @@
 
 #encoding: utf-8
 
+require_relative 'Treasure.rb'
+
 class BadConsequence
   private_class_method :new
+  
+  @@MAXTREASURES = 10
   
   def initialize(aText, someLevels, someVisibleTreasures, someHiddenTreasures,someSpecificVisibleTreasures, someSpecificHiddenTreasures, death)
     @text = aText
@@ -22,7 +26,7 @@ class BadConsequence
   end
   
   def self.newLevelSpecificTreasures(aText, someLevels, someSpecificVisibleTreasures, someSpecificHiddenTreasures)
-    new(aText, someLevels, someSpecificVisibleTreasures.length, someSpecificHiddenTreasures.size, someSpecificVisibleTreasures, someSpecificHiddenTreasures, false)
+    new(aText, someLevels, 0, 0, someSpecificVisibleTreasures, someSpecificHiddenTreasures, false)
   end
 
   def self.newDeath(aText)
@@ -32,26 +36,79 @@ class BadConsequence
   def isEmpty
     return @nVisibleTreasures==0 && 
            @nHiddenTreasures==0 && 
-           @specificHiddenTreasures.isEmpty && 
-           @specificVisibleTreasures.isEmpty
+           @specificHiddenTreasures.empty? && 
+           @specificVisibleTreasures.empty?
   end
   
-  attr_reader :levels, :nVisibleTreasures, :nHiddenTreasures, :specificHiddenTreasures, :specificVisibleTreasures
+  attr_reader :MAXTREASURES  
+  attr_accessor :levels, :nVisibleTreasures, :nHiddenTreasures, :specificHiddenTreasures, :specificVisibleTreasures
 
   def to_s
-    "Text = #{@text} \n  Levels = #{@levels} \n  VisibleObjects = #{@nVisibleTreasures} \n  HiddenObjects = #{@} \n  Death = #{@death} \n  SpecificHiddenObjects = #{@specificHiddenTreasures} \n  SpecificVisibleObjects = #{@specificVisibleTreasures}"
+    "Text = #{@text} \n  Levels = #{@levels} \n  VisibleObjects = #{@nVisibleTreasures} \n  HiddenObjects = #{@nHiddenTreasures} \n  Death = #{@death} \n  SpecificHiddenObjects = #{@specificHiddenTreasures} \n  SpecificVisibleObjects = #{@specificVisibleTreasures}"
   end
   
   def substractVisibleTreasure(t)
-    specificVisibleTreasures.remove(t.getType)
+    @specificVisibleTreasures.delete(t.getType)
   end
   
   def substractHiddenTreasure(t)
-    specificHiddenTreasures.remove(t.getType)
+    @specificHiddenTreasures.delete(t.getType)
   end
   
-  def adjustToFitTreasureLists(array1_tesoros, array2_tesoros)
-    
+  def adjustToFitTreasureLists(v, h)
+    pn_vis = v.length
+    pn_hid = h.length
+       
+    bad_ret = BadConsequence.newLevelSpecificTreasures(@text, @levels, @specificVisibleTreasures, @specificHiddenTreasures )
+
+    if !isEmpty
+      if @nHiddenTreasures == 0 && @nVisibleTreasures == 0
+        insertado = false;
+
+        sp_v = Array.new
+        sp_h = Array.new
+
+        @specificVisibleTreasures.each do |spvi|
+          insertado = false;
+          v.each do spvp
+            if !insertado
+              if spvi == spvp.type
+                if !sp_v.contains(spvi)
+                  sp_v.push(spvi)
+                  insertado = true
+                end
+              end
+            end
+          end
+        end
+
+        @specificHiddenTreasures.each do |sphi|
+          insertado = false;
+          h.each do |sphp|
+            if !insertado
+              if sphi == sphp.type
+                if !sp_h.contains(sphi)
+                  sp_h.push(sphi)
+                  insertado = true
+                end
+              end
+            end
+          end
+        end
+        bad_ret.specificVisibleTreasures = sp_v
+        bad_ret.specificHiddenTreasures = sp_h
+      else
+        if(pn_vis < @nVisibleTreasures.to_i)
+            bad_ret.nVisibleTreasures = pn_vis
+        end
+
+        if(pn_hid < @nHiddenTreasures.to_i)
+            bad_ret.nHiddenTreasures = pn_hid
+        end
+      end
+      return bad_ret
+    end
+    return self
   end
   
 end

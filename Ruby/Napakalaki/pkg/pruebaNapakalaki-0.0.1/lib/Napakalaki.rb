@@ -5,6 +5,7 @@
 require 'singleton'
 require_relative 'Monster.rb'
 require_relative 'Player.rb'
+require_relative 'CultistPlayer.rb'
 require_relative 'CardDealer.rb'
 
 class Napakalaki
@@ -12,7 +13,8 @@ class Napakalaki
   
   def initialize
     @players = Array.new
-    @currentMonster= Monster.new("", 0, nil, nil)
+    @currentPlayer = nil
+    @currentMonster = nil
     @dealer= CardDealer.instance
   end
   
@@ -48,7 +50,7 @@ class Napakalaki
   def initPlayers(names)
     if names.length > 0
       for i in 0..names.length-1
-        aux = Player.new(names[i])
+        aux = Player.create(names[i])
         @players<<(aux)
       end
     end
@@ -62,17 +64,15 @@ class Napakalaki
       n_pl = @players[index_next]
     else
       index_next = @players.index(@currentPlayer)
-      if index_next == @players.size
+      if index_next == @players.size - 1
           index_next = 0
       else
           index_next+=1
       end
+      n_pl = @players[index_next]
     end
-    
-    n_pl = @players[index_next]
     @currentPlayer = n_pl
     return n_pl
-    
   end
   
   def nextTurnAllowed
@@ -100,6 +100,15 @@ class Napakalaki
   def developCombat
     m = @currentMonster
     combat = @currentPlayer.combat(m)
+    if(combat == CombatResult::LOSEANDCONVERT)
+      cultist = CultistPlayer.new(@currentPlayer, @dealer.nextCultist)  
+      indice = @players.index(@currentPlayer)
+      @players.each do |ene|
+        ene.enemy = cultist if (ene == @currentPlayer)
+      end
+      @players[indice] = cultist
+      @currentPlayer = cultist
+    end
     @dealer.giveMonsterBack(m)
     return combat
   end
@@ -148,7 +157,7 @@ class Napakalaki
       
       dead = @currentPlayer.dead
       if dead
-          @currentPlayer.initTreasures
+        @currentPlayer.initTreasures
       end
     end
 
@@ -162,6 +171,6 @@ class Napakalaki
     return false
   end
   
-  attr_reader :currentPlayer, :currentMonster
+  attr_reader :currentPlayer, :currentMonster, :enemy
   private :initPlayers, :nextPlayer, :nextTurnAllowed, :setEnemies
 end

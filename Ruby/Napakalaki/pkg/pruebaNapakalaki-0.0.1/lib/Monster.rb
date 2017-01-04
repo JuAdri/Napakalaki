@@ -5,14 +5,23 @@
 #encoding: utf-8
 
 class Monster
-  def initialize(name, combatLevel, prize, bc)
+  def initialize(name, combatLevel, prize, bc, lc)
     @name = name
     @combatLevel = combatLevel
     @prize = prize
     @bc = bc
+    @levelChangeAgainstCultistPlayer = lc
   end
   
-  attr_reader :name, :combatLevel, :bc
+  def self.newMonsterNoCultist(aname, acombatLevel, aprize, abc)
+    new(aname, acombatLevel, aprize, abc, 0)
+  end
+  
+  def self.newMonsterCultist(aname, acombatLevel, aprize, abc, alc)
+    new(aname, acombatLevel, aprize, abc, alc)
+  end
+  
+  attr_reader :name, :combatLevel, :bc, :levelChangeAgainstCultistPlayer
   
   def to_s
     "\nName = #{@name} \nCombatLevel = #{@combatLevel} \nPrize: \n  #{@prize.to_s} \nBadConsequence: \n  #{@bc.to_s}"
@@ -24,6 +33,10 @@ class Monster
   
   def getTreasuresGained
     return @prize.treasures
+  end
+  
+  def getCombatLevelAgainstCultistPlayer
+    return @combatLevel + @levelChangeAgainstCultistPlayer
   end
   
 end
