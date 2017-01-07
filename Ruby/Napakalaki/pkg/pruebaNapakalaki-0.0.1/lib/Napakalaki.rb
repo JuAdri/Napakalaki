@@ -101,13 +101,14 @@ class Napakalaki
     m = @currentMonster
     combat = @currentPlayer.combat(m)
     if(combat == CombatResult::LOSEANDCONVERT)
-      cultist = CultistPlayer.new(@currentPlayer, @dealer.nextCultist)  
+      cultist = @dealer.nextCultist
+      cultist_p = CultistPlayer.new(@currentPlayer, cultist)
       indice = @players.index(@currentPlayer)
       @players.each do |ene|
-        ene.enemy = cultist if (ene == @currentPlayer)
+        ene.enemy = cultist_p if (ene == @currentPlayer)
       end
-      @players[indice] = cultist
-      @currentPlayer = cultist
+      @players[indice] = cultist_p
+      @currentPlayer = cultist_p
     end
     @dealer.giveMonsterBack(m)
     return combat

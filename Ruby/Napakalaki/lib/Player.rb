@@ -8,7 +8,9 @@ require_relative 'CardDealer.rb'
 require_relative 'TreasureKind.rb'
 require_relative 'Monster.rb'
 require_relative 'CombatResult.rb'
-require_relative 'BadConsequence.rb'
+require_relative 'SpecificBadConsequence.rb'
+require_relative 'NumericBadConsequence.rb'
+require_relative 'DeathBadConsequence.rb'
 
 class Player
   @@MAXLEVEL=10
@@ -39,8 +41,10 @@ class Player
   def getCombatLevel
     level_combat= @level
     
-    for i in(0..@visibleTreasures.length-1)
-      level_combat+= @visibleTreasures[i].bonus
+    if @visibleTreasures != nil   
+      for i in(0..@visibleTreasures.length-1)
+        level_combat+= @visibleTreasures[i].bonus
+      end
     end
     
     return level_combat
@@ -52,7 +56,7 @@ class Player
   
   def shouldConvert
     dice = Dice.instance
-    return dice.nextNumber <= 6
+    return dice.nextNumber == 6
   end
   
   def incrementLevels(i)
@@ -94,7 +98,7 @@ class Player
         
     decrementLevels(nLevels)
 
-    pendingBad= badC.adjustToFitTreasureLists(@visibleTreasures, @hiddenTreasures)
+    pendingBad = badC.adjustToFitTreasuresLists(@visibleTreasures, @hiddenTreasures)
     setPendingBadConsequence(pendingBad)
   end
   
@@ -209,7 +213,7 @@ class Player
   
   def discardVisibleTreasure(t)
     @visibleTreasures.delete(t)
-    if @pendingBadConsequence != nil && !@pendingBadConsequence.isEmpty 
+    if @pendingBadConsequence != nil && !@pendingBadConsequence.empty? 
       @pendingBadConsequence.substractVisibleTreasure(t)
     end
     dielfNoTreasures()
@@ -217,14 +221,14 @@ class Player
   
   def discardHiddenTreasure(t)
     @hiddenTreasures.delete(t)
-    if @pendingBadConsequence != nil && !@pendingBadConsequence.isEmpty
+    if @pendingBadConsequence != nil && !@pendingBadConsequence.empty?
       @pendingBadConsequence.substractHiddenTreasure(t)
     end
     dielfNoTreasures()
   end
   
   def validState
-    return @hiddenTreasures.length < 5 && @pendingBadConsequence.isEmpty
+    return @hiddenTreasures.length < 5 && (@pendingBadConsequence == null || @pendingBadConsequence.empty?)
   end
   
   def initTreasures
@@ -233,7 +237,7 @@ class Player
     bringToLife
     t = dealer.nextTreasure
     @hiddenTreasures.push(t)
-    number = Dice.instance.nextNumber
+    number = dice.nextNumber
 
     if(number > 1)
         t = dealer.nextTreasure
@@ -300,6 +304,10 @@ class Player
     "#{@name}
     \tNivel = #{@level}
     \tNivel de combate = " + getCombatLevel.to_s
+  end
+  
+  def self.MAXLEVEL
+    return @@MAXLEVEL
   end
   
   attr_accessor :canISteal, :level, :name, :dead, :enemy, :pendingBadConsequence, :hiddenTreasures, :visibleTreasures
