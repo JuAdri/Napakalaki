@@ -26,10 +26,6 @@ class Player
     @pendingBadConsequence = pbad
   end
   
-  def self.create(name_a)
-    new(name_a, 1, true, true, nil, Array.new, Array.new, nil)
-  end
-  
   def self.copyPlayer(player)
     new(player.name, player.level, player.dead, player.canISteal, player.enemy, player.hiddenTreasures, player.visibleTreasures, player.pendingBadConsequence)
   end
@@ -98,7 +94,7 @@ class Player
         
     decrementLevels(nLevels)
 
-    pendingBad = badC.adjustToFitTreasuresLists(@visibleTreasures, @hiddenTreasures)
+    pendingBad = badC.adjustToFitTreasureLists(@visibleTreasures, @hiddenTreasures)
     setPendingBadConsequence(pendingBad)
   end
   
@@ -228,7 +224,7 @@ class Player
   end
   
   def validState
-    return @hiddenTreasures.length < 5 && (@pendingBadConsequence == null || @pendingBadConsequence.empty?)
+    return @hiddenTreasures.length < 5 && (@pendingBadConsequence == nil || @pendingBadConsequence.empty?)
   end
   
   def initTreasures

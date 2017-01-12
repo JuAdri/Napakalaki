@@ -15,7 +15,7 @@ require_relative 'DeathBadConsequence.rb'
 class Player
   @@MAXLEVEL=10
   
-  def initialize(name_p, lvl, dd, steal, ene, hidT, visT, pbad)    
+  def initialize(name_p, lvl = 1, dd = true, steal = true, ene = nil, hidT = Array.new, visT = Array.new, pbad = nil)    
     @name = name_p
     @level = lvl
     @dead = dd
@@ -25,13 +25,10 @@ class Player
     @visibleTreasures = visT
     @pendingBadConsequence = pbad
   end
-  
-  def self.create(name_a)
-    new(name_a, 1, true, true, nil, Array.new, Array.new, nil)
-  end
-  
-  def self.copyPlayer(player)
-    new(player.name, player.level, player.dead, player.canISteal, player.enemy, player.hiddenTreasures, player.visibleTreasures, player.pendingBadConsequence)
+    
+  def self.copyPlayer(p)
+    puts "\n\nAntes del new de payer: " + p.name + "\n\n"
+    new(p.name, p.level, p.dead, p.canISteal, p.enemy, p.hiddenTreasures, p.visibleTreasures, p.pendingBadConsequence)
   end
   
   def bringToLife
@@ -85,7 +82,7 @@ class Player
 
     if n_treasures>0
       dealer = CardDealer.instance
-      for i in 0..n_treasures
+      for i in 0..(n_treasures-1)
         tr_aux = dealer.nextTreasure
         @hiddenTreasures<<(tr_aux)
       end
@@ -98,7 +95,7 @@ class Player
         
     decrementLevels(nLevels)
 
-    pendingBad = badC.adjustToFitTreasuresLists(@visibleTreasures, @hiddenTreasures)
+    pendingBad = badC.adjustToFitTreasureLists(@visibleTreasures, @hiddenTreasures)
     setPendingBadConsequence(pendingBad)
   end
   
@@ -138,7 +135,9 @@ class Player
   end
   
   def dielfNoTreasures
-    @dead=true
+    if(@visibleTreasures.empty? && @hiddenTreasures.empty?) 
+      @dead=true
+    end
   end
   
   def giveMeATreasure
@@ -213,7 +212,7 @@ class Player
   
   def discardVisibleTreasure(t)
     @visibleTreasures.delete(t)
-    if @pendingBadConsequence != nil && !@pendingBadConsequence.empty? 
+    if @pendingBadConsequence != nil && !@pendingBadConsequence.isEmpty 
       @pendingBadConsequence.substractVisibleTreasure(t)
     end
     dielfNoTreasures()
@@ -221,14 +220,14 @@ class Player
   
   def discardHiddenTreasure(t)
     @hiddenTreasures.delete(t)
-    if @pendingBadConsequence != nil && !@pendingBadConsequence.empty?
+    if @pendingBadConsequence != nil && !@pendingBadConsequence.isEmpty
       @pendingBadConsequence.substractHiddenTreasure(t)
     end
     dielfNoTreasures()
   end
   
   def validState
-    return @hiddenTreasures.length < 5 && (@pendingBadConsequence == null || @pendingBadConsequence.empty?)
+    return @hiddenTreasures.length < 5 && (@pendingBadConsequence == nil || @pendingBadConsequence.isEmpty)
   end
   
   def initTreasures

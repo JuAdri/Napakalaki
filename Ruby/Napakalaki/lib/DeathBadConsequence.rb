@@ -5,9 +5,9 @@
 require_relative 'NumericBadConsequence.rb'
 require_relative 'Player.rb'
 
-class DeathBadConsequence < BadConsequence
+class DeathBadConsequence < NumericBadConsequence
   def initialize(p_text, p_death)
-    NumericBadConsequence.new(p_text, Player.MAXLEVEL, @@MAXTREASURES, @@MAXTREASURES)
+    super(p_text, Player.MAXLEVEL, @@MAXTREASURES, @@MAXTREASURES)
     @death = p_death
   end
   
@@ -16,7 +16,7 @@ class DeathBadConsequence < BadConsequence
   end
   
   def to_s
-    puts "\nDescripcion = #{@text} \nPerderas niveles: #{@levels} \nPerderas tesoros visibles: #{@nVisibleTreasures} \nPerderas Tesoros ocultos: #{@nHiddenTreasures} \nMoriras: #{@death}"
+    "\tDescripcion = #{@text} \n\tPerderas niveles: #{@levels} \n\tPerderas tesoros visibles: #{@nVisibleTreasures} \n\tPerderas Tesoros ocultos: #{@nHiddenTreasures} \n\tMoriras: #{@death}"
   end
 end
 

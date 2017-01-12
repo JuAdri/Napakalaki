@@ -20,7 +20,6 @@ class CardDealer
     @unusedMonsters = Array.new
     @usedMonsters = Array.new
     @unusedCultists = Array.new
-    @usedCultists = Array.new
   end
       
   def initTreasureCardDeck
@@ -60,7 +59,7 @@ class CardDealer
   end
   
   def initMonsterCardDeck
-=begin
+
     # Monstruo 1 -> Byakhees de bonanza
     prize = Prize.new(2, 1)
     bad_consequence = SpecificBadConsequence.new('Pierdes tu armadura visible y otra oculta', 0, [TreasureKind::ARMOR], [TreasureKind::ARMOR])
@@ -80,8 +79,8 @@ class CardDealer
     prize = Prize.new(4, 1)
     bad_consequence = SpecificBadConsequence.new('Te atrapan para llevarte de fiesta y te dejan caer en mitad del vuelo. Descarta una mano visible y una mano oculta.', 0, [TreasureKind::ONEHAND], [TreasureKind::ONEHAND])
     @unusedMonsters<< Monster.newMonsterNoCultist('Demonios de Magaluf', 2, prize, bad_consequence)
-=end
-   # Monstruo 5 -> EL GORRON DEL UMBRAL
+
+    # Monstruo 5 -> EL GORRON DEL UMBRAL
     prize = Prize.new(3, 1)
     bad_consequence = NumericBadConsequence.new('Pierdes todos tus tesoros visibles.', 0, 0, 0 )
     @unusedMonsters<< Monster.newMonsterNoCultist('Demonios de Magaluf', 2, prize, bad_consequence)
@@ -206,22 +205,23 @@ class CardDealer
   end
   
   def shuffleTreasures
-    @unusedTreasures.shuffle
+    @unusedTreasures.shuffle!
   end
   
   def shuffleMonsters
-    @unusedMonsters.shuffle
+    @unusedMonsters.shuffle!
   end
   
   def shuffleCultists
-    @unusedCultists.shuffle
+    @unusedCultists.shuffle!
   end
   
   def nextTreasure
     if !@unusedTreasures.empty?
       devolver = @unusedTreasures[0]
       @unusedTreasures.delete(devolver)
-
+      @usedTreasures << devolver
+      
       return devolver
     end
 
@@ -235,16 +235,6 @@ class CardDealer
   end
   
   def nextCultist
-    if !@unusedCultists.empty?
-      devolver = @unusedCultists[0]
-      @unusedCultists.delete(devolver)
-
-      return devolver
-    end
-
-    @unusedCultists = @usedCultists
-    @usedCultist.clear
-    shuffleCultists
     devolver = @unusedCultists[0]
     @unusedCultists.delete(devolver)
 
@@ -255,6 +245,7 @@ class CardDealer
     if !@unusedMonsters.empty?
       devolver = @unusedMonsters[0]
       @unusedMonsters.delete(devolver)
+      @usedMonsters<<devolver
 
       return devolver
     end

@@ -2,14 +2,17 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require_relative "Player.rb"
+
 class CultistPlayer < Player
   
   @@totalCultistPlayers = 0
   
   def initialize(player, cultist)
-    Player.copyPlayer(player)
+    super(player.name)
     @myCultistCard = cultist
-    @@totalCultistPlayers + 1;
+    Player.copyPlayer(player)    
+    @@totalCultistPlayers += 1
   end
   
   def getOponentLevel(monster)

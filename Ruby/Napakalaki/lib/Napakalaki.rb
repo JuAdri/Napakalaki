@@ -33,7 +33,6 @@ class Napakalaki
 
   def nextTurn
     stateOK= nextTurnAllowed
-    stateOK= @currentPlayer.validState
         
     if(stateOK)
       @currentMonster = @dealer.nextMonster
@@ -50,7 +49,7 @@ class Napakalaki
   def initPlayers(names)
     if names.length > 0
       for i in 0..names.length-1
-        aux = Player.create(names[i])
+        aux = Player.new(names[i])
         @players<<(aux)
       end
     end
@@ -76,7 +75,7 @@ class Napakalaki
   end
   
   def nextTurnAllowed
-    if @currentPlayer.nil?
+    if @currentPlayer.nil? || @currentPlayer.dead
       return true
     end
     return @currentPlayer.validState
@@ -105,7 +104,7 @@ class Napakalaki
       cultist_p = CultistPlayer.new(@currentPlayer, cultist)
       indice = @players.index(@currentPlayer)
       @players.each do |ene|
-        ene.enemy = cultist_p if (ene == @currentPlayer)
+        ene.enemy = cultist_p if (ene.enemy == @currentPlayer)
       end
       @players[indice] = cultist_p
       @currentPlayer = cultist_p
@@ -117,14 +116,14 @@ class Napakalaki
   def discardVisibleTreasures(tr_vis)
     tr_vis.each do |descartar|
       @currentPlayer.discardVisibleTreasure(descartar)
-      @dealer.giveTreasuresBack(descartar)
+      @dealer.giveTreasureBack(descartar)
     end
   end
   
   def discardHiddenTreasures(tr_hid)
     tr_hid.each do |descartar|
       @currentPlayer.discardHiddenTreasure(descartar)
-      @dealer.giveTreasuresBack(descartar)
+      @dealer.giveTreasureBack(descartar)
     end
   end
   

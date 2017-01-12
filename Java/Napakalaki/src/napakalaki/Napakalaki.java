@@ -88,7 +88,7 @@ public class Napakalaki {
                 if(player.getEnemy()==currentPlayer)
                     player.setEnemy(pl_cul);
             }
-            players.add(players.indexOf(currentPlayer), pl_cul);
+            players.set(players.indexOf(currentPlayer), pl_cul);
             currentPlayer= pl_cul;
         }
         dealer.giveMonsterBack(m);

@@ -8,29 +8,25 @@ class NumericBadConsequence < BadConsequence
   def initialize(p_text, p_levels, p_nVisible, p_nHidden)
     super(p_text, p_levels)
     if p_nHidden < @@MAXTREASURES
-      @nHiddenTreasures = p_nHidden
+      @nHiddenTreasures = p_nHidden.to_i
     end
     if p_nVisible < @@MAXTREASURES
-      @nVisibleTreasures = p_nVisible
+      @nVisibleTreasures = p_nVisible.to_i
     end
   end
   
   attr_reader :nHiddenTreasures, :nVisibleTreasures
   
-  def adjustToFitTreasuresLists(v, h)        
+  def adjustToFitTreasureLists(v, h)        
     if(!isEmpty())
         pn_vis = v.length
         pn_hid = h.length
 
-        if pn_vis < @nVisibleTreasures
-          pn_vis = @nVisibleTreasures
-        end
+        pn_vis = @nVisibleTreasures.to_i if pn_vis > @nVisibleTreasures.to_i
 
-        if pn_hid < @nHiddenTreasures
-          pn_hid = @nHiddenTreasures
-        end
+        pn_hid = @nHiddenTreasures.to_i if pn_hid > @nHiddenTreasures.to_i
 
-        bad_ret= NumericBadConsequence(@text, @levels, pn_vis, pn_hid)
+        bad_ret= NumericBadConsequence.new(@text, @levels, pn_vis, pn_hid)
 
         return bad_ret
     end
@@ -38,15 +34,11 @@ class NumericBadConsequence < BadConsequence
   end
   
   def substractVisibleTreasure(t)
-    if(@nVisibleTreasures > 0)
-        @nVisibleTreasures - 1
-    end
+    @nVisibleTreasures -= 1 if (@nVisibleTreasures > 0)
   end
   
   def substractHiddenTreasure(t)
-    if(@nHiddenTreasures>  0)
-        @nHiddenTreasures - 1
-    end
+    @nHiddenTreasures -= 1 if (@nHiddenTreasures>  0)
   end
   
   def isEmpty
@@ -54,6 +46,6 @@ class NumericBadConsequence < BadConsequence
   end
   
   def to_s
-    puts "\n\nDescripcion: #{@text} \nPerderas niveles: #{@levels} \nPerderas tesoros visibles= #{@nVisibleTreasures} \nPerderas Tesoros ocultos: #{@nHiddenTreasures}"
+    "\tDescripcion: #{@text} \n\tPerderas niveles: #{@levels} \n\tPerderas tesoros visibles= #{@nVisibleTreasures} \n\tPerderas Tesoros ocultos: #{@nHiddenTreasures}"
   end
 end

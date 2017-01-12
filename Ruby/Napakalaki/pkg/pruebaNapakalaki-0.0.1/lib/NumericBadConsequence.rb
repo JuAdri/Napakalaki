@@ -17,7 +17,7 @@ class NumericBadConsequence < BadConsequence
   
   attr_reader :nHiddenTreasures, :nVisibleTreasures
   
-  def adjustToFitTreasuresLists(v, h)        
+  def adjustToFitTreasureLists(v, h)        
     if(!isEmpty())
         pn_vis = v.length
         pn_hid = h.length
@@ -54,6 +54,6 @@ class NumericBadConsequence < BadConsequence
   end
   
   def to_s
-    puts "\n\nDescripcion: #{@text} \nPerderas niveles: #{@levels} \nPerderas tesoros visibles= #{@nVisibleTreasures} \nPerderas Tesoros ocultos: #{@nHiddenTreasures}"
+    "\n\nDescripcion: #{@text} \nPerderas niveles: #{@levels} \nPerderas tesoros visibles= #{@nVisibleTreasures} \nPerderas Tesoros ocultos: #{@nHiddenTreasures}"
   end
 end

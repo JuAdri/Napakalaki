@@ -25,7 +25,7 @@ class SpecificBadConsequence < BadConsequence
           if(!insertado)
             if(spvi==spvp.type)
               if(!sp_v.contains(spvi))
-                sp_v.add(spvi)
+                sp_v << spvi
                 insertado=true
               end
             end
@@ -38,8 +38,8 @@ class SpecificBadConsequence < BadConsequence
         h.each do |sphp|
           if(!insertado)
             if(sphi==sphp.type)
-              if(!sp_h.contains(sphi))
-                sp_h.add(sphi)
+              if(!sp_h.include?(sphi))
+                sp_h << sphi
                 insertado = true
               end
             end
@@ -53,14 +53,14 @@ class SpecificBadConsequence < BadConsequence
   end
   
   def substractVisibleTreasure(t)
-    if(!@specificVisibleTreasures.isEmpty)
-      @specificVisibleTreasures.remove(t.type)
+    if(!@specificVisibleTreasures.empty?)
+      @specificVisibleTreasures.delete(t.type)
     end
   end
   
   def substractHiddenTreasure(t)
-    if(!@specificHiddenTreasures.isEmpty)
-      @specificHiddenTreasures.remove(t.type)
+    if(!@specificHiddenTreasures.empty?)
+      @specificHiddenTreasures.delete(t.type)
     end
   end
   
@@ -69,6 +69,6 @@ class SpecificBadConsequence < BadConsequence
   end
   
   def to_s
-    puts "\n\nDescripcion: #{@text} \nPerderas niveles: #{@levels} \nPerderas estos tesoros especificos visibles: #{@specificVisibleTreasures} \nPerderas estos tesoros especificos ocultos: #{@specificHiddenTreasures}"
+    "\tDescripcion: #{@text} \n\tPerderas niveles: #{@levels} \n\tPerderas estos tesoros especificos visibles: #{@specificVisibleTreasures} \n\tPerderas estos tesoros especificos ocultos: #{@specificHiddenTreasures}"
   end
 end

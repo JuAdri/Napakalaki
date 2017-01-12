@@ -310,10 +310,7 @@ public class CardDealer {
     }
     
     public Cultist nextCultist(){
-        if (unusedCultists.isEmpty()) {
-            initCultistCardDeck();
-            shuffleCultist();
-        }
+        
         
         Cultist m = unusedCultists.get(0);
         
