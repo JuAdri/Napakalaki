@@ -5,6 +5,8 @@
  */
 package napakalaki;
 
+import GUI.Dice;
+
 /**
  *
  * @author juane
@@ -22,8 +24,7 @@ public class CultistPlayer extends Player{
     
     @Override
     protected int getCombatLevel(){
-        int combat_level= super.getCombaj
-                );
+        int combat_level= super.getCombatLevel();
         return combat_level+(70*combat_level/100)+myCultistCard.getGainedLevels()*totalCultistPlayers;
     }
     
