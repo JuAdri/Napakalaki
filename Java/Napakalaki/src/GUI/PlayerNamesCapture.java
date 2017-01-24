@@ -16,7 +16,7 @@ import javax.swing.JFrame;
  */
 public class PlayerNamesCapture extends javax.swing.JDialog {
     
-    private ArrayList<String> names = null;
+    ArrayList<String> names = new ArrayList();
 
     /**
      * Creates new form PlayerNamesCapture

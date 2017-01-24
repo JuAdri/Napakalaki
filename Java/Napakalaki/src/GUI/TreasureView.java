@@ -17,6 +17,8 @@ public class TreasureView extends javax.swing.JPanel {
     
     public void setTreasure(Treasure t){
         treasureModel = t;
+        this.tesoro_n.setText(treasureModel.getName());
+        repaint();
     }
 
     /**
