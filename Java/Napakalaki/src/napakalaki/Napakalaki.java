@@ -138,9 +138,7 @@ public class Napakalaki {
             currentPlayer.makeTreasureVisible(t);
         }
         
-    }
-    
-    
+    }    
     
     public Player getCurrentPlayer(){
         return currentPlayer;
@@ -149,9 +147,7 @@ public class Napakalaki {
     public Monster getCurrentMonster(){
         return currentMonster;
     }
-    
-   
-    
+      
     public boolean endOfGame(CombatResult result){
         return result == CombatResult.WINGAME;
     }
