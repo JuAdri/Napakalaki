@@ -28,13 +28,14 @@ public class PlayerView extends javax.swing.JPanel {
     public void setPlayer (Player p) {
         playerModel = p;
         // Incluir instrucciones para actualizar su nombre, nivel, etc.
-        this.ind_name.setText(playerModel.getName());
-        this.ind_level.setText(Integer.toString(playerModel.getLevels()));
+        this.ind_name_player.setText(playerModel.getName());
+        this.ind_level_player.setText(Integer.toString(playerModel.getLevels()));
+        this.ind_cLevel_player.setText(Integer.toString(playerModel.getCombatLevel()));
         //MUERTE: this.ind_dead.setText(playerModel.get());
         
         // A continuación se actualizan sus tesoros
-        fillTreasurePanel (visibleTreasures, playerModel.getVisibleTreasures());
-        fillTreasurePanel (hiddenTreasures, playerModel.getHiddenTreasures());
+        fillTreasurePanel (p_visT_player, playerModel.getVisibleTreasures());
+        fillTreasurePanel (p_hidT_player, playerModel.getHiddenTreasures());
         //this.pendingBadConsequenceView1.setPendingBad(playerModel.getPendingBadConsequence());
         repaint();
         revalidate();
@@ -46,11 +47,11 @@ public class PlayerView extends javax.swing.JPanel {
         // Se recorre la lista de tesoros construyendo y añadiendo sus vistas
         //al panel
         for (Treasure t : aList) {
-            TreasureView aTreasureView;
-            aTreasureView = new TreasureView();
-            aTreasureView.setTreasure (t);
+            TreasureView aTreasureView= new TreasureView();
+            aTreasureView.setTreasure(t);
             aTreasureView.setVisible (true);
             aPanel.add (aTreasureView);
+            aPanel.setVisible(true);
         }
         // Se fuerza la actualización visual del panel
         aPanel.repaint();
@@ -66,124 +67,165 @@ public class PlayerView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        visibleTreasures = new javax.swing.JPanel();
-        l_vis_tr = new javax.swing.JLabel();
-        hiddenTreasures = new javax.swing.JPanel();
-        l_hid_tr = new javax.swing.JLabel();
-        l_name = new javax.swing.JLabel();
-        l_dead = new javax.swing.JLabel();
-        l_level = new javax.swing.JLabel();
-        ind_name = new javax.swing.JLabel();
-        ind_level = new javax.swing.JLabel();
-        ind_dead = new javax.swing.JLabel();
-        pan_pending_player = new javax.swing.JPanel();
-        pendingBadConsequenceView1 = new GUI.PendingBadConsequenceView();
+        ind_name_player = new javax.swing.JLabel();
+        pan_levels_player = new javax.swing.JPanel();
+        pan_level_player = new javax.swing.JPanel();
+        l_level_player = new javax.swing.JLabel();
+        ind_level_player = new javax.swing.JLabel();
+        pan_cLevel_player = new javax.swing.JPanel();
+        l_combLevel_player = new javax.swing.JLabel();
+        ind_cLevel_player = new javax.swing.JLabel();
+        pan_botones_player = new javax.swing.JPanel();
+        p_visT_player = new javax.swing.JPanel();
+        p_hidT_player = new javax.swing.JPanel();
 
-        visibleTreasures.setBackground(new java.awt.Color(254, 169, 85));
-        visibleTreasures.setBorder(new javax.swing.border.MatteBorder(null));
+        ind_name_player.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        ind_name_player.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ind_name_player.setText("Nombre: ");
+        ind_name_player.setBorder(null);
 
-        l_vis_tr.setText("Visible Treasures");
-        visibleTreasures.add(l_vis_tr);
+        l_level_player.setText("Player Level");
 
-        hiddenTreasures.setBackground(new java.awt.Color(254, 169, 85));
-        hiddenTreasures.setBorder(new javax.swing.border.MatteBorder(null));
+        ind_level_player.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        ind_level_player.setText("jLabel3");
 
-        l_hid_tr.setText("Hidden Treasures");
-        hiddenTreasures.add(l_hid_tr);
-
-        l_name.setText("Nombre: ");
-        l_name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        l_dead.setText("Muerto: ");
-        l_dead.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        l_level.setText("Nivel: ");
-        l_level.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        pan_pending_player.setBorder(new javax.swing.border.MatteBorder(null));
-
-        javax.swing.GroupLayout pan_pending_playerLayout = new javax.swing.GroupLayout(pan_pending_player);
-        pan_pending_player.setLayout(pan_pending_playerLayout);
-        pan_pending_playerLayout.setHorizontalGroup(
-            pan_pending_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pendingBadConsequenceView1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout pan_level_playerLayout = new javax.swing.GroupLayout(pan_level_player);
+        pan_level_player.setLayout(pan_level_playerLayout);
+        pan_level_playerLayout.setHorizontalGroup(
+            pan_level_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pan_level_playerLayout.createSequentialGroup()
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addGroup(pan_level_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ind_level_player)
+                    .addComponent(l_level_player))
+                .addGap(53, 53, 53))
         );
-        pan_pending_playerLayout.setVerticalGroup(
-            pan_pending_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pendingBadConsequenceView1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+        pan_level_playerLayout.setVerticalGroup(
+            pan_level_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pan_level_playerLayout.createSequentialGroup()
+                .addComponent(l_level_player)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(ind_level_player)
+                .addGap(28, 28, 28))
         );
+
+        l_combLevel_player.setText("Combat Level");
+
+        ind_cLevel_player.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        ind_cLevel_player.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ind_cLevel_player.setText("jLabel4");
+
+        javax.swing.GroupLayout pan_cLevel_playerLayout = new javax.swing.GroupLayout(pan_cLevel_player);
+        pan_cLevel_player.setLayout(pan_cLevel_playerLayout);
+        pan_cLevel_playerLayout.setHorizontalGroup(
+            pan_cLevel_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pan_cLevel_playerLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(ind_cLevel_player)
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pan_cLevel_playerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(l_combLevel_player)
+                .addGap(28, 28, 28))
+        );
+        pan_cLevel_playerLayout.setVerticalGroup(
+            pan_cLevel_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pan_cLevel_playerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(l_combLevel_player)
+                .addGap(18, 18, 18)
+                .addComponent(ind_cLevel_player)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pan_levels_playerLayout = new javax.swing.GroupLayout(pan_levels_player);
+        pan_levels_player.setLayout(pan_levels_playerLayout);
+        pan_levels_playerLayout.setHorizontalGroup(
+            pan_levels_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pan_levels_playerLayout.createSequentialGroup()
+                .addComponent(pan_level_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pan_cLevel_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        pan_levels_playerLayout.setVerticalGroup(
+            pan_levels_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pan_levels_playerLayout.createSequentialGroup()
+                .addComponent(pan_cLevel_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(pan_levels_playerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pan_level_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(31, 31, 31))
+        );
+
+        javax.swing.GroupLayout pan_botones_playerLayout = new javax.swing.GroupLayout(pan_botones_player);
+        pan_botones_player.setLayout(pan_botones_playerLayout);
+        pan_botones_playerLayout.setHorizontalGroup(
+            pan_botones_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pan_botones_playerLayout.setVerticalGroup(
+            pan_botones_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 216, Short.MAX_VALUE)
+        );
+
+        p_visT_player.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Visible Treasures", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        p_visT_player.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        p_hidT_player.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hidden Treasures", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        p_hidT_player.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_dead, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(ind_dead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_level, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(ind_level, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(l_name)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ind_name, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(visibleTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(hiddenTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(pan_pending_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 33, Short.MAX_VALUE))))
+                            .addComponent(pan_botones_player, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pan_levels_player, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(p_hidT_player, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(p_visT_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(ind_name_player, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(hiddenTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(l_name, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ind_name, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(l_level, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ind_level, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(l_dead, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ind_dead, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(pan_pending_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(visibleTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(ind_name_player, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(pan_levels_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(p_visT_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pan_botones_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(p_hidT_player, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel hiddenTreasures;
-    private javax.swing.JLabel ind_dead;
-    private javax.swing.JLabel ind_level;
-    private javax.swing.JLabel ind_name;
-    private javax.swing.JLabel l_dead;
-    private javax.swing.JLabel l_hid_tr;
-    private javax.swing.JLabel l_level;
-    private javax.swing.JLabel l_name;
-    private javax.swing.JLabel l_vis_tr;
-    private javax.swing.JPanel pan_pending_player;
-    private GUI.PendingBadConsequenceView pendingBadConsequenceView1;
-    private javax.swing.JPanel visibleTreasures;
+    private javax.swing.JLabel ind_cLevel_player;
+    private javax.swing.JLabel ind_level_player;
+    private javax.swing.JLabel ind_name_player;
+    private javax.swing.JLabel l_combLevel_player;
+    private javax.swing.JLabel l_level_player;
+    private javax.swing.JPanel p_hidT_player;
+    private javax.swing.JPanel p_visT_player;
+    private javax.swing.JPanel pan_botones_player;
+    private javax.swing.JPanel pan_cLevel_player;
+    private javax.swing.JPanel pan_level_player;
+    private javax.swing.JPanel pan_levels_player;
     // End of variables declaration//GEN-END:variables
 }

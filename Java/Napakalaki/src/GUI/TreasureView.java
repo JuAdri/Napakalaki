@@ -15,13 +15,13 @@ import napakalaki.Treasure;
  */
 public class TreasureView extends javax.swing.JPanel {
     
-    private Treasure treasureModel = null;
+    private Treasure treasureModel;
     
     public void setTreasure(Treasure t){
         treasureModel = t;
-        this.tesoro_n.setText(treasureModel.getName());
-        this.bonus_n.setText(Integer.toString(treasureModel.getBonus()));
-        this.tipo_t.setText(treasureModel.getType().toString());
+        this.text_p.setText(treasureModel.getName());
+        this.ind_level_treasure.setText(Integer.toString(treasureModel.getBonus()));
+        this.ind_type_treasure.setText(treasureModel.getType().toString());
         repaint();
     }
 
@@ -41,25 +41,17 @@ public class TreasureView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tesoro_n = new javax.swing.JTextField();
-        bonus_n = new javax.swing.JTextField();
-        tipo_t = new javax.swing.JTextField();
+        ind_level_treasure = new javax.swing.JLabel();
+        ind_type_treasure = new javax.swing.JLabel();
+        text_p = new javax.swing.JTextField();
 
-        tesoro_n.setText("Nombre");
-        tesoro_n.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tesoro_nActionPerformed(evt);
-            }
-        });
+        ind_level_treasure.setText("jLabel2");
 
-        bonus_n.setText("Bonus");
-        bonus_n.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bonus_nActionPerformed(evt);
-            }
-        });
+        ind_type_treasure.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        ind_type_treasure.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ind_type_treasure.setText("jLabel3");
 
-        tipo_t.setText("Tipo");
+        text_p.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -67,37 +59,31 @@ public class TreasureView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tesoro_n)
-                    .addComponent(tipo_t)
-                    .addComponent(bonus_n))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ind_type_treasure, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ind_level_treasure)
+                            .addComponent(text_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(tesoro_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bonus_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tipo_t, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(text_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(ind_level_treasure, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ind_type_treasure, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tesoro_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tesoro_nActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tesoro_nActionPerformed
-
-    private void bonus_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bonus_nActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bonus_nActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField bonus_n;
-    private javax.swing.JTextField tesoro_n;
-    private javax.swing.JTextField tipo_t;
+    private javax.swing.JLabel ind_level_treasure;
+    private javax.swing.JLabel ind_type_treasure;
+    private javax.swing.JTextField text_p;
     // End of variables declaration//GEN-END:variables
 }

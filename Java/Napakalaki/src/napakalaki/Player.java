@@ -63,7 +63,7 @@ public class Player {
         dead=false;
     }
     
-    protected int getCombatLevel(){
+    public int getCombatLevel(){
         int i;
         int level_combat=level;
         for(i=0; i<visibleTreasures.size(); i++)
