@@ -22,6 +22,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     public void setNapakalaki(Napakalaki a){
         napakalakiModel = a;
         
+        this.playerView1.setNapakalaki(a);
         this.playerView1.setPlayer(napakalakiModel.getCurrentPlayer());
         this.monsterView2.setMonster(napakalakiModel.getCurrentMonster());
         repaint();

@@ -16,6 +16,7 @@ import napakalaki.Treasure;
 public class TreasureView extends javax.swing.JPanel {
     
     private Treasure treasureModel;
+    private boolean selected = false;
     
     public void setTreasure(Treasure t){
         treasureModel = t;
@@ -23,6 +24,14 @@ public class TreasureView extends javax.swing.JPanel {
         this.ind_level_treasure.setText(Integer.toString(treasureModel.getBonus()));
         this.ind_type_treasure.setText(treasureModel.getType().toString());
         repaint();
+    }
+    
+    public boolean isSelected(){
+        return selected;
+    }
+    
+    public Treasure getTreasure(){
+        return treasureModel;
     }
 
     /**
@@ -44,51 +53,80 @@ public class TreasureView extends javax.swing.JPanel {
         ind_level_treasure = new javax.swing.JLabel();
         ind_name_treasure = new javax.swing.JLabel();
         ind_type_treasure = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(153, 153, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         ind_level_treasure.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         ind_level_treasure.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ind_level_treasure.setText("5");
-        ind_level_treasure.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        ind_name_treasure.setText("jLabel1");
-        ind_name_treasure.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         ind_type_treasure.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ind_type_treasure.setText("HELMET");
+
+        jLabel1.setText("Nivel:");
+
+        jLabel2.setText("Tipo:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ind_type_treasure, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                    .addComponent(ind_level_treasure, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ind_name_treasure, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ind_level_treasure, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 21, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ind_name_treasure, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ind_type_treasure, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(ind_name_treasure, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ind_name_treasure, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ind_level_treasure, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ind_level_treasure, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ind_type_treasure, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(ind_type_treasure, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        if(isSelected()){
+            setOpaque(true);
+            selected = false;
+        }
+        else{
+            setOpaque(false);
+            selected = true;
+        }
+        repaint();
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ind_level_treasure;
     private javax.swing.JLabel ind_name_treasure;
     private javax.swing.JLabel ind_type_treasure;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
