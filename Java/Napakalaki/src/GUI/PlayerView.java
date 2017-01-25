@@ -30,7 +30,7 @@ public class PlayerView extends javax.swing.JPanel {
         // Incluir instrucciones para actualizar su nombre, nivel, etc.
         this.ind_name_player.setText(playerModel.getName());
         this.ind_level_player.setText(Integer.toString(playerModel.getLevels()));
-        this.ind_cLevel_player.setText(Integer.toString(playerModel.getCombatLevel()));
+        this.ind_combatlevel_player.setText(Integer.toString(playerModel.getCombatLevel()));
         //MUERTE: this.ind_dead.setText(playerModel.get());
         
         // A continuación se actualizan sus tesoros
@@ -72,9 +72,9 @@ public class PlayerView extends javax.swing.JPanel {
         pan_level_player = new javax.swing.JPanel();
         l_level_player = new javax.swing.JLabel();
         ind_level_player = new javax.swing.JLabel();
-        pan_cLevel_player = new javax.swing.JPanel();
-        l_combLevel_player = new javax.swing.JLabel();
-        ind_cLevel_player = new javax.swing.JLabel();
+        pan_combatlevel_player = new javax.swing.JPanel();
+        l_combat_player = new javax.swing.JLabel();
+        ind_combatlevel_player = new javax.swing.JLabel();
         pan_botones_player = new javax.swing.JPanel();
         p_visT_player = new javax.swing.JPanel();
         p_hidT_player = new javax.swing.JPanel();
@@ -94,7 +94,7 @@ public class PlayerView extends javax.swing.JPanel {
         pan_level_playerLayout.setHorizontalGroup(
             pan_level_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pan_level_playerLayout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pan_level_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ind_level_player)
                     .addComponent(l_level_player))
@@ -104,38 +104,36 @@ public class PlayerView extends javax.swing.JPanel {
             pan_level_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pan_level_playerLayout.createSequentialGroup()
                 .addComponent(l_level_player)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(ind_level_player)
                 .addGap(28, 28, 28))
         );
 
-        l_combLevel_player.setText("Combat Level");
+        l_combat_player.setText("CombatLeveler Level");
 
-        ind_cLevel_player.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        ind_cLevel_player.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ind_cLevel_player.setText("jLabel4");
+        ind_combatlevel_player.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        ind_combatlevel_player.setText("jLabel3");
 
-        javax.swing.GroupLayout pan_cLevel_playerLayout = new javax.swing.GroupLayout(pan_cLevel_player);
-        pan_cLevel_player.setLayout(pan_cLevel_playerLayout);
-        pan_cLevel_playerLayout.setHorizontalGroup(
-            pan_cLevel_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pan_cLevel_playerLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(ind_cLevel_player)
-                .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pan_cLevel_playerLayout.createSequentialGroup()
+        javax.swing.GroupLayout pan_combatlevel_playerLayout = new javax.swing.GroupLayout(pan_combatlevel_player);
+        pan_combatlevel_player.setLayout(pan_combatlevel_playerLayout);
+        pan_combatlevel_playerLayout.setHorizontalGroup(
+            pan_combatlevel_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pan_combatlevel_playerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(l_combLevel_player)
-                .addGap(28, 28, 28))
+                .addGroup(pan_combatlevel_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(l_combat_player)
+                    .addGroup(pan_combatlevel_playerLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(ind_combatlevel_player)))
+                .addGap(53, 53, 53))
         );
-        pan_cLevel_playerLayout.setVerticalGroup(
-            pan_cLevel_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pan_cLevel_playerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(l_combLevel_player)
-                .addGap(18, 18, 18)
-                .addComponent(ind_cLevel_player)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        pan_combatlevel_playerLayout.setVerticalGroup(
+            pan_combatlevel_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pan_combatlevel_playerLayout.createSequentialGroup()
+                .addComponent(l_combat_player)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ind_combatlevel_player)
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout pan_levels_playerLayout = new javax.swing.GroupLayout(pan_levels_player);
@@ -143,27 +141,22 @@ public class PlayerView extends javax.swing.JPanel {
         pan_levels_playerLayout.setHorizontalGroup(
             pan_levels_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pan_levels_playerLayout.createSequentialGroup()
-                .addComponent(pan_level_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pan_cLevel_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(pan_level_player, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pan_combatlevel_player, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pan_levels_playerLayout.setVerticalGroup(
             pan_levels_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pan_levels_playerLayout.createSequentialGroup()
-                .addComponent(pan_cLevel_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(pan_levels_playerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pan_level_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(31, 31, 31))
+            .addComponent(pan_level_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pan_combatlevel_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pan_botones_playerLayout = new javax.swing.GroupLayout(pan_botones_player);
         pan_botones_player.setLayout(pan_botones_playerLayout);
         pan_botones_playerLayout.setHorizontalGroup(
             pan_botones_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 236, Short.MAX_VALUE)
         );
         pan_botones_playerLayout.setVerticalGroup(
             pan_botones_playerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,47 +177,50 @@ public class PlayerView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(pan_botones_player, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pan_levels_player, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(p_hidT_player, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(p_visT_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pan_levels_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(ind_name_player, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(74, 74, 74)
+                        .addComponent(ind_name_player, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pan_botones_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(p_visT_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(p_hidT_player, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ind_name_player, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)
+                        .addComponent(ind_name_player, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pan_levels_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(p_visT_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(p_visT_player, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pan_botones_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(p_hidT_player, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(p_hidT_player, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ind_cLevel_player;
+    private javax.swing.JLabel ind_combatlevel_player;
     private javax.swing.JLabel ind_level_player;
     private javax.swing.JLabel ind_name_player;
-    private javax.swing.JLabel l_combLevel_player;
+    private javax.swing.JLabel l_combat_player;
     private javax.swing.JLabel l_level_player;
     private javax.swing.JPanel p_hidT_player;
     private javax.swing.JPanel p_visT_player;
     private javax.swing.JPanel pan_botones_player;
-    private javax.swing.JPanel pan_cLevel_player;
+    private javax.swing.JPanel pan_combatlevel_player;
     private javax.swing.JPanel pan_level_player;
     private javax.swing.JPanel pan_levels_player;
     // End of variables declaration//GEN-END:variables

@@ -77,7 +77,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         monster_panel.setLayout(monster_panelLayout);
         monster_panelLayout.setHorizontalGroup(
             monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 377, Short.MAX_VALUE)
             .addGroup(monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(monster_panelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -86,7 +86,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         );
         monster_panelLayout.setVerticalGroup(
             monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGap(0, 514, Short.MAX_VALUE)
             .addGroup(monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(monster_panelLayout.createSequentialGroup()
                     .addContainerGap()
