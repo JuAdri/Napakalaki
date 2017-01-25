@@ -50,7 +50,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         setTitle("NAPAKALAKI GAME");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(1280, 1024));
+        setPreferredSize(new java.awt.Dimension(1100, 700));
 
         p_currPlayer_nap.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
