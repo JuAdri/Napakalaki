@@ -45,34 +45,35 @@ public class MonsterView extends javax.swing.JPanel {
         badView_monster = new GUI.BadConsequenceView();
         pane_inf_monster = new javax.swing.JPanel();
         l_name_monster = new javax.swing.JLabel();
-        l_tittle_monster = new javax.swing.JLabel();
         l_level_monster = new javax.swing.JLabel();
-        ind_name_monster = new javax.swing.JLabel();
         ind_level_monster = new javax.swing.JLabel();
+        ind_name_monster = new javax.swing.JLabel();
+
+        panel_prize_monster.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout panel_prize_monsterLayout = new javax.swing.GroupLayout(panel_prize_monster);
         panel_prize_monster.setLayout(panel_prize_monsterLayout);
         panel_prize_monsterLayout.setHorizontalGroup(
             panel_prize_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_prize_monsterLayout.createSequentialGroup()
-                .addComponent(prizeView_monster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        panel_prize_monsterLayout.setVerticalGroup(
-            panel_prize_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_prize_monsterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(prizeView_monster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        panel_prize_monsterLayout.setVerticalGroup(
+            panel_prize_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_prize_monsterLayout.createSequentialGroup()
+                .addComponent(prizeView_monster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
+        );
+
+        pan_bad_monster.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout pan_bad_monsterLayout = new javax.swing.GroupLayout(pan_bad_monster);
         pan_bad_monster.setLayout(pan_bad_monsterLayout);
         pan_bad_monsterLayout.setHorizontalGroup(
             pan_bad_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pan_bad_monsterLayout.createSequentialGroup()
-                .addComponent(badView_monster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(badView_monster, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         pan_bad_monsterLayout.setVerticalGroup(
             pan_bad_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,12 +82,13 @@ public class MonsterView extends javax.swing.JPanel {
                 .addComponent(badView_monster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        pane_inf_monster.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         l_name_monster.setText("Nombre: ");
 
-        l_tittle_monster.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        l_tittle_monster.setText("MONSTRUO");
-
         l_level_monster.setText("Nivel de combate: ");
+
+        ind_name_monster.setText("jLabel1");
 
         javax.swing.GroupLayout pane_inf_monsterLayout = new javax.swing.GroupLayout(pane_inf_monster);
         pane_inf_monster.setLayout(pane_inf_monsterLayout);
@@ -96,29 +98,23 @@ public class MonsterView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(pane_inf_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pane_inf_monsterLayout.createSequentialGroup()
+                        .addComponent(l_name_monster, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ind_name_monster, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(91, 91, 91))
+                    .addGroup(pane_inf_monsterLayout.createSequentialGroup()
                         .addComponent(l_level_monster)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ind_level_monster, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pane_inf_monsterLayout.createSequentialGroup()
-                        .addGroup(pane_inf_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(l_tittle_monster)
-                            .addGroup(pane_inf_monsterLayout.createSequentialGroup()
-                                .addComponent(l_name_monster)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ind_name_monster, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(ind_level_monster, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pane_inf_monsterLayout.setVerticalGroup(
             pane_inf_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pane_inf_monsterLayout.createSequentialGroup()
-                .addComponent(l_tittle_monster, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pane_inf_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pane_inf_monsterLayout.createSequentialGroup()
-                        .addGap(0, 10, Short.MAX_VALUE)
-                        .addComponent(l_name_monster))
-                    .addComponent(ind_name_monster, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(pane_inf_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(l_name_monster, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(ind_name_monster))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pane_inf_monsterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(l_level_monster, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -133,12 +129,10 @@ public class MonsterView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(pan_bad_monster, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pan_bad_monster, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pane_inf_monster, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_prize_monster, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel_prize_monster, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,9 +141,9 @@ public class MonsterView extends javax.swing.JPanel {
                 .addComponent(pane_inf_monster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_prize_monster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(21, 21, 21)
                 .addComponent(pan_bad_monster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -160,7 +154,6 @@ public class MonsterView extends javax.swing.JPanel {
     private javax.swing.JLabel ind_name_monster;
     private javax.swing.JLabel l_level_monster;
     private javax.swing.JLabel l_name_monster;
-    private javax.swing.JLabel l_tittle_monster;
     private javax.swing.JPanel pan_bad_monster;
     private javax.swing.JPanel pane_inf_monster;
     private javax.swing.JPanel panel_prize_monster;

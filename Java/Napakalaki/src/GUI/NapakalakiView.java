@@ -23,7 +23,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         napakalakiModel = a;
         
         this.playerView1.setPlayer(napakalakiModel.getCurrentPlayer());
-        this.monsterView1.setMonster(napakalakiModel.getCurrentMonster());
+        this.monsterView2.setMonster(napakalakiModel.getCurrentMonster());
         repaint();
     }
 
@@ -46,15 +46,15 @@ public class NapakalakiView extends javax.swing.JFrame {
         p_currPlayer_nap = new javax.swing.JPanel();
         playerView1 = new GUI.PlayerView();
         monster_panel = new javax.swing.JPanel();
-        monsterView1 = new GUI.MonsterView();
+        monsterView2 = new GUI.MonsterView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NAPAKALAKI GAME");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(1100, 700));
+        setPreferredSize(new java.awt.Dimension(1280, 700));
 
-        p_currPlayer_nap.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        p_currPlayer_nap.setBorder(javax.swing.BorderFactory.createTitledBorder("PLAYER"));
 
         javax.swing.GroupLayout p_currPlayer_napLayout = new javax.swing.GroupLayout(p_currPlayer_nap);
         p_currPlayer_nap.setLayout(p_currPlayer_napLayout);
@@ -73,25 +73,23 @@ public class NapakalakiView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        monster_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("MONSTER"));
+
         javax.swing.GroupLayout monster_panelLayout = new javax.swing.GroupLayout(monster_panel);
         monster_panel.setLayout(monster_panelLayout);
         monster_panelLayout.setHorizontalGroup(
             monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 377, Short.MAX_VALUE)
-            .addGroup(monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(monster_panelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(monsterView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(monster_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(monsterView2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         monster_panelLayout.setVerticalGroup(
             monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 514, Short.MAX_VALUE)
-            .addGroup(monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(monster_panelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(monsterView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(monster_panelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(monsterView2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -103,7 +101,7 @@ public class NapakalakiView extends javax.swing.JFrame {
                 .addComponent(p_currPlayer_nap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(monster_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +126,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private GUI.MonsterView monsterView1;
+    private GUI.MonsterView monsterView2;
     private javax.swing.JPanel monster_panel;
     private javax.swing.JPanel p_currPlayer_nap;
     private GUI.PlayerView playerView1;

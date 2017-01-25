@@ -109,7 +109,7 @@ public class PlayerView extends javax.swing.JPanel {
                 .addGap(28, 28, 28))
         );
 
-        l_combat_player.setText("CombatLeveler Level");
+        l_combat_player.setText("CombatLevel");
 
         ind_combatlevel_player.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         ind_combatlevel_player.setText("jLabel3");

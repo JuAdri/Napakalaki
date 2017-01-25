@@ -51,6 +51,7 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
         cancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Eleccion de jugadores");
 
         Player1.setText("Jugador 1");
 
