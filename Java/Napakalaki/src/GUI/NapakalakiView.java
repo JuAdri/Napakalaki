@@ -16,23 +16,22 @@ import napakalaki.Player;
  * @author adrianprodri
  */
 public class NapakalakiView extends javax.swing.JFrame {
-    private Napakalaki napakalakiModel = null;
-    private Player currentPlayer;
-    private ArrayList<Player> players;
-    private CardDealer dealer;
-    private Monster currentMonster;
+    private Napakalaki napakalakiModel;
+    
     
     public void setNapakalaki(Napakalaki a){
         napakalakiModel = a;
+        
+        this.playerView1.setPlayer(napakalakiModel.getCurrentPlayer());
+        this.monsterView1.setMonster(napakalakiModel.getCurrentMonster());
+        repaint();
     }
 
     /**
      * Creates new form NapakalakiView
      */
     public NapakalakiView() {
-        players= new ArrayList();
-        currentMonster= new Monster("", 0, null, null);
-        dealer= CardDealer.getInstance();
+        initComponents();
     }
 
     /**
@@ -44,17 +43,86 @@ public class NapakalakiView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        p_currPlayer_nap = new javax.swing.JPanel();
+        l_curr_player = new javax.swing.JLabel();
+        playerView1 = new GUI.PlayerView();
+        p_currMonster_nap = new javax.swing.JPanel();
+        l_curr_monster = new javax.swing.JLabel();
+        monsterView1 = new GUI.MonsterView();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        p_currPlayer_nap.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        l_curr_player.setText("Current Player");
+
+        javax.swing.GroupLayout p_currPlayer_napLayout = new javax.swing.GroupLayout(p_currPlayer_nap);
+        p_currPlayer_nap.setLayout(p_currPlayer_napLayout);
+        p_currPlayer_napLayout.setHorizontalGroup(
+            p_currPlayer_napLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_currPlayer_napLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(p_currPlayer_napLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(l_curr_player)
+                    .addComponent(playerView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        p_currPlayer_napLayout.setVerticalGroup(
+            p_currPlayer_napLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_currPlayer_napLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(l_curr_player)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(playerView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        p_currMonster_nap.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        l_curr_monster.setText("Current Monster");
+
+        javax.swing.GroupLayout p_currMonster_napLayout = new javax.swing.GroupLayout(p_currMonster_nap);
+        p_currMonster_nap.setLayout(p_currMonster_napLayout);
+        p_currMonster_napLayout.setHorizontalGroup(
+            p_currMonster_napLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_currMonster_napLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(p_currMonster_napLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(p_currMonster_napLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(monsterView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(l_curr_monster))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        p_currMonster_napLayout.setVerticalGroup(
+            p_currMonster_napLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_currMonster_napLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(l_curr_monster)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(monsterView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(p_currPlayer_nap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(p_currMonster_nap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(p_currPlayer_nap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(p_currMonster_nap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -68,5 +136,11 @@ public class NapakalakiView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel l_curr_monster;
+    private javax.swing.JLabel l_curr_player;
+    private GUI.MonsterView monsterView1;
+    private javax.swing.JPanel p_currMonster_nap;
+    private javax.swing.JPanel p_currPlayer_nap;
+    private GUI.PlayerView playerView1;
     // End of variables declaration//GEN-END:variables
 }

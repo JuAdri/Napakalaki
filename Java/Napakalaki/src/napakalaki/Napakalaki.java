@@ -24,6 +24,13 @@ public class Napakalaki {
         dealer= CardDealer.getInstance();
     }
     
+    public void initGame(ArrayList<String> players){
+        initPlayers(players);
+        setEnemies();
+        dealer.initCards();
+        nextTurn();
+    }
+    
     private void  initPlayers(ArrayList<String> names){
         if(names.size()>0){
             Player aux;
@@ -32,6 +39,34 @@ public class Napakalaki {
                 players.add(aux);
             }
         }
+    }
+    
+    private void setEnemies(){
+        boolean no_asignado = true;
+        for(int i = 0; i < players.size(); i++){
+            while(no_asignado){
+                int aleatorio = (int) (Math.random() * players.size());
+                if(aleatorio != i){
+                    players.get(i).setEnemy(players.get(aleatorio));
+                    no_asignado = false;
+                }
+            }
+            no_asignado = true;
+        }         
+    }
+    
+     public boolean nextTurn(){
+        Boolean stateOK= nextTurnAllowed();
+        
+        if(stateOK){
+            currentMonster= dealer.nextMonster();
+            currentPlayer= nextPlayer();
+            if(currentPlayer.isDead()){
+                currentPlayer.initTreasures();
+            }
+        }
+        
+        return stateOK;
     }
     
     private Player nextPlayer(){
@@ -59,19 +94,7 @@ public class Napakalaki {
         return currentPlayer.validState();
     }
     
-    private void setEnemies(){
-        boolean no_asignado = true;
-        for(int i = 0; i < players.size(); i++){
-            while(no_asignado){
-                int aleatorio = (int) (Math.random() * players.size());
-                if(aleatorio != i){
-                    players.get(i).setEnemy(players.get(aleatorio));
-                    no_asignado = false;
-                }
-            }
-            no_asignado = true;
-        }         
-    }
+    
     
     public static Napakalaki getInstance(){
         return instance;
@@ -117,12 +140,7 @@ public class Napakalaki {
         
     }
     
-    public void initGame(ArrayList<String> players){
-        initPlayers(players);
-        setEnemies();
-        dealer.initCards();
-        nextTurn();
-    }
+    
     
     public Player getCurrentPlayer(){
         return currentPlayer;
@@ -132,19 +150,7 @@ public class Napakalaki {
         return currentMonster;
     }
     
-    public boolean nextTurn(){
-        Boolean stateOK= nextTurnAllowed();
-        
-        if(stateOK){
-            currentMonster= dealer.nextMonster();
-            currentPlayer= nextPlayer();
-            if(currentPlayer.isDead()){
-                currentPlayer.initTreasures();
-            }
-        }
-        
-        return stateOK;
-    }
+   
     
     public boolean endOfGame(CombatResult result){
         return result == CombatResult.WINGAME;
