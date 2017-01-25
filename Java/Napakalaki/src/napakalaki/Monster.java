@@ -47,6 +47,10 @@ public class Monster {
     public BadConsequence getBadConsequence() {
         return bc;
     }
+    
+    public Prize getPrize(){
+        return premio;
+    }
         
     public int getCombatLevel(){
         return combatLevel;

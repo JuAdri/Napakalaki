@@ -30,6 +30,10 @@ public abstract class BadConsequence {
         return levels;
     }
     
+    public String getText(){
+        return text;
+    }
+    
     public abstract void substractVisibleTreasure(Treasure t);
     
     public abstract void substractHiddenTreasure(Treasure t);
