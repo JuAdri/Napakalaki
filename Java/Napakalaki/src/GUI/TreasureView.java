@@ -18,6 +18,8 @@ public class TreasureView extends javax.swing.JPanel {
     public void setTreasure(Treasure t){
         treasureModel = t;
         this.tesoro_n.setText(treasureModel.getName());
+        this.bonus_n.setText(Integer.toString(treasureModel.getBonus()));
+        this.tipo_t.setText(treasureModel.getType().toString());
         repaint();
     }
 
@@ -49,6 +51,11 @@ public class TreasureView extends javax.swing.JPanel {
         });
 
         bonus_n.setText("Bonus");
+        bonus_n.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bonus_nActionPerformed(evt);
+            }
+        });
 
         tipo_t.setText("Tipo de tesoro");
 
@@ -80,6 +87,10 @@ public class TreasureView extends javax.swing.JPanel {
     private void tesoro_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tesoro_nActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tesoro_nActionPerformed
+
+    private void bonus_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bonus_nActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bonus_nActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,7 +5,10 @@
  */
 package GUI;
 
+import java.util.ArrayList;
+import javax.swing.JPanel;
 import napakalaki.Player;
+import napakalaki.Treasure;
 
 /**
  *
@@ -20,6 +23,32 @@ public class PlayerView extends javax.swing.JPanel {
      */
     public PlayerView() {
         initComponents();
+    }
+    
+    public void setPlayer (Player p) {
+        playerModel = p;
+        // Incluir instrucciones para actualizar su nombre, nivel, etc.
+        // A continuación se actualizan sus tesoros
+        fillTreasurePanel (visibleTreasures, playerModel.getVisibleTreasures());
+        fillTreasurePanel (hiddenTreasures, playerModel.getHiddenTreasures());
+        repaint();
+        revalidate();
+    }
+    
+    private void fillTreasurePanel (JPanel aPanel, ArrayList<Treasure> aList) {
+        // Se elimina la información antigua
+        aPanel.removeAll();
+        // Se recorre la lista de tesoros construyendo y añadiendo sus vistas
+        //al panel
+        for (Treasure t : aList) {
+            TreasureView aTreasureView = new TreasureView();
+            aTreasureView.setTreasure (t);
+            aTreasureView.setVisible (true);
+            aPanel.add (aTreasureView);
+        }
+        // Se fuerza la actualización visual del panel
+        aPanel.repaint();
+        aPanel.revalidate();
     }
 
     /**
