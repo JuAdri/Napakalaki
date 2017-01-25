@@ -5,8 +5,10 @@
  */
 package GUI;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import napakalaki.Napakalaki;
 import napakalaki.Player;
@@ -285,8 +287,14 @@ public class PlayerView extends javax.swing.JPanel {
     }//GEN-LAST:event_makevisibleActionPerformed
 
     private void stealbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stealbuttonActionPerformed
+        JButton botonPulsado = (JButton)evt.getSource();
         if(playerModel.canISteal())
             playerModel.stealTreasure();
+        else{
+            botonPulsado.setBackground(Color.red);
+            botonPulsado.setEnabled(false);
+        }
+        repaint();
     }//GEN-LAST:event_stealbuttonActionPerformed
 
     private void discard_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discard_buttonActionPerformed
