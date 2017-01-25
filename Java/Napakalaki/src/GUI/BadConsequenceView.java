@@ -37,16 +37,13 @@ public class BadConsequenceView extends javax.swing.JPanel {
     private void initComponents() {
 
         l_tittle_bad = new javax.swing.JLabel();
-        l_descripcion = new javax.swing.JLabel();
-        ind_descr_bad = new javax.swing.JTextField();
         l_levels_bad = new javax.swing.JLabel();
-        ind_levels_bad = new javax.swing.JTextField();
+        ind_descr_bad = new javax.swing.JLabel();
+        ind_levels_bad = new javax.swing.JLabel();
 
         l_tittle_bad.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         l_tittle_bad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l_tittle_bad.setText("BAD CONSEQUENCE");
-
-        l_descripcion.setText("Descripcion:");
 
         l_levels_bad.setText("Niveles que perderás:");
 
@@ -57,39 +54,33 @@ public class BadConsequenceView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(l_descripcion)
-                        .addGap(18, 18, 18)
-                        .addComponent(ind_descr_bad, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ind_descr_bad, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(l_tittle_bad)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(l_levels_bad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ind_levels_bad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(l_tittle_bad))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ind_levels_bad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(l_tittle_bad)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(l_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ind_descr_bad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(l_levels_bad)
-                    .addComponent(ind_levels_bad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ind_levels_bad, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l_levels_bad))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ind_descr_bad, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ind_descr_bad;
-    private javax.swing.JTextField ind_levels_bad;
-    private javax.swing.JLabel l_descripcion;
+    private javax.swing.JLabel ind_descr_bad;
+    private javax.swing.JLabel ind_levels_bad;
     private javax.swing.JLabel l_levels_bad;
     private javax.swing.JLabel l_tittle_bad;
     // End of variables declaration//GEN-END:variables

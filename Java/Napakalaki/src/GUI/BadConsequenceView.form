@@ -16,41 +16,34 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="l_descripcion" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="ind_descr_bad" min="-2" pref="143" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="ind_descr_bad" pref="192" max="32767" attributes="0"/>
+                  <Component id="l_tittle_bad" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="l_levels_bad" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ind_levels_bad" min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="ind_levels_bad" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="l_tittle_bad" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="l_tittle_bad" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="l_descripcion" min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="ind_descr_bad" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="ind_levels_bad" min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="l_levels_bad" min="-2" max="-2" attributes="0"/>
-                  <Component id="ind_levels_bad" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <Component id="ind_descr_bad" min="-2" pref="51" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,19 +58,14 @@
         <Property name="text" type="java.lang.String" value="BAD CONSEQUENCE"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="l_descripcion">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Descripcion:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="ind_descr_bad">
-    </Component>
     <Component class="javax.swing.JLabel" name="l_levels_bad">
       <Properties>
         <Property name="text" type="java.lang.String" value="Niveles que perder&#xe1;s:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="ind_levels_bad">
+    <Component class="javax.swing.JLabel" name="ind_descr_bad">
+    </Component>
+    <Component class="javax.swing.JLabel" name="ind_levels_bad">
     </Component>
   </SubComponents>
 </Form>
