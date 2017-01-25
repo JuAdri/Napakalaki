@@ -30,6 +30,25 @@ public class MonsterView extends javax.swing.JPanel {
         this.prizeView_monster.setPrize(monster_model.getPrize());
         repaint();
     }
+    
+    public void HideMonster ()
+    {
+        jPanel2.setVisible(false);
+        jPanel1.setVisible(false);
+        monsterBc.setVisible(false);
+        
+        repaint();
+    }
+    
+    public void ShowMonster ()
+    {
+        jPanel2.setVisible(true);
+        jPanel1.setVisible(true);
+        monsterBc.setVisible(true);
+        
+        repaint();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,7 +162,7 @@ public class MonsterView extends javax.swing.JPanel {
                 .addComponent(panel_prize_monster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addComponent(pan_bad_monster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
