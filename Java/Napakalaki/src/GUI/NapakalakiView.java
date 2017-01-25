@@ -48,6 +48,10 @@ public class NapakalakiView extends javax.swing.JFrame {
         playerView1 = new GUI.PlayerView();
         monster_panel = new javax.swing.JPanel();
         monsterView2 = new GUI.MonsterView();
+        pan_but_right = new javax.swing.JPanel();
+        but_discover_nap = new javax.swing.JButton();
+        but_next_nap = new javax.swing.JButton();
+        but_fight_nap = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NAPAKALAKI GAME");
@@ -76,21 +80,62 @@ public class NapakalakiView extends javax.swing.JFrame {
 
         monster_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("MONSTER"));
 
+        but_discover_nap.setText("DISCOVER");
+        but_discover_nap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                but_discover_napActionPerformed(evt);
+            }
+        });
+
+        but_next_nap.setText("FIGHT!");
+
+        but_fight_nap.setText("Next Turn");
+
+        javax.swing.GroupLayout pan_but_rightLayout = new javax.swing.GroupLayout(pan_but_right);
+        pan_but_right.setLayout(pan_but_rightLayout);
+        pan_but_rightLayout.setHorizontalGroup(
+            pan_but_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pan_but_rightLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(pan_but_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(but_fight_nap)
+                    .addComponent(but_discover_nap))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(but_next_nap, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+        pan_but_rightLayout.setVerticalGroup(
+            pan_but_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pan_but_rightLayout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(pan_but_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(but_next_nap, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pan_but_rightLayout.createSequentialGroup()
+                        .addComponent(but_discover_nap)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(but_fight_nap)))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout monster_panelLayout = new javax.swing.GroupLayout(monster_panel);
         monster_panel.setLayout(monster_panelLayout);
         monster_panelLayout.setHorizontalGroup(
             monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(monster_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(monsterView2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pan_but_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(monsterView2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         monster_panelLayout.setVerticalGroup(
             monster_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(monster_panelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(monsterView2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addComponent(monsterView2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pan_but_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,6 +164,14 @@ public class NapakalakiView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void but_discover_napActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_discover_napActionPerformed
+        // TODO add your handling code here:
+        monsterView.ShowMonster();
+        combatButton.setEnabled(true);
+        meetMonsterButton.setEnabled(false);
+        playerView.ChangeMakeVisibleButton(false);
+    }//GEN-LAST:event_but_discover_napActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -127,9 +180,13 @@ public class NapakalakiView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton but_discover_nap;
+    private javax.swing.JButton but_fight_nap;
+    private javax.swing.JButton but_next_nap;
     private GUI.MonsterView monsterView2;
     private javax.swing.JPanel monster_panel;
     private javax.swing.JPanel p_currPlayer_nap;
+    private javax.swing.JPanel pan_but_right;
     private GUI.PlayerView playerView1;
     // End of variables declaration//GEN-END:variables
 }
