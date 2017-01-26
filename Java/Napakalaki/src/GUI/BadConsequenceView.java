@@ -22,7 +22,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
     public void setBad(BadConsequence p_bad){
         bad_model= p_bad;
         
-        this.ind_descr_bad.setText("<HTML>asdgsdajgsdagsdahujghsdughsdughusdhgusdguisdhagusadhguhsdauighsduahguisadhguiasd</HTML>");
+        this.ind_descr_bad.setText("<html>"+bad_model.getText()+"</html>");
         
         repaint();
     }
@@ -42,38 +42,27 @@ public class BadConsequenceView extends javax.swing.JPanel {
         l_tittle_bad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l_tittle_bad.setText("BAD CONSEQUENCE");
 
-        ind_descr_bad.setText("<HTML>asdgsdajgsdagsdahujghsdughsdughusdhgusdguisdhagusadhguhsdauighsduahguisadhguiasd</HTML>");
         ind_descr_bad.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        ind_descr_bad.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                ind_descr_badFocusGained(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ind_descr_bad, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(l_tittle_bad, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
-            .addComponent(ind_descr_bad, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(l_tittle_bad, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(l_tittle_bad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ind_descr_bad, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addGap(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ind_descr_badFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ind_descr_badFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ind_descr_badFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

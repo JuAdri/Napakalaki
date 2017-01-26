@@ -23,7 +23,7 @@ public class MonsterView extends javax.swing.JPanel {
     public void setMonster(Monster p_mons){
         monster_model= p_mons;
         
-        this.ind_name_monster.setText(monster_model.getName());
+        this.ind_name_monster.setText("<html>"+monster_model.getName()+"</html>");
         this.ind_level_monster.setText(Integer.toString(monster_model.getCombatLevel()));
         
         this.badConsequenceView1.setBad(monster_model.getBadConsequence());

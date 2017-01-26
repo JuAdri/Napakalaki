@@ -21,10 +21,10 @@ public class PendingBadConsequenceView extends javax.swing.JPanel {
     }
     
     public void setPendingBad(BadConsequence p_bad){
+        ind_descr_pending.setText(null);
         pendingBad_model= p_bad;
-        
-        this.ind_descr_pending.setText(pendingBad_model.getText());
-        //this.ind_levels_bad.setText(Integer.toString(bad_model.getLevels()));
+        if(p_bad != null)
+            this.ind_descr_pending.setText("<html>"+pendingBad_model.getText()+"</html>");
         
         repaint();
     }
@@ -40,7 +40,7 @@ public class PendingBadConsequenceView extends javax.swing.JPanel {
 
         l_tittle_pending = new javax.swing.JLabel();
         l_descr_pending = new javax.swing.JLabel();
-        ind_descr_pending = new javax.swing.JTextField();
+        ind_descr_pending = new javax.swing.JLabel();
 
         l_tittle_pending.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         l_tittle_pending.setText("Pending Bad Consequence");
@@ -56,27 +56,27 @@ public class PendingBadConsequenceView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(l_descr_pending)
-                        .addGap(25, 25, 25)
-                        .addComponent(ind_descr_pending, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ind_descr_pending, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(l_tittle_pending))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(l_tittle_pending)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(l_descr_pending)
-                    .addComponent(ind_descr_pending, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ind_descr_pending, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(l_descr_pending))
+                .addGap(31, 31, 31))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ind_descr_pending;
+    private javax.swing.JLabel ind_descr_pending;
     private javax.swing.JLabel l_descr_pending;
     private javax.swing.JLabel l_tittle_pending;
     // End of variables declaration//GEN-END:variables
