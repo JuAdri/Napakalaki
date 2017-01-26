@@ -81,6 +81,9 @@ public class PlayerView extends javax.swing.JPanel {
         aPanel.revalidate();
     }
 
+    public void MakeButtonEnabled(Boolean bool){
+        makevisible.setEnabled(bool);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,10 +108,15 @@ public class PlayerView extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         p_visT_player = new javax.swing.JPanel();
         p_hidT_player = new javax.swing.JPanel();
+        jScrollBar1 = new javax.swing.JScrollBar();
 
         ind_name_player.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        ind_name_player.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ind_name_player.setText("Nombre: ");
+        ind_name_player.setToolTipText("");
+        ind_name_player.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        ind_name_player.setAutoscrolls(true);
+        ind_name_player.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ind_name_player.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         l_level_player.setText("Player Level");
 
@@ -237,7 +245,9 @@ public class PlayerView extends javax.swing.JPanel {
         p_visT_player.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         p_hidT_player.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hidden Treasures", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        p_hidT_player.setAutoscrolls(true);
         p_hidT_player.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        p_hidT_player.add(jScrollBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -247,35 +257,34 @@ public class PlayerView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pan_levels_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pan_levels_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pan_botones_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(ind_name_player, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pan_botones_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(21, 21, 21)
+                        .addComponent(ind_name_player)))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(p_visT_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(p_hidT_player, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE))
+                    .addComponent(p_visT_player, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                    .addComponent(p_hidT_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(ind_name_player, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pan_levels_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ind_name_player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pan_levels_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(p_visT_player, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(p_visT_player, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pan_botones_player, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(p_hidT_player, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(p_hidT_player, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -294,7 +303,7 @@ public class PlayerView extends javax.swing.JPanel {
             botonPulsado.setBackground(Color.red);
             botonPulsado.setEnabled(false);
         }
-        repaint();
+        setPlayer (napakalakiModel.getCurrentPlayer());
     }//GEN-LAST:event_stealbuttonActionPerformed
 
     private void discard_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discard_buttonActionPerformed
@@ -317,6 +326,7 @@ public class PlayerView extends javax.swing.JPanel {
     private javax.swing.JLabel ind_level_player;
     private javax.swing.JLabel ind_name_player;
     private javax.swing.JButton jButton1;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLabel l_combat_player;
     private javax.swing.JLabel l_level_player;
     private javax.swing.JButton makevisible;
